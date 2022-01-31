@@ -318,6 +318,8 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/VSSettingsProvider.ref.dll"
+"Assets/Scripts/BriefCase/BriefCase.cs"
+"Assets/Scripts/BriefCase/StealBriefCase.cs"
 "Assets/Scripts/Player/GrapplingHook/GrapplingHook.cs"
 "Assets/Scripts/Player/GrapplingHook/HookDetector.cs"
 "Assets/Scripts/Player/PlayerLook.cs"

@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BriefCase : MonoBehaviour
+{
+    [SerializeField]
+    float immunityTime;
+
+    float timeSinceStolen;
+
+    public bool stealable = true;
+
+    // Update is called once per frame
+    void Update()
+    {
+        timeSinceStolen += Time.deltaTime;
+
+        if(timeSinceStolen > immunityTime)
+        {
+            stealable = true;
+        }
+        else
+        {
+            stealable = false;
+        }
+    }
+}

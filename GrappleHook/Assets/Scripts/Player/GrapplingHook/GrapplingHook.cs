@@ -124,7 +124,7 @@ public class GrapplingHook : MonoBehaviour
             {
                 ReturnHook();
             }
-            else if (Input.GetMouseButtonDown(2))
+            else if (Input.GetMouseButtonDown(2) && !hasHooked)
             {
                 ReturnHook();
             }
@@ -179,22 +179,22 @@ public class GrapplingHook : MonoBehaviour
             }
             else
             {
-                //if (gameObject.GetComponent<SpringJoint>() != null)
-                //{
-                //    isSwinging = false;
-                //    ropeLengthReachedSwinging = false;
-                //    Destroy(gameObject.GetComponent<SpringJoint>());
-                //}
+                if (gameObject.GetComponent<SpringJoint>() != null)
+                {
+                    isSwinging = false;
+                    ropeLengthReachedSwinging = false;
+                    Destroy(gameObject.GetComponent<SpringJoint>());
+                }
             }
         }
         else
         {
-            //if (gameObject.GetComponent<SpringJoint>() != null)
-            //{
-            //    isSwinging = false;
-            //    ropeLengthReachedSwinging = false;
-            //    Destroy(gameObject.GetComponent<SpringJoint>());
-            //}
+            if (gameObject.GetComponent<SpringJoint>() != null)
+            {
+                isSwinging = false;
+                ropeLengthReachedSwinging = false;
+                Destroy(gameObject.GetComponent<SpringJoint>());
+            }
 
             hook.transform.parent = grappleHook.transform;
             hook.transform.position = hookStartPosition.transform.position;
@@ -255,7 +255,6 @@ public class GrapplingHook : MonoBehaviour
         ropeLengthReachedSwinging = false;
         rbPlayer.useGravity = false;
         isSwinging = false;
-        Debug.Log(playerVelocity.magnitude.ToString());
         float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
         if (distanceToHook < 1)
         {
@@ -302,26 +301,6 @@ public class GrapplingHook : MonoBehaviour
 
         Vector3 move = (transform.right * x + transform.forward *z) * swingVelocity;
         rbPlayer.AddForce(move, ForceMode.Acceleration);
-
-        //Vector3 dir = (hook.transform.position - transform.position).normalized * ropeLength;
-
-        //if (Vector3.Distance(hook.transform.position, transform.position) >= ropeLength && transform.position.y < hook.transform.position.y)
-        //{
-        //    rbPlayer.useGravity = false;
-
-
-        //    Vector3 horizontaldir = new Vector3(hook.transform.position.x - transform.position.x, 0, hook.transform.position.z - transform.position.z);
-        //    float sinTheta = horizontaldir.magnitude / dir.magnitude;
-        //    Vector3 forceDirection = (Vector3.down * horizontaldir.magnitude + horizontaldir.normalized * (hook.transform.position.y - transform.position.y)).normalized;
-        //    rbPlayer.AddForce(forceDirection * 9.81f * sinTheta, ForceMode.Acceleration);
-
-        //}
-        //else
-        //{
-        //    rbPlayer.useGravity = true;
-        //}
-        //if (Vector3.Distance(hook.transform.position, transform.position) >= ropeLength)
-        //    rbPlayer.MovePosition(hook.transform.position - dir);
     }
 
     void BreakHook()
