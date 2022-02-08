@@ -291,16 +291,16 @@ public class GrapplingHook : MonoBehaviour
         }
         rbPlayer.useGravity = true;
 
-        if (rbPlayer.velocity.magnitude > playerMoveSpeed)
-        {
-            rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
-        }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = (transform.right * x + transform.forward *z) * swingVelocity;
         rbPlayer.AddForce(move, ForceMode.Acceleration);
+        if (rbPlayer.velocity.magnitude > playerMoveSpeed)
+        {
+            rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
+        }
     }
 
     void BreakHook()

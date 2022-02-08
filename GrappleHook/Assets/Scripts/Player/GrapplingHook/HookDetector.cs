@@ -7,11 +7,21 @@ public class HookDetector : MonoBehaviour
     [SerializeField]
     GameObject player;
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.tag == "Hookable")
+    //    {
+    //        player.GetComponent<GrapplingHook>().hookedObject = collision.gameObject;
+    //        player.GetComponent<GrapplingHook>().hasHooked = true;
+    //        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Hookable")
+        if (other.gameObject.tag == "Hookable")
         {
-            player.GetComponent<GrapplingHook>().hookedObject = collision.gameObject;
+            player.GetComponent<GrapplingHook>().hookedObject = other.gameObject;
             player.GetComponent<GrapplingHook>().hasHooked = true;
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }

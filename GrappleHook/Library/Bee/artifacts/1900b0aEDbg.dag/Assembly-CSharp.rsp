@@ -324,6 +324,10 @@
 "Assets/Scripts/Player/GrapplingHook/HookDetector.cs"
 "Assets/Scripts/Player/PlayerLook.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
+"Assets/Scripts/Player/PlayerUpgrades.cs"
+"Assets/Scripts/Player/UpgradeSpawner.cs"
+"Assets/Scripts/Upgrades/JumpBoost.cs"
+"Assets/Scripts/Upgrades/SpeedBoost.cs"
 -langversion:8.0
 
 /deterministic

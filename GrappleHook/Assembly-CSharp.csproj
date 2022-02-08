@@ -55,10 +55,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player\GrapplingHook\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\Player\GrapplingHook\HookDetector.cs" />
+    <Compile Include="Assets\Scripts\BriefCase\StealBriefCase.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLook.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\BriefCase\BriefCase.cs" />
-    <Compile Include="Assets\Scripts\BriefCase\StealBriefCase.cs" />
+    <Compile Include="Assets\Scripts\Player\UpgradeSpawner.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerUpgrades.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\SpeedBoost.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\JumpBoost.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

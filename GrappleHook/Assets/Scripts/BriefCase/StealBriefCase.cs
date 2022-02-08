@@ -9,7 +9,7 @@ public class StealBriefCase : MonoBehaviour
     GameObject briefCase;
 
     bool ownBriefcase = false;
-
+    bool stealingBriefCase = false;
     float ownedTime = 0;
 
     [SerializeField]
@@ -41,8 +41,23 @@ public class StealBriefCase : MonoBehaviour
             {
                 briefCase.transform.parent.GetComponent<StealBriefCase>().ownBriefcase = false;
                 briefCase.transform.parent = transform;
+                ownBriefcase = true;
+                stealingBriefCase = true;
+
+                
+            }
+        }
+
+        if(stealingBriefCase)
+        {
+            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCaseLocation.transform.position, 1);
+            briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocation.transform.rotation, 1);
+
+            if(Vector3.Distance(briefCase.transform.position, briefCaseLocation.transform.position) > 0.05f)
+            {
                 briefCase.transform.position = briefCaseLocation.transform.position;
-                briefCase.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                briefCase.transform.rotation = briefCaseLocation.transform.rotation;
+                stealingBriefCase = false;
             }
         }
     }

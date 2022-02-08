@@ -28,12 +28,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Vector3 boostForce;
 
+    PlayerUpgrades playerUpgrades;
+    float jumpUpgradeValue;
+    float speedUpgradeValue;
+
     float timeSinceBoost;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         hook = GetComponent<GrapplingHook>();
+        playerUpgrades = GetComponent<PlayerUpgrades>();
 
         timeSinceBoost = boostCooldown;
     }
@@ -41,6 +46,35 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Upgrades to jumping and speed
+        if (playerUpgrades.hasUpgrade)
+        {
+            if (playerUpgrades.currentUpgrade == "JumpBoost")
+            {
+                jumpUpgradeValue = playerUpgrades.jumpUpgradeValue;
+            }
+            else
+            {
+                jumpUpgradeValue = 1;
+            }
+
+            if (playerUpgrades.currentUpgrade == "SpeedBoost")
+            {
+                jumpUpgradeValue = playerUpgrades.speedUpgradeValue;
+            }
+            else
+            {
+                speedUpgradeValue = 1;
+            }
+        }
+        else
+        {
+            jumpUpgradeValue = 1;
+            speedUpgradeValue = 1;
+        }
+
+
         CheckIfGrounded();
 
         if(!hook.hasHooked || isPlayerGrounded)
@@ -48,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            move = (transform.right * x + transform.forward * z) * speed * Time.deltaTime;
+            move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue * Time.deltaTime;
 
             rb.MovePosition(transform.position + move);
         }
@@ -62,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if(currentNumberOfJumps < maxNumberOfJumps)
             {
-                rb.velocity = new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * 9.81f), 0);
+                rb.velocity = new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * 9.81f * jumpUpgradeValue), 0);
                 currentNumberOfJumps++;
             }
         }
