@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585179963820055156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6606245757441891737}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4758818505430343107}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.861685, y: 52.13, z: 17.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -78,10 +78,12 @@ MonoBehaviour:
   upgrades:
   - {fileID: 2906450234489847101, guid: dfca2100d50f5a745885489e4cbfe8a8, type: 3}
   - {fileID: 4736846068282357588, guid: b9bbf76e7b9b44148a7ab35238b575ad, type: 3}
+  - {fileID: 6769477283062741279, guid: 85219606922ce8547a82d3b66c049c11, type: 3}
   spawnLocation: {fileID: 1585179963820055156}
   currentUpgrade: {fileID: 0}
-  upgradeSpawnTime: 0
+  upgradeSpawnTime: 5
   timetoSpawn: 0
+  hasUpgradeSpawned: 0
 --- !u!1001 &2444188439252382787
 PrefabInstance:
   m_ObjectHideFlags: 0

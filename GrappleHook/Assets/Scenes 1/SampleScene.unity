@@ -1298,6 +1298,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1551259652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3812924181191105245, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+  m_PrefabInstance: {fileID: 3812924180735709966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1553028243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,7 +1699,7 @@ GameObject:
   - component: {fileID: 2096080947}
   - component: {fileID: 2096080946}
   - component: {fileID: 2096080945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (11)
   m_TagString: Hookable
   m_Icon: {fileID: 0}
@@ -1786,13 +1791,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4656031825246209171, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
-      propertyPath: timetoSpawn
-      value: 0
+      propertyPath: upgrades.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656031825246209171, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
-      propertyPath: upgradeSpawnTime
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: upgrades.Array.data[0]
+      value: 
+      objectReference: {fileID: 6769477283062741279, guid: 85219606922ce8547a82d3b66c049c11, type: 3}
+    - target: {fileID: 4656031825246209171, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
+      propertyPath: upgrades.Array.data[1]
+      value: 
+      objectReference: {fileID: 2906450234489847101, guid: dfca2100d50f5a745885489e4cbfe8a8, type: 3}
+    - target: {fileID: 4656031825246209171, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
+      propertyPath: upgrades.Array.data[2]
+      value: 
+      objectReference: {fileID: 4736846068282357588, guid: b9bbf76e7b9b44148a7ab35238b575ad, type: 3}
     - target: {fileID: 4758818505430343107, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
       propertyPath: m_Name
       value: UpgradeSpawner
@@ -1840,10 +1853,6 @@ PrefabInstance:
     - target: {fileID: 6606245757441891737, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7231884484793471707, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bf200e9b3dc6a45aa63335502759ea, type: 3}
@@ -1902,6 +1911,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3812924181191105240, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f7a241f631ed784b917ed83a7bed8e9, type: 2}
+    - target: {fileID: 4956222730399671416, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: playerColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956222730399671416, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: playerMaterials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956222730399671416, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: playerColliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 1551259652}
+    - target: {fileID: 4956222730399671416, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: playerMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1551259652}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
 --- !u!1001 &5945479568075611982
