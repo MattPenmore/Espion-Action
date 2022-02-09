@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,16 +53,16 @@
     <UnityVersion>2021.1.22f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Player\UpgradeSpawner.cs" />
     <Compile Include="Assets\Scripts\Player\GrapplingHook\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\Player\GrapplingHook\HookDetector.cs" />
     <Compile Include="Assets\Scripts\BriefCase\StealBriefCase.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\JumpBoost.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\SpeedBoost.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLook.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\BriefCase\BriefCase.cs" />
-    <Compile Include="Assets\Scripts\Player\UpgradeSpawner.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerUpgrades.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\SpeedBoost.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\JumpBoost.cs" />
+    <Compile Include="Assets\Scripts\BriefCase\BriefCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
