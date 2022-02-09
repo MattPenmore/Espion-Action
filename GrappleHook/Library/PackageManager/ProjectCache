@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637788779953636068
-    m_Hash: 347916568
+      ticks: 637800217369461543
+    m_Hash: 2142573178
   m_LockFileStatus:
     m_FilePath: C:/Users/Matt/Documents/GitHub/GrappleHookPrototype/GrappleHook/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637788780419482450
-    m_Hash: 52123023
+      ticks: 637800217369510760
+    m_Hash: 1173040338
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -76,10 +76,12 @@ m_ResolvedPackages:
     - 1.14.4
     - 1.14.7
     - 1.14.9
+    - 1.14.12
     - 1.15.1
     - 1.15.4
     - 1.15.7
     - 1.15.9
+    - 1.15.12
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -100,10 +102,12 @@ m_ResolvedPackages:
     - 1.14.4
     - 1.14.7
     - 1.14.9
+    - 1.14.12
     - 1.15.1
     - 1.15.4
     - 1.15.7
     - 1.15.9
+    - 1.15.12
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -203,11 +207,13 @@ m_ResolvedPackages:
     - 3.0.7
     - 3.0.9
     - 3.0.10
+    - 3.0.12
     compatible:
     - 3.0.7
     - 3.0.9
     - 3.0.10
-    verified: 3.0.10
+    - 3.0.12
+    verified: 3.0.12
   dependencies:
   - name: com.unity.ext.nunit
     version: 1.0.6
@@ -381,6 +387,137 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.2.4
     nextVersion: 
+- packageId: com.unity.probuilder@5.0.4
+  testable: 0
+  isDirectDependency: 1
+  version: 5.0.4
+  source: 1
+  resolvedPath: C:\Users\Matt\Documents\GitHub\GrappleHookPrototype\GrappleHook\Library\PackageCache\com.unity.probuilder@5.0.4
+  assetPath: Packages/com.unity.probuilder
+  name: com.unity.probuilder
+  displayName: ProBuilder
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: 'Build, edit, and texture custom geometry in Unity. Use ProBuilder
+    for in-scene level design, prototyping, collision meshes, all with on-the-fly
+    play-testing.
+
+
+    Advanced features include UV editing, vertex colors, parametric
+    shapes, and texture blending. With ProBuilder''s model export feature it''s easy
+    to tweak your levels in any external 3D modelling suite.
+
+
+    If you are using
+    URP/HDRP, be careful to also import the corresponding sample project in the section
+    below to get the proper materials.'
+  status: 4
+  errors: []
+  versions:
+    all:
+    - 3.0.0
+    - 3.0.1
+    - 3.0.2
+    - 3.0.3
+    - 3.0.6
+    - 3.0.8
+    - 3.0.9
+    - 3.10.1
+    - 4.0.2
+    - 4.0.3
+    - 4.0.4
+    - 4.0.5
+    - 4.1.0
+    - 4.1.2
+    - 4.2.1
+    - 4.2.2-preview.1
+    - 4.2.2-preview.2
+    - 4.2.3
+    - 4.2.4-preview.0
+    - 4.3.0-preview.0
+    - 4.3.0-preview.1
+    - 4.3.0-preview.2
+    - 4.3.0-preview.4
+    - 4.3.0-preview.6
+    - 4.3.0-preview.7
+    - 4.3.0-preview.8
+    - 4.3.0-preview.9
+    - 4.3.1
+    - 4.4.0-preview.1
+    - 4.4.0
+    - 4.5.0
+    - 4.5.2
+    - 5.0.0-pre.7
+    - 5.0.0-pre.10
+    - 5.0.1
+    - 5.0.3
+    - 5.0.4
+    compatible:
+    - 5.0.3
+    - 5.0.4
+    verified: 5.0.4
+  dependencies:
+  - name: com.unity.settings-manager
+    version: 1.0.3
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.settings-manager
+    version: 1.0.3
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  keywords:
+  - 3d
+  - model
+  - mesh
+  - modeling
+  - geometry
+  - shape
+  - cube
+  - blender
+  - max
+  - maya
+  - fbx
+  - obj
+  - level
+  - design
+  - block
+  - greybox
+  - graybox
+  - whitebox
+  - prototype
+  - probuilder
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hasRegistry: 1
+  hideInEditor: 1
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637798446010000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/com.unity.probuilder.git
+    revision: 22982e248cc358e0d09dddd839f6d84cf33a8cb6
+    path: 
+  unityLifecycle:
+    version: 5.0.3
+    nextVersion: 
 - packageId: com.unity.test-framework@1.1.29
   testable: 0
   isDirectDependency: 1
@@ -434,10 +571,12 @@ m_ResolvedPackages:
     - 1.1.29
     - 1.1.30
     - 2.0.1-pre.12
+    - 2.0.1-pre.18
     compatible:
     - 1.1.29
     - 1.1.30
     - 2.0.1-pre.12
+    - 2.0.1-pre.18
     verified: 1.1.30
   dependencies:
   - name: com.unity.ext.nunit
@@ -732,7 +871,9 @@ m_ResolvedPackages:
     - 1.6.1
     - 1.6.2
     - 1.6.3
+    - 1.6.4
     - 1.7.0-pre.1
+    - 1.7.0-pre.2
     compatible:
     - 1.5.6
     - 1.5.7
@@ -743,7 +884,9 @@ m_ResolvedPackages:
     - 1.6.1
     - 1.6.2
     - 1.6.3
+    - 1.6.4
     - 1.7.0-pre.1
+    - 1.7.0-pre.2
     verified: 1.5.7
   dependencies:
   - name: com.unity.modules.director
@@ -896,6 +1039,7 @@ m_ResolvedPackages:
     - 1.7.3
     - 1.7.5
     - 1.7.6
+    - 1.7.7
     - 1.8.0-pre.1
     compatible:
     - 1.6.1
@@ -904,6 +1048,7 @@ m_ResolvedPackages:
     - 1.7.3
     - 1.7.5
     - 1.7.6
+    - 1.7.7
     verified: 1.6.1
   dependencies:
   - name: com.unity.ugui
@@ -2862,4 +3007,55 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 1.0.6
+    nextVersion: 
+- packageId: com.unity.settings-manager@1.0.3
+  testable: 0
+  isDirectDependency: 0
+  version: 1.0.3
+  source: 1
+  resolvedPath: C:\Users\Matt\Documents\GitHub\GrappleHookPrototype\GrappleHook\Library\PackageCache\com.unity.settings-manager@1.0.3
+  assetPath: Packages/com.unity.settings-manager
+  name: com.unity.settings-manager
+  displayName: Settings Manager
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: A framework for making any serializable field a setting, complete
+    with a pre-built settings interface.
+  status: 4
+  errors: []
+  versions:
+    all:
+    - 1.0.3
+    compatible:
+    - 1.0.3
+    verified: 1.0.3
+  dependencies: []
+  resolvedDependencies: []
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hasRegistry: 1
+  hideInEditor: 1
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/com.unity.settings-manager.git
+    revision: 473664ccba1496294b741cf169740a5d54b3d0b6
+    path: 
+  unityLifecycle:
+    version: 1.0.3
     nextVersion: 
