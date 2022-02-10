@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1493534301274162433}
   - component: {fileID: 4499679768127784209}
   - component: {fileID: 7095137574285035914}
-  - component: {fileID: -3274026796238283040}
+  - component: {fileID: -8914363458500136541}
   m_Layer: 0
   m_Name: WraithUpgrade
   m_TagString: Untagged
@@ -97,7 +97,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3274026796238283040
+--- !u!114 &-8914363458500136541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6769477283062741279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45c8fa21d3fe79a4a87dea1322429549, type: 3}
+  m_Script: {fileID: 11500000, guid: 17cd7ea0dc00b0f4492762cc41cb93a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeName: Wraith
