@@ -8,7 +8,7 @@ public class StealBriefCase : MonoBehaviour
 
     GameObject briefCase;
 
-    bool ownBriefcase = false;
+    public bool ownBriefcase = false;
     bool stealingBriefCase = false;
     float ownedTime = 0;
 
@@ -17,6 +17,9 @@ public class StealBriefCase : MonoBehaviour
 
     [SerializeField]
     GameObject briefCaseLocation;
+
+    [SerializeField]
+    GameObject hook;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +61,19 @@ public class StealBriefCase : MonoBehaviour
                 briefCase.transform.position = briefCaseLocation.transform.position;
                 briefCase.transform.rotation = briefCaseLocation.transform.rotation;
                 stealingBriefCase = false;
+            }
+        }
+
+
+        //Steal with grappling hook
+        if(briefCase.transform.parent == hook.transform)
+        {
+            if (Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance)
+            {
+                //briefCase.transform.parent.GetComponent<StealBriefCase>().ownBriefcase = false;
+                briefCase.transform.parent = transform;
+                ownBriefcase = true;
+                stealingBriefCase = true;
             }
         }
     }
