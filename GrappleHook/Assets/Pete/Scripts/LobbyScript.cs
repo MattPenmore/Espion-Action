@@ -184,12 +184,6 @@ public class LobbyScript : MonoBehaviourPunCallbacks
         }
     }
 
-    //public void SetLobbyName(string roomName)
-    //{
-    //    roomToJoin = roomName;
-    //    Debug.Log(roomToJoin);
-    //}
-
     public void OnLobbyPressed(string lobbyName)
     {
         // Activate the Join Game button.
@@ -246,7 +240,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks
     {
         // Load the game scene via photon so that everyone loads in at once.
         if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.LoadLevel("Game");
+            PhotonNetwork.LoadLevel("WhiteBox");
     }
 
     #endregion //UI Callbacks

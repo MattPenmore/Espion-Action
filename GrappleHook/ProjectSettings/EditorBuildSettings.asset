@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Pete/Scenes/Lobby.unity
     guid: 18a820e0ea7ebd445ad944556139dcf9
   - enabled: 1
-    path: Assets/Pete/Scenes/Game.unity
-    guid: 373317aa60512d047ae45fb0425d3187
+    path: Assets/Pete/Scenes/WhiteBox.unity
+    guid: 7926b11715a50834a8865c8db9886c32
   m_configObjects: {}

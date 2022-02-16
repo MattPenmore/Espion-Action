@@ -11,17 +11,6 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
-    private void Start()
-    {
-        //Color[] playerColours = new Color[]{ Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
-        //
-        //int i = gameObject.GetPhotonView().OwnerActorNr - 1;
-        //
-        //transform.position = transform.right * (-7 + 2 * i);
-        //GetComponentInChildren<TextMesh>().text = PhotonNetwork.PlayerList[i].NickName;
-        //GetComponent<SpriteRenderer>().color = playerColours[i];
-    }
-
     [PunRPC]
     private void Initialise(int playerID)
     {
