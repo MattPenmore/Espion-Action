@@ -22,17 +22,25 @@ public class PlayerUpgrades : MonoBehaviour
 
     float timeHadUpgrade = 0;
 
+
+    Vector3 rewindPosition;
+    Quaternion rewindRotation;
+    Quaternion rewindLookRotation;
+
+    [SerializeField]
+    Transform look;
+
+    [SerializeField]
+    float rewindDistance;
+
+    [SerializeField]
+    Rigidbody rb;
+
     // Update is called once per frame
     void Update()
     {
         if(hasUpgrade)
         {
-            timeHadUpgrade += Time.deltaTime;
-            if(timeHadUpgrade >= upgradeTime)
-            {
-                hasUpgrade = false;
-                timeHadUpgrade = 0;
-            }
 
             if(currentUpgrade == "Wraith")
             {
@@ -67,6 +75,32 @@ public class PlayerUpgrades : MonoBehaviour
                 }
             }
 
+            if(currentUpgrade == "TimeRewind")
+            {
+                if (timeHadUpgrade == 0)
+                {
+                    rewindPosition = transform.position;
+                    rewindRotation = transform.rotation;
+                    rewindLookRotation = look.rotation;
+                }
+
+                if(Vector3.Distance(transform.position, rewindPosition) > rewindDistance || Input.GetKeyDown(KeyCode.R))
+                {
+                    transform.position = rewindPosition;
+                    transform.rotation = rewindRotation;
+                    look.rotation = rewindLookRotation;
+                    rb.velocity = Vector3.zero;
+                    hasUpgrade = false;
+                    timeHadUpgrade = 0;
+                }
+            }
+
+            timeHadUpgrade += Time.deltaTime;
+            if(timeHadUpgrade >= upgradeTime)
+            {
+                hasUpgrade = false;
+                timeHadUpgrade = 0;
+            }
         }
         else
         {

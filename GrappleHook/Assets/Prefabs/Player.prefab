@@ -257,7 +257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3812924180932732287}
-  briefCase: {fileID: 0}
 --- !u!120 &3812924180634585195
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -523,6 +522,9 @@ MonoBehaviour:
   - {fileID: 3812924181191105245}
   playerMaterials:
   - {fileID: 3812924181191105245}
+  look: {fileID: 3812924180082916986}
+  rewindDistance: 50
+  rb: {fileID: 3812924180932732284}
 --- !u!1 &3812924181191105245
 GameObject:
   m_ObjectHideFlags: 0

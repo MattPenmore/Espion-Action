@@ -64,6 +64,7 @@ public class GrapplingHook : MonoBehaviour
     Vector3 previousPosition;
     Vector3 currentPosition;
 
+    GameObject briefCase;
 
     private SpringJoint joint;
     // Start is called before the first frame update
@@ -72,7 +73,7 @@ public class GrapplingHook : MonoBehaviour
         rbPlayer = transform.GetComponent<Rigidbody>();
         rbHook = hook.GetComponent<Rigidbody>();
         rope = hook.GetComponent<LineRenderer>();
-        
+        briefCase = GameObject.FindGameObjectWithTag("BriefCase");
     }
 
     // Update is called once per frame
@@ -108,7 +109,7 @@ public class GrapplingHook : MonoBehaviour
             hasHookFired = true;
         }
 
-        if(hasHookFired)
+        if(hasHookFired && GetComponent<StealBriefCase>().ownBriefcase == false)
         {
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
@@ -129,7 +130,7 @@ public class GrapplingHook : MonoBehaviour
                 ReturnHook();
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && briefCase.transform.parent.gameObject != hook)
             {
                 if (isSwinging)
                 {
@@ -195,7 +196,7 @@ public class GrapplingHook : MonoBehaviour
                 ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
-
+            hasHookFired = false;
             hook.transform.parent = grappleHook.transform;
             hook.transform.position = hookStartPosition.transform.position;
             rope.SetPosition(0, grappleHook.transform.position);
