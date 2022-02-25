@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 8383967792968471652, guid: 999f93e6baf325641a5bf6194f5d4198, type: 3}
+  spawnPoint: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 920596557}
     m_Modifications:
+    - target: {fileID: 1625114447, guid: 999f93e6baf325641a5bf6194f5d4198, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1718961585077955286, guid: 999f93e6baf325641a5bf6194f5d4198, type: 3}
       propertyPath: m_RootOrder
       value: 0
