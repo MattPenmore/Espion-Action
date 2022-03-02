@@ -1,4 +1,9 @@
 ###
+# Photon package
+###
+Photon/
+
+###
 # Unity folders and files
 ###
 [Aa]ssets/AssetStoreTools*
