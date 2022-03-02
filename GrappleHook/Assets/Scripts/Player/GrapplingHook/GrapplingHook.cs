@@ -37,8 +37,6 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField]
     float swingVelocity;
 
-    bool ropeLengthReachedSwinging;
-
     float hookCurrentDistance;
     bool hasHookFired;
     public bool hasHooked;
@@ -130,6 +128,16 @@ public class GrapplingHook : MonoBehaviour
                 ReturnHook();
             }
 
+            RaycastHit rayHit;
+            // Does the ray intersect any objects excluding the player layer
+            if (Physics.Raycast(hookStartPosition.transform.position, hook.transform.position - hookStartPosition.transform.position, out rayHit, Mathf.Infinity))
+            {
+                if(rayHit.transform.gameObject != hook && !hookReturning)
+                {
+                    ReturnHook();
+                }
+            }
+
             if (Input.GetMouseButtonDown(0) && briefCase.transform.parent.gameObject != hook)
             {
                 if (isSwinging)
@@ -137,7 +145,6 @@ public class GrapplingHook : MonoBehaviour
                     if (gameObject.GetComponent<SpringJoint>() != null)
                     {
                         isSwinging = false;
-                        ropeLengthReachedSwinging = false;
                         Destroy(gameObject.GetComponent<SpringJoint>());
                     }
                 }
@@ -183,7 +190,6 @@ public class GrapplingHook : MonoBehaviour
                 if (gameObject.GetComponent<SpringJoint>() != null)
                 {
                     isSwinging = false;
-                    ropeLengthReachedSwinging = false;
                     Destroy(gameObject.GetComponent<SpringJoint>());
                 }
             }
@@ -193,7 +199,6 @@ public class GrapplingHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
             hasHookFired = false;
@@ -213,13 +218,11 @@ public class GrapplingHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
         }
         hookReturning = true;
         hasHooked = false;
-        ropeLengthReachedSwinging = false;
         //Vector3 hookPosition = hook.transform.position + (hookStartPosition.transform.position - hook.transform.position).normalized * Time.deltaTime * hookMoveSpeed;
         rbHook.velocity = (hookStartPosition.transform.position - hook.transform.position).normalized * hookMoveSpeed;
 
@@ -240,7 +243,6 @@ public class GrapplingHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
         }
@@ -253,7 +255,6 @@ public class GrapplingHook : MonoBehaviour
         Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
         Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
         rbPlayer.velocity = dir + move;
-        ropeLengthReachedSwinging = false;
         rbPlayer.useGravity = false;
         isSwinging = false;
         float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
@@ -283,10 +284,10 @@ public class GrapplingHook : MonoBehaviour
             joint.connectedAnchor = hook.transform.position;
 
             joint.maxDistance = ropeLength; /** 0.8f;*/
-            joint.minDistance = ropeLength * 0.25f;
+            joint.minDistance = ropeLength;
 
             joint.tolerance = 0;
-            joint.spring = 15f;
+            joint.spring = 50f;
             joint.damper = 7f;
             joint.massScale = 1f;
         }
@@ -349,9 +350,13 @@ public class GrapplingHook : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         CheckIfGrounded();
+
         if (hasHooked && leftGround)
         {
-            BreakHook();
+            if (isPlayerGrounded)
+            {
+                BreakHook();
+            }
         }
 
         if(isPlayerGrounded)
