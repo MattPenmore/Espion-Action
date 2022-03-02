@@ -24,8 +24,8 @@ public class NetworkedLook : MonoBehaviour
     void Update()
     {
         //Break out of update loop if not the owner of this gameobject.
-        if (!gameObject.GetPhotonView().IsMine)
-            return;
+        if (!playerBody.gameObject.GetPhotonView().IsMine)
+                return;
 
         // Break out for the first 1s.
         if (Time.time < 1f)

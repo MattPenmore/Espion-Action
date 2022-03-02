@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5505379511142364010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910748845692643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff6d227879d1704989691a95ab29ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 300
+  playerBody: {fileID: 7618910749157658087}
 --- !u!114 &435704575209667237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,20 +102,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &5505379511142364010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618910748845692643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff6d227879d1704989691a95ab29ba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 300
-  playerBody: {fileID: 7618910749157658087}
 --- !u!114 &519255519857910240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +210,7 @@ PrefabInstance:
     - {fileID: 3812924180932732282, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
     - {fileID: 3812924180932732285, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
     - {fileID: 3812924180634585194, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+    - {fileID: 3812924180082916987, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
 --- !u!1 &7618910749157658083 stripped
 GameObject:
