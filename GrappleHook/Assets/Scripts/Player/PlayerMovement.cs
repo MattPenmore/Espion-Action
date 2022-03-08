@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float jumpHeight;
 
-    int currentNumberOfJumps = 0;
+    public int currentNumberOfJumps = 0;
     [SerializeField]
     int maxNumberOfJumps;
 
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
         CheckIfGrounded();
 
-        if(!hook.hasHooked || isPlayerGrounded)
+        if(isPlayerGrounded)
         {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
@@ -85,6 +85,25 @@ public class PlayerMovement : MonoBehaviour
             move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue * Time.deltaTime;
 
             rb.MovePosition(transform.position + move);
+        }
+        else if(!hook.hasHooked)
+        {
+
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue * Time.deltaTime;
+            float magnitudeTotal = (rb.velocity + move).magnitude;
+            float magnitudeVel = rb.velocity.magnitude;
+
+            if(magnitudeTotal > magnitudeVel)
+            {
+                rb.velocity = (rb.velocity + move).normalized * magnitudeVel;
+            }
+            else
+            {
+                rb.velocity = rb.velocity + move;
+            }
         }
 
         //Jump
@@ -113,10 +132,10 @@ public class PlayerMovement : MonoBehaviour
     void CheckIfGrounded()
     {
         RaycastHit hit;
-        float dist = 1.1f;
+        float dist = 0.6f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.Raycast(transform.position, dir, out hit, dist))
+        if (Physics.SphereCast(transform.position, 0.5f ,dir, out hit, dist))
         {
 
             if (isPlayerGrounded == false)

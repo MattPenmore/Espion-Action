@@ -37,8 +37,6 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField]
     float swingVelocity;
 
-    bool ropeLengthReachedSwinging;
-
     float hookCurrentDistance;
     bool hasHookFired;
     public bool hasHooked;
@@ -64,6 +62,7 @@ public class GrapplingHook : MonoBehaviour
     Vector3 previousPosition;
     Vector3 currentPosition;
 
+    GameObject briefCase;
 
     private SpringJoint joint;
     // Start is called before the first frame update
@@ -72,7 +71,7 @@ public class GrapplingHook : MonoBehaviour
         rbPlayer = transform.GetComponent<Rigidbody>();
         rbHook = hook.GetComponent<Rigidbody>();
         rope = hook.GetComponent<LineRenderer>();
-        
+        briefCase = GameObject.FindGameObjectWithTag("BriefCase");
     }
 
     // Update is called once per frame
@@ -82,7 +81,7 @@ public class GrapplingHook : MonoBehaviour
 
         currentPosition = transform.position;
         playerVelocity = (currentPosition - previousPosition) / Time.deltaTime;
-        
+
 
         hook.transform.parent = null;
         //Fire hook
@@ -93,7 +92,7 @@ public class GrapplingHook : MonoBehaviour
             // Save the info
             RaycastHit hit;
             // You successfully hit
-            if (Physics.Raycast(ray,out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 // Find the direction to move in
                 Vector3 dir = hit.point - hook.transform.position;
@@ -108,7 +107,7 @@ public class GrapplingHook : MonoBehaviour
             hasHookFired = true;
         }
 
-        if(hasHookFired)
+        if (hasHookFired /*&& GetComponent<StealBriefCase>().ownBriefcase == false*/)
         {
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
@@ -120,7 +119,7 @@ public class GrapplingHook : MonoBehaviour
                 hookCurrentDistance = Vector3.Distance(hookStartPosition.transform.position, hookPosition);
             }
 
-            if(hookCurrentDistance >= hookMaxDistance || hookReturning)
+            if (hookCurrentDistance >= hookMaxDistance || hookReturning)
             {
                 ReturnHook();
             }
@@ -129,14 +128,23 @@ public class GrapplingHook : MonoBehaviour
                 ReturnHook();
             }
 
-            if (Input.GetMouseButtonDown(0))
+            RaycastHit rayHit;
+            // Does the ray intersect any objects excluding the player layer
+            if (Physics.Raycast(hookStartPosition.transform.position, hook.transform.position - hookStartPosition.transform.position, out rayHit, Mathf.Infinity))
+            {
+                if (rayHit.transform.gameObject != hook && rayHit.transform.gameObject != hookedObject && !hookReturning)
+                {
+                    ReturnHook();
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0) /*&& briefCase.transform.parent.gameObject != hook*/)
             {
                 if (isSwinging)
                 {
                     if (gameObject.GetComponent<SpringJoint>() != null)
                     {
                         isSwinging = false;
-                        ropeLengthReachedSwinging = false;
                         Destroy(gameObject.GetComponent<SpringJoint>());
                     }
                 }
@@ -162,8 +170,13 @@ public class GrapplingHook : MonoBehaviour
                 rbHook.MovePosition(hookPosition);
                 hasHookFired = true;
             }
-            else if(hasHooked)
+            else if (hasHooked)
             {
+                if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
+                {
+                    BreakHook();
+                }
+
                 if (Input.GetMouseButtonDown(2))
                 {
                     BreakHook();
@@ -172,7 +185,7 @@ public class GrapplingHook : MonoBehaviour
                 {
                     ReelPlayer();
                 }
-                else if(!isPlayerGrounded)
+                else if (!isPlayerGrounded)
                 {
                     SwingPlayer();
                 }
@@ -182,7 +195,6 @@ public class GrapplingHook : MonoBehaviour
                 if (gameObject.GetComponent<SpringJoint>() != null)
                 {
                     isSwinging = false;
-                    ropeLengthReachedSwinging = false;
                     Destroy(gameObject.GetComponent<SpringJoint>());
                 }
             }
@@ -192,14 +204,14 @@ public class GrapplingHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
-
+            hasHookFired = false;
             hook.transform.parent = grappleHook.transform;
             hook.transform.position = hookStartPosition.transform.position;
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
+            rbPlayer.useGravity = true;
         }
         previousPosition = transform.position;
     }
@@ -212,13 +224,13 @@ public class GrapplingHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
         }
         hookReturning = true;
         hasHooked = false;
-        ropeLengthReachedSwinging = false;
+        hook.layer = 10;
+        rbPlayer.useGravity = true;
         //Vector3 hookPosition = hook.transform.position + (hookStartPosition.transform.position - hook.transform.position).normalized * Time.deltaTime * hookMoveSpeed;
         rbHook.velocity = (hookStartPosition.transform.position - hook.transform.position).normalized * hookMoveSpeed;
 
@@ -228,7 +240,8 @@ public class GrapplingHook : MonoBehaviour
             rbHook.velocity = Vector3.zero;
             hasHookFired = false;
             hookReturning = false;
-            
+            hook.layer = 8;
+
         }
     }
 
@@ -239,7 +252,6 @@ public class GrapplingHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
         }
@@ -252,27 +264,26 @@ public class GrapplingHook : MonoBehaviour
         Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
         Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
         rbPlayer.velocity = dir + move;
-        ropeLengthReachedSwinging = false;
         rbPlayer.useGravity = false;
         isSwinging = false;
         float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
         if (distanceToHook < 1)
         {
             CheckIfGrounded();
-            if(!isPlayerGrounded)
+            if (!isPlayerGrounded)
             {
                 //rbPlayer.AddForce((dir + move) * playerEndForce);
             }
             hookedObject = null;
             rbPlayer.useGravity = true;
-            ReturnHook();         
+            ReturnHook();
         }
     }
 
     void SwingPlayer()
     {
         //rbPlayer.useGravity = true;
-        if(!isSwinging)
+        if (!isSwinging)
         {
             isSwinging = true;
             ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
@@ -282,10 +293,10 @@ public class GrapplingHook : MonoBehaviour
             joint.connectedAnchor = hook.transform.position;
 
             joint.maxDistance = ropeLength; /** 0.8f;*/
-            joint.minDistance = ropeLength * 0.25f;
+            joint.minDistance = ropeLength;
 
             joint.tolerance = 0;
-            joint.spring = 15f;
+            joint.spring = 50f;
             joint.damper = 7f;
             joint.massScale = 1f;
         }
@@ -295,7 +306,7 @@ public class GrapplingHook : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = (transform.right * x + transform.forward *z) * swingVelocity;
+        Vector3 move = (transform.right * x + transform.forward * z) * swingVelocity;
         rbPlayer.AddForce(move, ForceMode.Acceleration);
         if (rbPlayer.velocity.magnitude > playerMoveSpeed)
         {
@@ -319,7 +330,7 @@ public class GrapplingHook : MonoBehaviour
         CheckIfGrounded();
         if (!isPlayerGrounded)
         {
-           //rbPlayer.AddForce((dir + move) * playerEndForce);
+            //rbPlayer.AddForce((dir + move) * playerEndForce);
         }
         hookedObject = null;
         rbPlayer.useGravity = true;
@@ -333,27 +344,32 @@ public class GrapplingHook : MonoBehaviour
         float dist = 1.1f;
         Vector3 dir = Vector3.down;
 
-        if(Physics.Raycast(transform.position, dir, out hit, dist))
+        if (Physics.Raycast(transform.position, dir, out hit, dist))
         {
             isPlayerGrounded = true;
+            rbPlayer.useGravity = true;
         }
         else
         {
             isPlayerGrounded = false;
             leftGround = true;
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         CheckIfGrounded();
+
         if (hasHooked && leftGround)
         {
-            BreakHook();
+            if (isPlayerGrounded)
+            {
+                BreakHook();
+                rbPlayer.velocity = Vector3.zero;
+            }
         }
 
-        if(isPlayerGrounded)
+        if (isPlayerGrounded)
         {
             leftGround = false;
         }

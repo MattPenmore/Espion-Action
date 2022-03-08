@@ -55,7 +55,7 @@ public class PlayerUpgrades : MonoBehaviour
             {
                 foreach (GameObject obj in playerColliders)
                 {
-                    obj.layer = 1;
+                    obj.layer = 9;
                 }
                 foreach (GameObject mat in playerMaterials)
                 {
@@ -73,7 +73,7 @@ public class PlayerUpgrades : MonoBehaviour
             timeHadUpgrade = 0;
             foreach (GameObject obj in playerColliders)
             {
-                obj.layer = 1;
+                obj.layer = 9;
             }
             foreach (GameObject mat in playerMaterials)
             {
