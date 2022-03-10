@@ -66,8 +66,9 @@ public class GrapplingHook : MonoBehaviour
 
     private SpringJoint joint;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        
         rbPlayer = transform.GetComponent<Rigidbody>();
         rbHook = hook.GetComponent<Rigidbody>();
         rope = hook.GetComponent<LineRenderer>();
@@ -181,13 +182,14 @@ public class GrapplingHook : MonoBehaviour
                 {
                     BreakHook();
                 }
-                else if (Input.GetMouseButton(1))
-                {
-                    ReelPlayer();
-                }
+                //Switched Order from old method
                 else if (!isPlayerGrounded)
                 {
                     SwingPlayer();
+                }
+                else if (Input.GetMouseButton(1))
+                {
+                    ReelPlayer();
                 }
             }
             else
@@ -247,33 +249,50 @@ public class GrapplingHook : MonoBehaviour
 
     void ReelPlayer()
     {
-        if (isSwinging)
+        //Original method
+
+        //if (isSwinging)
+        //{
+        //    if (gameObject.GetComponent<SpringJoint>() != null)
+        //    {
+        //        isSwinging = false;
+        //        Destroy(gameObject.GetComponent<SpringJoint>());
+        //    }
+        //}
+
+        //float x = Input.GetAxis("Horizontal");
+        //float z = Input.GetAxis("Vertical");
+
+        //Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
+
+        //Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+        //Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+        //rbPlayer.velocity = dir + move;
+        //rbPlayer.useGravity = false;
+        //isSwinging = false;
+
+        //New Method
+        float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
+
+        if(isSwinging)
         {
-            if (gameObject.GetComponent<SpringJoint>() != null)
-            {
-                isSwinging = false;
-                Destroy(gameObject.GetComponent<SpringJoint>());
-            }
+            float disChange = playerReelInSpeed * Time.deltaTime;
+            ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position) - disChange;
+        }
+        else
+        {
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
+
+            Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+            Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+            rbPlayer.velocity = dir + move;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
-
-        Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-        Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-        rbPlayer.velocity = dir + move;
-        rbPlayer.useGravity = false;
-        isSwinging = false;
-        float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
         if (distanceToHook < 1)
         {
-            CheckIfGrounded();
-            if (!isPlayerGrounded)
-            {
-                //rbPlayer.AddForce((dir + move) * playerEndForce);
-            }
             hookedObject = null;
             rbPlayer.useGravity = true;
             ReturnHook();
@@ -296,13 +315,14 @@ public class GrapplingHook : MonoBehaviour
             joint.minDistance = ropeLength;
 
             joint.tolerance = 0;
-            joint.spring = 50f;
-            joint.damper = 7f;
+            joint.spring = 100f;
+            joint.damper = 3f;
             joint.massScale = 1f;
         }
         rbPlayer.useGravity = true;
 
-
+        joint.maxDistance = ropeLength; /** 0.8f;*/
+        joint.minDistance = ropeLength;
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -311,6 +331,12 @@ public class GrapplingHook : MonoBehaviour
         if (rbPlayer.velocity.magnitude > playerMoveSpeed)
         {
             rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
+        }
+
+        //New Method
+        if (Input.GetMouseButton(1))
+        {
+            ReelPlayer();
         }
     }
 
