@@ -277,7 +277,7 @@ public class GrapplingHook : MonoBehaviour
         if(isSwinging)
         {
             float disChange = playerReelInSpeed * Time.deltaTime;
-            ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position) - disChange;
+            ropeLength = ropeLength - disChange;
         }
         else
         {
@@ -316,7 +316,7 @@ public class GrapplingHook : MonoBehaviour
 
             joint.tolerance = 0;
             joint.spring = 100f;
-            joint.damper = 3f;
+            joint.damper = 7f;
             joint.massScale = 1f;
         }
         rbPlayer.useGravity = true;
