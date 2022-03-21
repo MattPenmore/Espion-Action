@@ -117,7 +117,7 @@ public class NetworkedHook : MonoBehaviour
             hasHookFired = true;
         }
 
-        if (hasHookFired)
+        if (hasHookFired /*&& GetComponent<StealBriefCase>().ownBriefcase == false*/)
         {
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
@@ -138,14 +138,23 @@ public class NetworkedHook : MonoBehaviour
                 ReturnHook();
             }
 
-            if (Input.GetMouseButtonDown(0))
+            RaycastHit rayHit;
+            // Does the ray intersect any objects excluding the player layer
+            if (Physics.Raycast(hookStartPosition.transform.position, hook.transform.position - hookStartPosition.transform.position, out rayHit, Mathf.Infinity))
+            {
+                if (rayHit.transform.gameObject != hook && rayHit.transform.gameObject != hookedObject && !hookReturning)
+                {
+                    ReturnHook();
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0) /*&& briefCase.transform.parent.gameObject != hook*/)
             {
                 if (isSwinging)
                 {
                     if (gameObject.GetComponent<SpringJoint>() != null)
                     {
                         isSwinging = false;
-                        ropeLengthReachedSwinging = false;
                         Destroy(gameObject.GetComponent<SpringJoint>());
                     }
                 }
@@ -173,17 +182,23 @@ public class NetworkedHook : MonoBehaviour
             }
             else if (hasHooked)
             {
+                if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
+                {
+                    BreakHook();
+                }
+
                 if (Input.GetMouseButtonDown(2))
                 {
                     BreakHook();
                 }
-                else if (Input.GetMouseButton(1))
-                {
-                    ReelPlayer();
-                }
+                //Switched Order from old method
                 else if (!isPlayerGrounded)
                 {
                     SwingPlayer();
+                }
+                else if (Input.GetMouseButton(1))
+                {
+                    ReelPlayer();
                 }
             }
             else
@@ -191,7 +206,6 @@ public class NetworkedHook : MonoBehaviour
                 if (gameObject.GetComponent<SpringJoint>() != null)
                 {
                     isSwinging = false;
-                    ropeLengthReachedSwinging = false;
                     Destroy(gameObject.GetComponent<SpringJoint>());
                 }
             }
@@ -201,14 +215,14 @@ public class NetworkedHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
-
+            hasHookFired = false;
             hook.transform.parent = grappleHook.transform;
             hook.transform.position = hookStartPosition.transform.position;
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
+            rbPlayer.useGravity = true;
         }
         previousPosition = transform.position;
     }
@@ -221,13 +235,13 @@ public class NetworkedHook : MonoBehaviour
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
-                ropeLengthReachedSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
         }
         hookReturning = true;
         hasHooked = false;
-        ropeLengthReachedSwinging = false;
+        hook.layer = 10;
+        rbPlayer.useGravity = true;
         //Vector3 hookPosition = hook.transform.position + (hookStartPosition.transform.position - hook.transform.position).normalized * Time.deltaTime * hookMoveSpeed;
         rbHook.velocity = (hookStartPosition.transform.position - hook.transform.position).normalized * hookMoveSpeed;
 
@@ -237,41 +251,57 @@ public class NetworkedHook : MonoBehaviour
             rbHook.velocity = Vector3.zero;
             hasHookFired = false;
             hookReturning = false;
+            hook.layer = 8;
 
         }
     }
 
     void ReelPlayer()
     {
+        //Original method
+
+        //if (isSwinging)
+        //{
+        //    if (gameObject.GetComponent<SpringJoint>() != null)
+        //    {
+        //        isSwinging = false;
+        //        Destroy(gameObject.GetComponent<SpringJoint>());
+        //    }
+        //}
+
+        //float x = Input.GetAxis("Horizontal");
+        //float z = Input.GetAxis("Vertical");
+
+        //Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
+
+        //Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+        //Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+        //rbPlayer.velocity = dir + move;
+        //rbPlayer.useGravity = false;
+        //isSwinging = false;
+
+        //New Method
+        float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
+
         if (isSwinging)
         {
-            if (gameObject.GetComponent<SpringJoint>() != null)
-            {
-                isSwinging = false;
-                ropeLengthReachedSwinging = false;
-                Destroy(gameObject.GetComponent<SpringJoint>());
-            }
+            float disChange = playerReelInSpeed * Time.deltaTime;
+            ropeLength = ropeLength - disChange;
+        }
+        else
+        {
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
+
+            Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+            Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+            rbPlayer.velocity = dir + move;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
-
-        Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-        Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-        rbPlayer.velocity = dir + move;
-        ropeLengthReachedSwinging = false;
-        rbPlayer.useGravity = false;
-        isSwinging = false;
-        float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
         if (distanceToHook < 1)
         {
-            CheckIfGrounded();
-            if (!isPlayerGrounded)
-            {
-                //rbPlayer.AddForce((dir + move) * playerEndForce);
-            }
             hookedObject = null;
             rbPlayer.useGravity = true;
             ReturnHook();
@@ -291,16 +321,17 @@ public class NetworkedHook : MonoBehaviour
             joint.connectedAnchor = hook.transform.position;
 
             joint.maxDistance = ropeLength; /** 0.8f;*/
-            joint.minDistance = ropeLength * 0.25f;
+            joint.minDistance = ropeLength;
 
             joint.tolerance = 0;
-            joint.spring = 15f;
+            joint.spring = 100f;
             joint.damper = 7f;
             joint.massScale = 1f;
         }
         rbPlayer.useGravity = true;
 
-
+        joint.maxDistance = ropeLength; /** 0.8f;*/
+        joint.minDistance = ropeLength;
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -309,6 +340,12 @@ public class NetworkedHook : MonoBehaviour
         if (rbPlayer.velocity.magnitude > playerMoveSpeed)
         {
             rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
+        }
+
+        //New Method
+        if (Input.GetMouseButton(1))
+        {
+            ReelPlayer();
         }
     }
 
@@ -345,21 +382,26 @@ public class NetworkedHook : MonoBehaviour
         if (Physics.Raycast(transform.position, dir, out hit, dist))
         {
             isPlayerGrounded = true;
+            rbPlayer.useGravity = true;
         }
         else
         {
             isPlayerGrounded = false;
             leftGround = true;
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         CheckIfGrounded();
+
         if (hasHooked && leftGround)
         {
-            BreakHook();
+            if (isPlayerGrounded)
+            {
+                BreakHook();
+                rbPlayer.velocity = Vector3.zero;
+            }
         }
 
         if (isPlayerGrounded)
