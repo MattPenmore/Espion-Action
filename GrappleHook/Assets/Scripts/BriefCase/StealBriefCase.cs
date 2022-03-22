@@ -6,9 +6,9 @@ public class StealBriefCase : MonoBehaviour
 {
     public static float winTime = 30f;
 
-    GameObject briefCase;
+    public GameObject briefCase;
 
-    bool ownBriefcase = false;
+    public bool ownBriefcase = false;
     bool stealingBriefCase = false;
     float ownedTime = 0;
 
@@ -39,10 +39,16 @@ public class StealBriefCase : MonoBehaviour
         {
             if(Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance && Input.GetKeyDown(KeyCode.Return))
             {
-                briefCase.transform.parent.GetComponent<StealBriefCase>().ownBriefcase = false;
-                briefCase.transform.parent = transform;
-                ownBriefcase = true;
+                if(briefCase.transform.parent)
+                {
+                    if(briefCase.transform.parent.tag == "Player")
+                    {
+                        briefCase.transform.parent.GetComponent<StealBriefCase>().ownBriefcase = false;
+                    }
+                }
+                briefCase.transform.parent = null;
                 stealingBriefCase = true;
+                ownBriefcase = true;
 
                 
             }
@@ -50,13 +56,14 @@ public class StealBriefCase : MonoBehaviour
 
         if(stealingBriefCase)
         {
-            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCaseLocation.transform.position, 1);
+            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCaseLocation.transform.position, 1 * Time.deltaTime);
             briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocation.transform.rotation, 1);
 
             if(Vector3.Distance(briefCase.transform.position, briefCaseLocation.transform.position) > 0.05f)
             {
                 briefCase.transform.position = briefCaseLocation.transform.position;
                 briefCase.transform.rotation = briefCaseLocation.transform.rotation;
+                briefCase.transform.parent = transform;
                 stealingBriefCase = false;
             }
         }

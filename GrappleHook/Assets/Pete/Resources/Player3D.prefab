@@ -37,8 +37,11 @@ MonoBehaviour:
   hookMaxDistance: 50
   rope: {fileID: 0}
   swingVelocity: 40
+  hasHookFired: 0
   hasHooked: 0
+  hookReturning: 0
   hookedObject: {fileID: 0}
+  rbHook: {fileID: 0}
   ropeLength: 0
 --- !u!114 &5848895208445722268
 MonoBehaviour:
@@ -79,6 +82,7 @@ MonoBehaviour:
   body: {fileID: 7618910749953897028}
   audioListener: {fileID: 7618910748845692640}
   _rb: {fileID: 7618910749157658080}
+  spawnPoint: {fileID: 0}
   speed: 10
   isPlayerGrounded: 1
   move: {x: 0, y: 0, z: 0}
@@ -144,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3812924180932732280, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3812924180932732282, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Enabled

@@ -11,6 +11,16 @@ public class BriefCase : MonoBehaviour
 
     public bool stealable = true;
 
+
+    public Vector3 startingPosition = new Vector3();
+    public Quaternion startingRotation = new Quaternion();
+
+    private void Start()
+    {
+        startingPosition = transform.position;
+        startingRotation = transform.rotation;
+    }
+
     // Update is called once per frame
     void Update()
     {

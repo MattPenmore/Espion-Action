@@ -69,6 +69,7 @@
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
+    <Compile Include="Assets\Scripts\Respawn.cs" />
     <Compile Include="Assets\Scripts\Player\GrapplingHook\HookDetector.cs" />
     <Compile Include="Assets\Pete\Scripts\NetworkedHookDetector.cs" />
     <Compile Include="Assets\Scripts\BriefCase\StealBriefCase.cs" />

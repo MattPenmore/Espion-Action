@@ -368,6 +368,7 @@
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/Player/PlayerUpgrades.cs"
 "Assets/Scripts/Player/UpgradeSpawner.cs"
+"Assets/Scripts/Respawn.cs"
 "Assets/Scripts/Upgrade.cs"
 -langversion:8.0
 

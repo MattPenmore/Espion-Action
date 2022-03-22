@@ -17,12 +17,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody _rb;
     GameObject[] spawnPoints = null;
 
+    public GameObject spawnPoint;
+
     [PunRPC]
     private void Initialise(int playerID)
     {
         // Move player to spawn point.
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        transform.position = spawnPoints[playerID].transform.position;
+        spawnPoint = spawnPoints[playerID];
+        transform.position = spawnPoint.transform.position;
         //transform.position = GameObject.Find("SpawnPoint").transform.position + transform.right * (playerID * 2);
 
         // Change player colour.

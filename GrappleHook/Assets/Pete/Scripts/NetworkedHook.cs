@@ -9,13 +9,13 @@ public class NetworkedHook : MonoBehaviour
     Camera cam;
 
     [SerializeField]
-    GameObject hook;
+    public GameObject hook;
 
     [SerializeField]
     GameObject grappleHook;
 
     [SerializeField]
-    GameObject hookStartPosition;
+    public GameObject hookStartPosition;
 
     [SerializeField]
     float playerReelInSpeed;
@@ -41,9 +41,9 @@ public class NetworkedHook : MonoBehaviour
     bool ropeLengthReachedSwinging;
 
     float hookCurrentDistance;
-    bool hasHookFired;
+    public bool hasHookFired;
     public bool hasHooked;
-    bool hookReturning;
+    public bool hookReturning;
     public GameObject hookedObject = null;
 
     private bool isPlayerGrounded;
@@ -52,7 +52,7 @@ public class NetworkedHook : MonoBehaviour
 
     Vector3 hookDirection;
 
-    Rigidbody rbHook;
+    public Rigidbody rbHook;
     Rigidbody rbPlayer;
 
     public float ropeLength;
@@ -65,7 +65,7 @@ public class NetworkedHook : MonoBehaviour
     Vector3 previousPosition;
     Vector3 currentPosition;
 
-
+    GameObject briefCase;
     private SpringJoint joint;
     // Start is called before the first frame update
     void Start()
@@ -73,6 +73,7 @@ public class NetworkedHook : MonoBehaviour
         rbPlayer = transform.GetComponent<Rigidbody>();
         rbHook = hook.GetComponent<Rigidbody>();
         rope = hook.GetComponent<LineRenderer>();
+        briefCase = GameObject.FindGameObjectWithTag("BriefCase");
 
     }
 
@@ -117,7 +118,7 @@ public class NetworkedHook : MonoBehaviour
             hasHookFired = true;
         }
 
-        if (hasHookFired /*&& GetComponent<StealBriefCase>().ownBriefcase == false*/)
+        if (hasHookFired && GetComponent<StealBriefCase>().ownBriefcase == false)
         {
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
@@ -321,7 +322,7 @@ public class NetworkedHook : MonoBehaviour
             joint.connectedAnchor = hook.transform.position;
 
             joint.maxDistance = ropeLength; /** 0.8f;*/
-            joint.minDistance = ropeLength;
+            joint.minDistance = 0;
 
             joint.tolerance = 0;
             joint.spring = 100f;
@@ -331,7 +332,7 @@ public class NetworkedHook : MonoBehaviour
         rbPlayer.useGravity = true;
 
         joint.maxDistance = ropeLength; /** 0.8f;*/
-        joint.minDistance = ropeLength;
+        joint.minDistance = 0;
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
