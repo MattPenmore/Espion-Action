@@ -15,12 +15,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Renderer body;
     [SerializeField] AudioListener audioListener;
     [SerializeField] Rigidbody _rb;
+    GameObject[] spawnPoints = null;
 
     [PunRPC]
     private void Initialise(int playerID)
     {
         // Move player to spawn point.
-        transform.position = GameObject.Find("SpawnPoint").transform.position + transform.right * (playerID * 2);
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        transform.position = spawnPoints[playerID].transform.position;
+        //transform.position = GameObject.Find("SpawnPoint").transform.position + transform.right * (playerID * 2);
 
         // Change player colour.
         Color[] playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
