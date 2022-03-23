@@ -2,7 +2,6 @@
 # Photon package
 ###
 Photon/
-Photon.meta
 ###
 # Unity folders and files
 ###
@@ -44,3 +43,4 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
+GrappleHook/Assets/Photon.meta
