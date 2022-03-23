@@ -299,6 +299,7 @@ public class NetworkedHook : MonoBehaviour
             Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
             Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
             rbPlayer.velocity = dir + move;
+            rbPlayer.MovePosition(playerPosition);
         }
 
         if (distanceToHook < 1)

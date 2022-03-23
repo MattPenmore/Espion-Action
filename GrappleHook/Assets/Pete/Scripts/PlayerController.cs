@@ -87,6 +87,8 @@ public class PlayerController : MonoBehaviour
     float speedUpgradeValue;
 
     float timeSinceBoost;
+    bool jumping = false;
+    float jumpTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +110,16 @@ public class PlayerController : MonoBehaviour
         if (Time.time < 1f)
             return;
 
+        if (jumping)
+        {
+            jumpTime -= Time.deltaTime;
+
+            if (jumpTime <= 0)
+            {
+                jumping = false;
+                jumpTime = 0.5f;
+            }
+        }
         //Upgrades to jumping and speed
         if (playerUpgrades.hasUpgrade)
         {
@@ -138,14 +150,34 @@ public class PlayerController : MonoBehaviour
 
         CheckIfGrounded();
 
-        if (!hook.hasHooked || isPlayerGrounded)
+        if (isPlayerGrounded)
         {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue * Time.fixedDeltaTime;
+            move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue/* * Time.deltaTime*/;
 
-            rb.MovePosition(transform.position + move);
+            rb.velocity = move;
+            //rb.MovePosition(transform.position + move);
+        }
+        else if (!hook.hasHooked)
+        {
+
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue * Time.deltaTime;
+            float magnitudeTotal = new Vector3(rb.velocity.x + move.x, 0, rb.velocity.z + move.z).magnitude;
+            float magnitudeVel = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+
+            if (magnitudeTotal > magnitudeVel && magnitudeTotal > speed * speedUpgradeValue)
+            {
+                rb.velocity = new Vector3(rb.velocity.x + move.x, 0, rb.velocity.z + move.z).normalized * magnitudeVel + new Vector3(0, rb.velocity.y, 0);
+            }
+            else
+            {
+                rb.velocity = rb.velocity + move;
+            }
         }
 
         //Jump
@@ -157,13 +189,14 @@ public class PlayerController : MonoBehaviour
             }
             if (currentNumberOfJumps < maxNumberOfJumps)
             {
-                rb.velocity = new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * 9.81f * jumpUpgradeValue), 0);
+                rb.velocity += new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * 9.81f * jumpUpgradeValue), 0);
                 currentNumberOfJumps++;
+                jumping = true;
             }
         }
 
         //Boost
-        timeSinceBoost += Time.fixedDeltaTime;
+        timeSinceBoost += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.LeftShift) && timeSinceBoost >= boostCooldown)
         {
             rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
@@ -174,15 +207,16 @@ public class PlayerController : MonoBehaviour
     void CheckIfGrounded()
     {
         RaycastHit hit;
-        float dist = 1.1f;
+        float dist = 0.6f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.Raycast(transform.position, dir, out hit, dist))
+        if (Physics.SphereCast(transform.position, 0.5f, dir, out hit, dist) && !jumping)
         {
 
             if (isPlayerGrounded == false)
             {
                 rb.velocity = Vector3.zero;
+                currentNumberOfJumps = 0;
             }
             isPlayerGrounded = true;
         }

@@ -86,10 +86,10 @@ MonoBehaviour:
   speed: 10
   isPlayerGrounded: 1
   move: {x: 0, y: 0, z: 0}
-  jumpHeight: 3
+  jumpHeight: 2
   maxNumberOfJumps: 2
   boostCooldown: 5
-  boostForce: {x: 0, y: 200, z: 1000}
+  boostForce: {x: 0, y: 200, z: 750}
 --- !u!114 &8537137832666130860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956222730399671416, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956222730399671416, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: upgradeTime
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3812924180932732282, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
