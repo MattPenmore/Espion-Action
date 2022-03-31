@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 using UnityEngine;
 using Photon.Pun;
 
-public class NetworkedHook : MonoBehaviour
+public class NetworkedHook : MonoBehaviourPun
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 {
     [SerializeField]
     Camera cam;
@@ -80,6 +82,7 @@ public class NetworkedHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         //Break out of update loop if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
             return;
@@ -87,41 +90,30 @@ public class NetworkedHook : MonoBehaviour
         // Break out for the first 1s.
         if (Time.time < 1f)
             return;
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
         CheckIfGrounded();
 
         currentPosition = transform.position;
         playerVelocity = (currentPosition - previousPosition) / Time.deltaTime;
 
-
         hook.transform.parent = null;
+
         //Fire hook
         if (Input.GetMouseButtonDown(0) && !hasHookFired)
-        {
-            // Cast a ray from screen point
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            // Save the info
-            RaycastHit hit;
-            // You successfully hit
-            if (Physics.Raycast(ray, out hit))
-            {
-                // Find the direction to move in
-                Vector3 dir = hit.point - hook.transform.position;
-                hookDirection = dir.normalized;
-            }
-            else
-            {
-                hookDirection = ray.direction.normalized;
-            }
-            Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
-            rbHook.MovePosition(hookPosition);
-            hasHookFired = true;
-        }
+            FireHook();
+            //photonView.RPC("FireHook", RpcTarget.All);
 
+        // Determine hook action.
         if (hasHookFired && GetComponent<StealBriefCase>().ownBriefcase == false)
         {
-            rope.SetPosition(0, grappleHook.transform.position);
-            rope.SetPosition(1, hook.transform.position);
+            // Draw rope.
+            Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
+            photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
+            //rope.SetPosition(0, grappleHook.transform.position);
+            //rope.SetPosition(1, hook.transform.position);
+
+            // Check if hook is travelling away from player.
             if (!hookReturning && !hasHooked)
             {
                 Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
@@ -130,15 +122,17 @@ public class NetworkedHook : MonoBehaviour
                 hookCurrentDistance = Vector3.Distance(hookStartPosition.transform.position, hookPosition);
             }
 
+            // Reel hook in when it reaches the max distance.
             if (hookCurrentDistance >= hookMaxDistance || hookReturning)
             {
                 ReturnHook();
             }
+            // Or when player presses the middle mouse button.
             else if (Input.GetMouseButtonDown(2) && !hasHooked)
             {
                 ReturnHook();
             }
-
+            // Or when the rope hits an object.
             RaycastHit rayHit;
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(hookStartPosition.transform.position, hook.transform.position - hookStartPosition.transform.position, out rayHit, Mathf.Infinity))
@@ -228,6 +222,35 @@ public class NetworkedHook : MonoBehaviour
         previousPosition = transform.position;
     }
 
+    //[PunRPC]
+    public void FireHook()
+    {
+        // Cast a ray from screen point
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Save the info
+        RaycastHit hit;
+        // You successfully hit
+        if (Physics.Raycast(ray, out hit))
+        {
+            // Find the direction to move in
+            Vector3 dir = hit.point - hook.transform.position;
+            hookDirection = dir.normalized;
+        }
+        else
+        {
+            hookDirection = ray.direction.normalized;
+        }
+        Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
+        rbHook.MovePosition(hookPosition);
+        hasHookFired = true;
+    }
+
+    [PunRPC]
+    public void DrawRope(Vector3[] ropePositions)
+    {
+        rope.SetPosition(0, ropePositions[0]);
+        rope.SetPosition(1, ropePositions[1]);
+    }
 
     public void ReturnHook()
     {
