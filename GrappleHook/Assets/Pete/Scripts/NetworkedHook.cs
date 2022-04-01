@@ -105,7 +105,7 @@ public class NetworkedHook : MonoBehaviourPun
             //photonView.RPC("FireHook", RpcTarget.All);
 
         // Determine hook action.
-        if (hasHookFired && GetComponent<StealBriefCase>().ownBriefcase == false)
+        if (hasHookFired && StealBriefCase.ownBriefcase == false)
         {
             // Draw rope.
             Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
@@ -400,6 +400,19 @@ public class NetworkedHook : MonoBehaviourPun
 
     void CheckIfGrounded()
     {
+        // Break out if not owner.
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (gameObject.GetPhotonView().ViewID != 1001)
+            {
+                return;
+            }
+        }
+        else if (gameObject.GetPhotonView().IsMine)
+        {
+            return;
+        }
+
         RaycastHit hit;
         float dist = 1.1f;
         Vector3 dir = Vector3.down;
@@ -418,6 +431,10 @@ public class NetworkedHook : MonoBehaviourPun
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Break out of collision if not the owner of this gameobject.
+        if (!gameObject.GetPhotonView().IsMine)
+            return;
+
         CheckIfGrounded();
 
         if (hasHooked && leftGround)

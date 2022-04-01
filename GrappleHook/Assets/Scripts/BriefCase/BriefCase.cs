@@ -7,7 +7,7 @@ public class BriefCase : MonoBehaviour
     [SerializeField]
     float immunityTime;
 
-    float timeSinceStolen;
+    public float timeSinceStolen;
 
     public bool stealable = true;
 
@@ -34,5 +34,10 @@ public class BriefCase : MonoBehaviour
         {
             stealable = false;
         }
+    }
+
+    public void ResetStolenTimer()
+    {
+        timeSinceStolen = 0f;
     }
 }

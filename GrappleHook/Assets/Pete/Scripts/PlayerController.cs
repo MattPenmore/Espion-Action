@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
                 audioListener.enabled = true;
                 _rb.useGravity = true;
             }
+            else
+            {
+                RemoveComponents();
+            }
         }
         else if (gameObject.GetPhotonView().IsMine)
         {
@@ -56,6 +60,14 @@ public class PlayerController : MonoBehaviour
             audioListener.enabled = true;
             _rb.useGravity = true;
         }
+        else
+        {
+            RemoveComponents();
+        }
+    }
+    private void RemoveComponents()
+    {
+        Destroy(GetComponent<Rigidbody>());
     }
 
     Rigidbody rb;
@@ -92,6 +104,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Break out of start if not the owner of this gameobject.
+        if (!gameObject.GetPhotonView().IsMine)
+            return;
+
         rb = GetComponent<Rigidbody>();
         hook = GetComponent<NetworkedHook>();
         playerUpgrades = GetComponent<PlayerUpgrades>();

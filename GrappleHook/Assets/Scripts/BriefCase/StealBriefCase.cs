@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class StealBriefCase : MonoBehaviour
+public class StealBriefCase : MonoBehaviourPun
 {
     public static float winTime = 30f;
 
     public GameObject briefCase;
 
-    public bool ownBriefcase = false;
+    public static bool ownBriefcase = false;
     bool stealingBriefCase = false;
     float ownedTime = 0;
+    float stealTimer = 0f;
+    float maxStealTime = 1f;
 
     [SerializeField]
     float stealDistance;
@@ -27,7 +30,11 @@ public class StealBriefCase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ownBriefcase)
+        //Break out of update loop if not the owner of this gameobject.
+        if (!gameObject.GetPhotonView().IsMine)
+            return; 
+        
+        if (ownBriefcase)
         {
             ownedTime += Time.deltaTime;
             if(ownedTime >= winTime)
@@ -37,35 +44,52 @@ public class StealBriefCase : MonoBehaviour
         }
         else if(briefCase.GetComponent<BriefCase>().stealable == true)
         {
-            if(Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance && Input.GetKeyDown(KeyCode.Return))
+            if(Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance && Input.GetKeyDown(KeyCode.E))
             {
-                if(briefCase.transform.parent)
-                {
-                    if(briefCase.transform.parent.tag == "Player")
-                    {
-                        briefCase.transform.parent.GetComponent<StealBriefCase>().ownBriefcase = false;
-                    }
-                }
-                briefCase.transform.parent = null;
+                //if(briefCase.transform.parent)
+                //{
+                //    if(briefCase.transform.parent.tag == "Player")
+                //    {
+                //        briefCase.transform.parent.GetComponent<StealBriefCase>().ownBriefcase = false;
+                //    }
+                //}
+                //briefCase.transform.parent = null;
+
+                briefCase.GetPhotonView().RequestOwnership();
+                photonView.RPC("BriefcaseStolen", RpcTarget.All);
+                
                 stealingBriefCase = true;
                 ownBriefcase = true;
 
-                
+                Debug.Log("ownBriefcase = true;");
             }
         }
 
         if(stealingBriefCase)
         {
-            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCaseLocation.transform.position, 1 * Time.deltaTime);
+            stealTimer += Time.deltaTime;
+            float briefcaseDistance = (briefCase.transform.position - briefCaseLocation.transform.position).magnitude;
+            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCaseLocation.transform.position, Mathf.Max(20, 20 * briefcaseDistance) * Time.deltaTime);
             briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocation.transform.rotation, 1);
 
-            if(Vector3.Distance(briefCase.transform.position, briefCaseLocation.transform.position) > 0.05f)
+            if(Vector3.Distance(briefCase.transform.position, briefCaseLocation.transform.position) < 0.1f || stealTimer >= maxStealTime)
             {
                 briefCase.transform.position = briefCaseLocation.transform.position;
                 briefCase.transform.rotation = briefCaseLocation.transform.rotation;
                 briefCase.transform.parent = transform;
                 stealingBriefCase = false;
+                stealTimer = 0f;
             }
         }
+    }
+
+    [PunRPC]
+    public void BriefcaseStolen()
+    {
+        briefCase.transform.parent = null;
+        briefCase.GetComponent<BriefCase>().ResetStolenTimer();
+        ownBriefcase = false;
+
+        Debug.Log("ownBriefcase = false;");
     }
 }

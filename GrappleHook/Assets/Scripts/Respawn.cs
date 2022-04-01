@@ -26,9 +26,9 @@ public class Respawn : MonoBehaviour
         player.GetComponent<NetworkedHook>().hookReturning = false;
         player.GetComponent<NetworkedHook>().hook.layer = 8;
 
-        if(player.GetComponent<StealBriefCase>().ownBriefcase)
+        if(StealBriefCase.ownBriefcase)
         {
-            player.GetComponent<StealBriefCase>().ownBriefcase = false;
+            StealBriefCase.ownBriefcase = false;
             player.GetComponent<StealBriefCase>().briefCase.transform.parent = null;
             player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().stealable = true;
             player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;
