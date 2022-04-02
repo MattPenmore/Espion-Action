@@ -6,14 +6,17 @@ using Photon.Pun;
 public class StealBriefCase : MonoBehaviourPun
 {
     public static float winTime = 30f;
+    public static bool ownBriefcase;
 
     public GameObject briefCase;
+    private GameObject gameManager;
 
-    public static bool ownBriefcase = false;
-    bool stealingBriefCase = false;
-    float ownedTime = 0;
-    float stealTimer = 0f;
     float maxStealTime = 1f;
+
+    bool stealingBriefCase;
+    float ownedTime;
+    float stealTimer;
+    bool gameOver;
 
     [SerializeField]
     float stealDistance;
@@ -24,7 +27,13 @@ public class StealBriefCase : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        stealTimer = 0f;
+        ownedTime = 0;
+        gameOver = false;
+        stealingBriefCase = false;
+        ownBriefcase = false;
         briefCase = GameObject.FindGameObjectWithTag("BriefCase");
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
     // Update is called once per frame
@@ -34,12 +43,14 @@ public class StealBriefCase : MonoBehaviourPun
         if (!gameObject.GetPhotonView().IsMine)
             return; 
         
-        if (ownBriefcase)
+        if (ownBriefcase && !gameOver)
         {
             ownedTime += Time.deltaTime;
             if(ownedTime >= winTime)
             {
+                gameOver = true;
                 Debug.Log("Win");
+                gameManager.GetPhotonView().RPC("EndGame", RpcTarget.All, photonView.Owner.NickName);
             }
         }
         else if(briefCase.GetComponent<BriefCase>().stealable == true)

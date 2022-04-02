@@ -58,6 +58,10 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        if (PhotonNetwork.IsConnected)
+            PhotonNetwork.Disconnect();
+        Cursor.lockState = CursorLockMode.None;
+
         UIPanels = new GameObject[]
         {
             loginScreen, 

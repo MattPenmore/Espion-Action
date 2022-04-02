@@ -8,6 +8,7 @@ TagManager:
   - BriefCase
   - Bullet
   - SpawnPoint
+  - GameManager
   layers:
   - Default
   - TransparentFX
