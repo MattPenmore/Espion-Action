@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5505379511142364010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618910748845692643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff6d227879d1704989691a95ab29ba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 300
-  playerBody: {fileID: 7618910749157658087}
 --- !u!114 &435704575209667237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b9a82767e3c93409ce42168c2931a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hookObject: {fileID: 7618910749430407372}
   playerCam: {fileID: 7618910748845692641}
   body: {fileID: 7618910749953897028}
   audioListener: {fileID: 7618910748845692640}
@@ -106,6 +93,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &5505379511142364010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910748845692643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff6d227879d1704989691a95ab29ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 300
+  playerBody: {fileID: 7618910749157658087}
 --- !u!114 &519255519857910240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +120,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7618910749157658083}
+--- !u!114 &8546729355072115535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910749430407372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 6202935388030849316}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6202935388030849316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910749430407372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1001 &6724424697763375260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,6 +177,34 @@ PrefabInstance:
     - target: {fileID: 3812924180634585168, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812924180634585195, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3812924180634585195, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812924180634585195, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812924180634585195, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812924180634585195, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812924180634585195, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812924180634585195, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3812924180634585197, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_CollisionDetection

@@ -82,6 +82,10 @@ public class NetworkedHook : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        // Draw rope.
+        Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
+        DrawRope(ropePositions);
+        
         //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         //Break out of update loop if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
@@ -107,9 +111,7 @@ public class NetworkedHook : MonoBehaviourPun
         // Determine hook action.
         if (hasHookFired && StealBriefCase.ownBriefcase == false)
         {
-            // Draw rope.
-            Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
-            photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
+            //photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
             //rope.SetPosition(0, grappleHook.transform.position);
             //rope.SetPosition(1, hook.transform.position);
 
@@ -245,7 +247,7 @@ public class NetworkedHook : MonoBehaviourPun
         hasHookFired = true;
     }
 
-    [PunRPC]
+    //[PunRPC]
     public void DrawRope(Vector3[] ropePositions)
     {
         rope.SetPosition(0, ropePositions[0]);

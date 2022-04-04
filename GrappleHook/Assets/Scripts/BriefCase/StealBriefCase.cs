@@ -50,7 +50,9 @@ public class StealBriefCase : MonoBehaviourPun
             {
                 gameOver = true;
                 Debug.Log("Win");
-                gameManager.GetPhotonView().RPC("EndGame", RpcTarget.All, photonView.Owner.NickName);
+                Vector4 pColour = GetComponentInChildren<Renderer>().material.color;
+                float[] playerColour = { pColour.x, pColour.y, pColour.z, pColour.w };
+                gameManager.GetPhotonView().RPC("EndGame", RpcTarget.All, photonView.Owner.NickName, playerColour);
             }
         }
         else if(briefCase.GetComponent<BriefCase>().stealable == true)

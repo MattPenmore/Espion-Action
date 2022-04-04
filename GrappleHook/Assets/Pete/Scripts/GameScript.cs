@@ -32,17 +32,20 @@ public class GameScript : MonoBehaviourPun
         {
             GameObject go = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.one, Quaternion.identity);
             go.GetPhotonView().TransferOwnership(i + 1);
+            go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(i + 1);
             go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, i);
         }
     }
 
     [PunRPC]
-    public void EndGame(string playerName)
+    public void EndGame(string playerName, float[] playerColour)
     {
         if (gameOver) return;
 
         gameOver = true;
         winnerText.text = playerName + " Wins!";
+        Vector4 pColour = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
+        winnerText.color = pColour;
         winScreen.enabled = true;
 
         Invoke("ReturnToLobby", 5);

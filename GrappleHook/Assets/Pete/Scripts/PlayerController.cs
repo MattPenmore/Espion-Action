@@ -11,6 +11,8 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject hookObject;
+
     [SerializeField] Camera playerCam;
     [SerializeField] Renderer body;
     [SerializeField] AudioListener audioListener;
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
         Color[] playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
         //GetComponent<Renderer>().material.color = playerColours[playerID];
         body.material.color = playerColours[playerID];
+        hookObject.GetComponent<LineRenderer>().startColor = playerColours[playerID];
+        hookObject.GetComponent<LineRenderer>().endColor = playerColours[playerID];
 
         Debug.Log("Initialising object with ViewID: " + gameObject.GetPhotonView().ViewID);
 
