@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     float speedUpgradeValue;
 
     float timeSinceBoost;
-    bool jumping = false;
+    public bool jumping = false;
     float jumpTime = 0;
     // Start is called before the first frame update
     void Start()
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
             if (jumpTime <= 0)
             {
                 jumping = false;
-                jumpTime = 0.5f;
+                jumpTime = 2f;
             }
         }
         //Upgrades to jumping and speed
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && !hook.hasHooked)
+        if (Input.GetKeyDown(KeyCode.Space) /*&& !hook.hasHooked*/)
         {
             if (isPlayerGrounded)
             {
@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour
     void CheckIfGrounded()
     {
         RaycastHit hit;
-        float dist = 0.6f;
+        float dist = 0.51f;
         Vector3 dir = Vector3.down;
 
         if (Physics.SphereCast(transform.position, 0.5f, dir, out hit, dist) && !jumping)

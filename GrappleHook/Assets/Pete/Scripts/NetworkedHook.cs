@@ -40,6 +40,9 @@ public class NetworkedHook : MonoBehaviourPun
     [SerializeField]
     float swingVelocity;
 
+    [SerializeField]
+    PlayerController playerController;
+
     bool ropeLengthReachedSwinging;
 
     float hookCurrentDistance;
@@ -136,10 +139,11 @@ public class NetworkedHook : MonoBehaviourPun
             }
             // Or when the rope hits an object.
             RaycastHit rayHit;
+            LayerMask avoid = LayerMask.GetMask("WraithPlayer", "WraithObjects", "Hook", "Player");
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(hookStartPosition.transform.position, hook.transform.position - hookStartPosition.transform.position, out rayHit, Mathf.Infinity))
+            if (Physics.Raycast(hookStartPosition.transform.position, hook.transform.position - hookStartPosition.transform.position, out rayHit, Vector3.Magnitude(hook.transform.position - hookStartPosition.transform.position), ~avoid))
             {
-                if (rayHit.transform.gameObject != hook && rayHit.transform.gameObject != hookedObject && !hookReturning)
+                if (rayHit.transform.gameObject != hook && !hookReturning)
                 {
                     ReturnHook();
                 }
@@ -264,22 +268,22 @@ public class NetworkedHook : MonoBehaviourPun
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
         }
-        hookReturning = true;
+        //hookReturning = true;
         hasHooked = false;
-        hook.layer = 10;
+        //hook.layer = 10;
         rbPlayer.useGravity = true;
         //Vector3 hookPosition = hook.transform.position + (hookStartPosition.transform.position - hook.transform.position).normalized * Time.deltaTime * hookMoveSpeed;
-        rbHook.velocity = (hookStartPosition.transform.position - hook.transform.position).normalized * hookMoveSpeed;
+        //rbHook.velocity = (hookStartPosition.transform.position - hook.transform.position).normalized * hookMoveSpeed;
 
-        if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
-        {
-            hook.transform.position = hookStartPosition.transform.position;
-            rbHook.velocity = Vector3.zero;
-            hasHookFired = false;
-            hookReturning = false;
-            hook.layer = 8;
+        //if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
+        //{
+        hook.transform.position = hookStartPosition.transform.position;
+        rbHook.velocity = Vector3.zero;
+        hasHookFired = false;
+        //hookReturning = false;
+        hook.layer = 8;
 
-        }
+        //}
     }
 
     void ReelPlayer()
@@ -416,13 +420,12 @@ public class NetworkedHook : MonoBehaviourPun
         }
 
         RaycastHit hit;
-        float dist = 1.1f;
+        float dist = 0.51f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.Raycast(transform.position, dir, out hit, dist))
+        if (Physics.SphereCast(transform.position, 0.5f, dir, out hit, dist) && !playerController.jumping)
         {
             isPlayerGrounded = true;
-            rbPlayer.useGravity = true;
         }
         else
         {
@@ -439,7 +442,7 @@ public class NetworkedHook : MonoBehaviourPun
 
         CheckIfGrounded();
 
-        if (hasHooked && leftGround)
+        if (hasHooked && leftGround && !playerController.jumping)
         {
             if (isPlayerGrounded)
             {
