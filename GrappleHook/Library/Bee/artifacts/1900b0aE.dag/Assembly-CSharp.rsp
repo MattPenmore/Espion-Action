@@ -326,13 +326,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
-"Assets/Pete/Scripts/GameScript.cs"
 "Assets/Pete/Scripts/LobbyInfo.cs"
-"Assets/Pete/Scripts/LobbyScript.cs"
 "Assets/Pete/Scripts/PlayerInfo.cs"
 "Assets/Scripts/Player/PlayerLook.cs"
 "Assets/Scripts/Player/UpgradeSpawner.cs"
-"Assets/Scripts/Respawn.cs"
 -langversion:8.0
 
 /deterministic
