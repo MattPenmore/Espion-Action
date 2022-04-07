@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         float dist = 0.6f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.SphereCast(transform.position, 0.5f ,dir, out hit, dist) && !jumping)
+        if (Physics.SphereCast(transform.position, 0.5f ,dir, out hit, dist) /*&& !jumping*/)
         {
 
             if (isPlayerGrounded == false)

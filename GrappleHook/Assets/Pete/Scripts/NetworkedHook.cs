@@ -43,6 +43,9 @@ public class NetworkedHook : MonoBehaviourPun
     [SerializeField]
     PlayerController playerController;
 
+    [SerializeField]
+    CapsuleCollider bodyCollider;
+
     bool ropeLengthReachedSwinging;
 
     float hookCurrentDistance;
@@ -224,6 +227,9 @@ public class NetworkedHook : MonoBehaviourPun
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
             rbPlayer.useGravity = true;
+
+            bodyCollider.material.staticFriction = 10;
+            bodyCollider.material.dynamicFriction = 10;
         }
         previousPosition = transform.position;
     }
@@ -283,6 +289,9 @@ public class NetworkedHook : MonoBehaviourPun
         //hookReturning = false;
         hook.layer = 8;
 
+        bodyCollider.material.staticFriction = 10;
+        bodyCollider.material.dynamicFriction = 10;
+
         //}
     }
 
@@ -309,7 +318,8 @@ public class NetworkedHook : MonoBehaviourPun
         //rbPlayer.velocity = dir + move;
         //rbPlayer.useGravity = false;
         //isSwinging = false;
-
+        bodyCollider.material.staticFriction = 0;
+        bodyCollider.material.dynamicFriction = 0;
         //New Method
         float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
 
@@ -378,6 +388,11 @@ public class NetworkedHook : MonoBehaviourPun
         {
             ReelPlayer();
         }
+        else
+        {
+            bodyCollider.material.staticFriction = 10;
+            bodyCollider.material.dynamicFriction = 10;
+        }
     }
 
     void BreakHook()
@@ -423,7 +438,7 @@ public class NetworkedHook : MonoBehaviourPun
         float dist = 0.51f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.SphereCast(transform.position, 0.5f, dir, out hit, dist) && !playerController.jumping)
+        if (Physics.SphereCast(transform.position, 0.5f, dir, out hit, dist))
         {
             isPlayerGrounded = true;
         }
