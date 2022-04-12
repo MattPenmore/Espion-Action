@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             if(jumpTime <= 0)
             {
                 jumping = false;
-                jumpTime = 0.5f;
+                jumpTime = 1.5f;
             }
         }
         //Upgrades to jumping and speed
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if(currentNumberOfJumps < maxNumberOfJumps)
             {
-                rb.velocity += new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * 9.81f * jumpUpgradeValue), 0);
+                rb.velocity += new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * -Physics.gravity.y * jumpUpgradeValue), 0);
                 currentNumberOfJumps++;
                 jumping = true;
             }

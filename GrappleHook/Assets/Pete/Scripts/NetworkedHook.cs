@@ -75,6 +75,13 @@ public class NetworkedHook : MonoBehaviourPun
 
     GameObject briefCase;
     private SpringJoint joint;
+
+    public bool isReeling;
+
+    bool isJumping;
+
+    float jumpTime = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +95,22 @@ public class NetworkedHook : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if(playerController.jumping)
+        {
+            isJumping = true;
+            jumpTime = 2;
+        }
+
+        if(isJumping)
+        {
+            jumpTime -= Time.deltaTime;
+            if(jumpTime <= 0)
+            {
+                isJumping = false;
+                jumpTime = 2;
+            }
+        }
+
         // Draw rope.
         Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
         DrawRope(ropePositions);
@@ -162,7 +185,7 @@ public class NetworkedHook : MonoBehaviourPun
                         Destroy(gameObject.GetComponent<SpringJoint>());
                     }
                 }
-
+                isReeling = false;
                 hook.transform.position = hookStartPosition.transform.position;
                 BreakHook();
                 // Cast a ray from screen point
@@ -202,7 +225,12 @@ public class NetworkedHook : MonoBehaviourPun
                 }
                 else if (Input.GetMouseButton(1))
                 {
+                    isReeling = true;
                     ReelPlayer();
+                }
+                else
+                {
+                    //isReeling = false;
                 }
             }
             else
@@ -230,6 +258,7 @@ public class NetworkedHook : MonoBehaviourPun
 
             bodyCollider.material.staticFriction = 10;
             bodyCollider.material.dynamicFriction = 10;
+            isReeling = false;
         }
         previousPosition = transform.position;
     }
@@ -255,6 +284,7 @@ public class NetworkedHook : MonoBehaviourPun
         Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
         rbHook.MovePosition(hookPosition);
         hasHookFired = true;
+        isReeling = false;
     }
 
     //[PunRPC]
@@ -288,7 +318,7 @@ public class NetworkedHook : MonoBehaviourPun
         hasHookFired = false;
         //hookReturning = false;
         hook.layer = 8;
-
+        isReeling = false;
         bodyCollider.material.staticFriction = 10;
         bodyCollider.material.dynamicFriction = 10;
 
@@ -323,7 +353,7 @@ public class NetworkedHook : MonoBehaviourPun
         //New Method
         float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
 
-        if (isSwinging)
+        if (isSwinging && leftGround)
         {
             float disChange = playerReelInSpeed * Time.deltaTime;
             ropeLength = ropeLength - disChange;
@@ -386,10 +416,12 @@ public class NetworkedHook : MonoBehaviourPun
         //New Method
         if (Input.GetMouseButton(1))
         {
+            isReeling = true;
             ReelPlayer();
         }
         else
         {
+            isReeling = false;
             bodyCollider.material.staticFriction = 10;
             bodyCollider.material.dynamicFriction = 10;
         }
@@ -408,11 +440,6 @@ public class NetworkedHook : MonoBehaviourPun
             dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
         }
 
-        CheckIfGrounded();
-        if (!isPlayerGrounded)
-        {
-            //rbPlayer.AddForce((dir + move) * playerEndForce);
-        }
         hookedObject = null;
         rbPlayer.useGravity = true;
         ReturnHook();
@@ -435,10 +462,10 @@ public class NetworkedHook : MonoBehaviourPun
         }
 
         RaycastHit hit;
-        float dist = 0.51f;
+        float dist = 0.75f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.SphereCast(transform.position, 0.5f, dir, out hit, dist))
+        if (Physics.SphereCast(transform.position, 0.3f, dir, out hit, dist))
         {
             isPlayerGrounded = true;
         }
@@ -446,6 +473,20 @@ public class NetworkedHook : MonoBehaviourPun
         {
             isPlayerGrounded = false;
             leftGround = true;
+        }
+
+        if (hasHooked && leftGround && !isJumping)
+        {
+            if (isPlayerGrounded)
+            {
+                BreakHook();
+                rbPlayer.velocity = Vector3.zero;
+            }
+        }
+
+        if (isPlayerGrounded)
+        {
+            leftGround = false;
         }
     }
 

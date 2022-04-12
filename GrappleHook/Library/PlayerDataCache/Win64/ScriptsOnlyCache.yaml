@@ -3,8 +3,6 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BriefCase
     - GameScript
-    - GrapplingHook
-    - HookDetector
     - LobbyInfo
     - LobbyScript
     - NetworkedHook
@@ -12,8 +10,6 @@ ScriptsOnlyBuild:
     - NetworkedLook
     - PlayerController
     - PlayerInfo
-    - PlayerLook
-    - PlayerMovement
     - PlayerUpgrades
     - Respawn
     - StealBriefCase
@@ -769,7 +765,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 3cd1ddc007297d48b5f4134f6969e86a
+      Hash: d4cc43938915ac59263ac30975bf8584
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1171,7 +1167,7 @@ ScriptsOnlyBuild:
     className: ThirdPersonUserControl
   - hash:
       serializedVersion: 2
-      Hash: f19651bc6d8883df43682df19c59d1ab
+      Hash: 63ddf8a7e1809160b9634cc45b923677
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkedHook

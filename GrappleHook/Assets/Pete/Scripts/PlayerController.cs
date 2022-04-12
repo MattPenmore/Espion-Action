@@ -12,7 +12,7 @@ using Photon.Pun;
 public class PlayerController : MonoBehaviour
 {
     public GameObject hookObject;
-
+    [SerializeField] NetworkedHook netHook;
     [SerializeField] Camera playerCam;
     [SerializeField] Renderer body;
     [SerializeField] AudioListener audioListener;
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     GameObject[] spawnPoints = null;
 
     public GameObject spawnPoint;
+    Vector3 targetPosition;
 
     [PunRPC]
     private void Initialise(int playerID)
@@ -75,7 +76,6 @@ public class PlayerController : MonoBehaviour
     }
 
     Rigidbody rb;
-
     public float speed;
 
     [SerializeField]
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     float timeSinceBoost;
     public bool jumping = false;
-    float jumpTime = 0;
+    float jumpTime = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -130,6 +130,8 @@ public class PlayerController : MonoBehaviour
         if (Time.time < 1f)
             return;
 
+        targetPosition = transform.position;
+
         if (jumping)
         {
             jumpTime -= Time.deltaTime;
@@ -137,7 +139,7 @@ public class PlayerController : MonoBehaviour
             if (jumpTime <= 0)
             {
                 jumping = false;
-                jumpTime = 2f;
+                jumpTime = 0.1f;
             }
         }
         //Upgrades to jumping and speed
@@ -180,13 +182,13 @@ public class PlayerController : MonoBehaviour
             rb.velocity = move;
             //rb.MovePosition(transform.position + move);
         }
-        else if (!hook.hasHooked)
+        else if (!hook.hasHooked || jumping)
         {
 
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue * Time.deltaTime;
+            move = (transform.right * x + transform.forward * z) * speed * 3 * speedUpgradeValue * Time.deltaTime;
             float magnitudeTotal = new Vector3(rb.velocity.x + move.x, 0, rb.velocity.z + move.z).magnitude;
             float magnitudeVel = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
 
@@ -222,17 +224,23 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
             timeSinceBoost = 0;
         }
+
+        if(isPlayerGrounded && !jumping && !netHook.isReeling)
+        {
+            transform.position = targetPosition;
+        }
     }
 
     void CheckIfGrounded()
     {
         RaycastHit hit;
-        float dist = 0.51f;
+        float dist = 0.71f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.SphereCast(transform.position, 0.5f, dir, out hit, dist) && !jumping)
+        if (Physics.SphereCast(transform.position, 0.3f, dir, out hit, dist) && !jumping)
         {
-
+            Vector3 rayCastPoint = hit.point;
+            targetPosition.y = rayCastPoint.y + 1;
             if (isPlayerGrounded == false)
             {
                 rb.velocity = Vector3.zero;
