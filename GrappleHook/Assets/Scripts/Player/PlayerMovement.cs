@@ -96,7 +96,12 @@ public class PlayerMovement : MonoBehaviour
 
             move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue/* * Time.deltaTime*/;
 
-            rb.velocity = move;
+            RaycastHit rayHit;
+            LayerMask avoid = LayerMask.GetMask("WraithPlayer", "WraithObjects", "Hook", "Player");
+            if (Physics.Raycast(transform.position, move, out rayHit, 0.52f, ~avoid))
+            {
+                rb.velocity = new Vector3(move.x, 0, move.z);
+            }
             //rb.MovePosition(transform.position + move);
         }
         else if(!hook.hasHooked)
@@ -105,18 +110,31 @@ public class PlayerMovement : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
+            RaycastHit rayHit;
+            LayerMask avoid = LayerMask.GetMask("WraithPlayer", "WraithObjects", "Hook", "Player");
             move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue * Time.deltaTime;
-            float magnitudeTotal = new Vector3(rb.velocity.x + move.x, 0, rb.velocity.z + move.z).magnitude;
-            float magnitudeVel = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
 
-            if(magnitudeTotal > magnitudeVel && magnitudeTotal > speed * speedUpgradeValue)
-            {
-                rb.velocity = new Vector3(rb.velocity.x + move.x, 0 , rb.velocity.z + move.z).normalized * magnitudeVel + new Vector3(0, rb.velocity.y, 0);
+            // Does the ray intersect any objects excluding the player and hook layers
+            if (Physics.Raycast(transform.position, move, out rayHit, 0.5f, ~avoid))
+            {               
+                float magnitudeTotal = new Vector3(rb.velocity.x + move.x, 0, rb.velocity.z + move.z).magnitude;
+                float magnitudeVel = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+
+                if(magnitudeTotal > magnitudeVel && magnitudeTotal > speed * speedUpgradeValue)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x + move.x, 0 , rb.velocity.z + move.z).normalized * magnitudeVel + new Vector3(0, rb.velocity.y, 0);
+                }
+                else if(new Vector3(rb.velocity.x + move.x, 0, rb.velocity.z + move.z).magnitude > move.magnitude)
+                {
+                    rb.velocity = rb.velocity + move;
+                }
+                else
+                {
+                    move /= Time.deltaTime;
+                    rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
+                }
             }
-            else
-            {
-                rb.velocity = rb.velocity + move;
-            }
+
         }
 
         //Jump
@@ -146,10 +164,10 @@ public class PlayerMovement : MonoBehaviour
     void CheckIfGrounded()
     {
         RaycastHit hit;
-        float dist = 0.6f;
+        float dist = 0.75f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.SphereCast(transform.position, 0.5f ,dir, out hit, dist) /*&& !jumping*/)
+        if (Physics.SphereCast(transform.position, 0.3f ,dir, out hit, dist) /*&& !jumping*/)
         {
 
             if (isPlayerGrounded == false)
@@ -157,11 +175,13 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 currentNumberOfJumps = 0;
             }
-                isPlayerGrounded = true;
+            isPlayerGrounded = true;
+            rb.useGravity = false;
         }
         else
         {
             isPlayerGrounded = false;
+            rb.useGravity = true;
         }
 
     }

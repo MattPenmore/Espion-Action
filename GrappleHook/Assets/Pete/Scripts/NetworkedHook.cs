@@ -43,9 +43,6 @@ public class NetworkedHook : MonoBehaviourPun
     [SerializeField]
     PlayerController playerController;
 
-    [SerializeField]
-    CapsuleCollider bodyCollider;
-
     bool ropeLengthReachedSwinging;
 
     float hookCurrentDistance;
@@ -144,6 +141,8 @@ public class NetworkedHook : MonoBehaviourPun
             //rope.SetPosition(0, grappleHook.transform.position);
             //rope.SetPosition(1, hook.transform.position);
 
+            hook.GetComponent<SphereCollider>().isTrigger = false;
+
             // Check if hook is travelling away from player.
             if (!hookReturning && !hasHooked)
             {
@@ -158,8 +157,8 @@ public class NetworkedHook : MonoBehaviourPun
             {
                 ReturnHook();
             }
-            // Or when player presses the middle mouse button.
-            else if (Input.GetMouseButtonDown(2) && !hasHooked)
+            // Or when player presses the right mouse button.
+            else if (Input.GetMouseButtonDown(1) && !hasHooked)
             {
                 ReturnHook();
             }
@@ -175,46 +174,46 @@ public class NetworkedHook : MonoBehaviourPun
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) /*&& briefCase.transform.parent.gameObject != hook*/)
-            {
-                if (isSwinging)
-                {
-                    if (gameObject.GetComponent<SpringJoint>() != null)
-                    {
-                        isSwinging = false;
-                        Destroy(gameObject.GetComponent<SpringJoint>());
-                    }
-                }
-                isReeling = false;
-                hook.transform.position = hookStartPosition.transform.position;
-                BreakHook();
-                // Cast a ray from screen point
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                // Save the info
-                RaycastHit hit;
-                // You successfully hit
-                if (Physics.Raycast(ray, out hit))
-                {
-                    // Find the direction to move in
-                    Vector3 dir = hit.point - hook.transform.position;
-                    hookDirection = dir.normalized;
-                }
-                else
-                {
-                    hookDirection = ray.direction.normalized;
-                }
-                Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
-                rbHook.MovePosition(hookPosition);
-                hasHookFired = true;
-            }
-            else if (hasHooked)
+            //if (Input.GetMouseButtonDown(0) /*&& briefCase.transform.parent.gameObject != hook*/)
+            //{
+            //    if (isSwinging)
+            //    {
+            //        if (gameObject.GetComponent<SpringJoint>() != null)
+            //        {
+            //            isSwinging = false;
+            //            Destroy(gameObject.GetComponent<SpringJoint>());
+            //        }
+            //    }
+            //    isReeling = false;
+            //    hook.transform.position = hookStartPosition.transform.position;
+            //    BreakHook();
+            //    // Cast a ray from screen point
+            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    // Save the info
+            //    RaycastHit hit;
+            //    // You successfully hit
+            //    if (Physics.Raycast(ray, out hit))
+            //    {
+            //        // Find the direction to move in
+            //        Vector3 dir = hit.point - hook.transform.position;
+            //        hookDirection = dir.normalized;
+            //    }
+            //    else
+            //    {
+            //        hookDirection = ray.direction.normalized;
+            //    }
+            //    Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
+            //    rbHook.MovePosition(hookPosition);
+            //    hasHookFired = true;
+            //}
+            if (hasHooked)
             {
                 if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
                 {
                     BreakHook();
                 }
 
-                if (Input.GetMouseButtonDown(2))
+                if (Input.GetMouseButtonDown(1))
                 {
                     BreakHook();
                 }
@@ -223,7 +222,7 @@ public class NetworkedHook : MonoBehaviourPun
                 {
                     SwingPlayer();
                 }
-                else if (Input.GetMouseButton(1))
+                else if (Input.GetMouseButton(0))
                 {
                     isReeling = true;
                     ReelPlayer();
@@ -249,15 +248,16 @@ public class NetworkedHook : MonoBehaviourPun
                 isSwinging = false;
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
+
+            hook.GetComponent<SphereCollider>().isTrigger = true;
+
             hasHookFired = false;
+            hasHooked = false;
             hook.transform.parent = grappleHook.transform;
             hook.transform.position = hookStartPosition.transform.position;
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
             rbPlayer.useGravity = true;
-
-            bodyCollider.material.staticFriction = 10;
-            bodyCollider.material.dynamicFriction = 10;
             isReeling = false;
         }
         previousPosition = transform.position;
@@ -319,9 +319,6 @@ public class NetworkedHook : MonoBehaviourPun
         //hookReturning = false;
         hook.layer = 8;
         isReeling = false;
-        bodyCollider.material.staticFriction = 10;
-        bodyCollider.material.dynamicFriction = 10;
-
         //}
     }
 
@@ -348,8 +345,6 @@ public class NetworkedHook : MonoBehaviourPun
         //rbPlayer.velocity = dir + move;
         //rbPlayer.useGravity = false;
         //isSwinging = false;
-        bodyCollider.material.staticFriction = 0;
-        bodyCollider.material.dynamicFriction = 0;
         //New Method
         float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
 
@@ -414,7 +409,7 @@ public class NetworkedHook : MonoBehaviourPun
         }
 
         //New Method
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0))
         {
             isReeling = true;
             ReelPlayer();
@@ -422,8 +417,6 @@ public class NetworkedHook : MonoBehaviourPun
         else
         {
             isReeling = false;
-            bodyCollider.material.staticFriction = 10;
-            bodyCollider.material.dynamicFriction = 10;
         }
     }
 
@@ -462,10 +455,10 @@ public class NetworkedHook : MonoBehaviourPun
         }
 
         RaycastHit hit;
-        float dist = 0.75f;
+        float dist = 0.71f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.SphereCast(transform.position, 0.3f, dir, out hit, dist))
+        if (Physics.BoxCast(transform.position,Vector3.one * 0.3f, dir, out hit, transform.rotation ,dist))
         {
             isPlayerGrounded = true;
         }

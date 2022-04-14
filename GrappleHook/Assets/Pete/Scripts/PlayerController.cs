@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
         float dist = 0.71f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.SphereCast(transform.position, 0.3f, dir, out hit, dist) && !jumping)
+        if (Physics.BoxCast(transform.position, Vector3.one * 0.3f, dir, out hit, transform.rotation, dist) && !jumping)
         {
             Vector3 rayCastPoint = hit.point;
             targetPosition.y = rayCastPoint.y + 1;

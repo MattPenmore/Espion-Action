@@ -1167,7 +1167,7 @@ ScriptsOnlyBuild:
     className: ThirdPersonUserControl
   - hash:
       serializedVersion: 2
-      Hash: 63ddf8a7e1809160b9634cc45b923677
+      Hash: 5d58a27c2f8f1135e474dc1b4da9fd1c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkedHook

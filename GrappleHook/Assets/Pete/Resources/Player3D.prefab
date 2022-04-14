@@ -38,7 +38,6 @@ MonoBehaviour:
   rope: {fileID: 0}
   swingVelocity: 200
   playerController: {fileID: 6210210295820723502}
-  bodyCollider: {fileID: 7618910749953897031}
   hasHookFired: 0
   hasHooked: 0
   hookReturning: 0
@@ -94,7 +93,7 @@ MonoBehaviour:
   jumpHeight: 8
   maxNumberOfJumps: 2
   boostCooldown: 5
-  boostForce: {x: 0, y: 300, z: 500}
+  boostForce: {x: 0, y: 600, z: 500}
   jumping: 0
 --- !u!114 &8537137832666130860
 MonoBehaviour:
@@ -366,11 +365,6 @@ AudioListener:
 --- !u!23 &7618910749953897028 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3812924181191105240, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
-  m_PrefabInstance: {fileID: 6724424697763375260}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &7618910749953897031 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 3812924181191105243, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
   m_PrefabInstance: {fileID: 6724424697763375260}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7618910750410382683 stripped
