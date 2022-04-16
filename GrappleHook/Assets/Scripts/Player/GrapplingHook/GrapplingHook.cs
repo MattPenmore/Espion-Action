@@ -373,7 +373,7 @@ public class GrapplingHook : MonoBehaviour
         if (Physics.Raycast(transform.position, dir, out hit, dist))
         {
             isPlayerGrounded = true;
-            rbPlayer.useGravity = true;
+            rbPlayer.useGravity = false;
         }
         else
         {

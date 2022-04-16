@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class NetworkedHook : MonoBehaviourPun
@@ -79,6 +80,8 @@ public class NetworkedHook : MonoBehaviourPun
 
     float jumpTime = 2;
 
+    [SerializeField]
+    GameObject centreDot;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,7 +89,7 @@ public class NetworkedHook : MonoBehaviourPun
         rbHook = hook.GetComponent<Rigidbody>();
         rope = hook.GetComponent<LineRenderer>();
         briefCase = GameObject.FindGameObjectWithTag("BriefCase");
-
+        centreDot = GameObject.Find("Player UI Dot");
     }
 
     // Update is called once per frame
@@ -107,6 +110,10 @@ public class NetworkedHook : MonoBehaviourPun
                 jumpTime = 2;
             }
         }
+
+        //Check if target to fire at is in range
+        DistanceCheck();
+
 
         // Draw rope.
         Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
@@ -130,12 +137,12 @@ public class NetworkedHook : MonoBehaviourPun
         hook.transform.parent = null;
 
         //Fire hook
-        if (Input.GetMouseButtonDown(0) && !hasHookFired)
+        if (Input.GetMouseButtonDown(0) && !hasHookFired && !playerController.ledgeGrabbing)
             FireHook();
             //photonView.RPC("FireHook", RpcTarget.All);
 
         // Determine hook action.
-        if (hasHookFired && StealBriefCase.ownBriefcase == false)
+        if (hasHookFired && StealBriefCase.ownBriefcase == false && !playerController.ledgeGrabbing)
         {
             //photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
             //rope.SetPosition(0, grappleHook.transform.position);
@@ -158,13 +165,13 @@ public class NetworkedHook : MonoBehaviourPun
                 ReturnHook();
             }
             // Or when player presses the right mouse button.
-            else if (Input.GetMouseButtonDown(1) && !hasHooked)
+            else if (Input.GetMouseButtonUp(0) && !hasHooked)
             {
                 ReturnHook();
             }
             // Or when the rope hits an object.
             RaycastHit rayHit;
-            LayerMask avoid = LayerMask.GetMask("WraithPlayer", "WraithObjects", "Hook", "Player");
+            LayerMask avoid = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(hookStartPosition.transform.position, hook.transform.position - hookStartPosition.transform.position, out rayHit, Vector3.Magnitude(hook.transform.position - hookStartPosition.transform.position), ~avoid))
             {
@@ -213,7 +220,7 @@ public class NetworkedHook : MonoBehaviourPun
                     BreakHook();
                 }
 
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonUp(0))
                 {
                     BreakHook();
                 }
@@ -257,7 +264,9 @@ public class NetworkedHook : MonoBehaviourPun
             hook.transform.position = hookStartPosition.transform.position;
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
-            rbPlayer.useGravity = true;
+
+            if(!playerController.ledgeGrabbing && !isPlayerGrounded)
+                rbPlayer.useGravity = true;
             isReeling = false;
         }
         previousPosition = transform.position;
@@ -307,7 +316,8 @@ public class NetworkedHook : MonoBehaviourPun
         //hookReturning = true;
         hasHooked = false;
         //hook.layer = 10;
-        rbPlayer.useGravity = true;
+        if (!playerController.ledgeGrabbing && !isPlayerGrounded)
+            rbPlayer.useGravity = true;
         //Vector3 hookPosition = hook.transform.position + (hookStartPosition.transform.position - hook.transform.position).normalized * Time.deltaTime * hookMoveSpeed;
         //rbHook.velocity = (hookStartPosition.transform.position - hook.transform.position).normalized * hookMoveSpeed;
 
@@ -434,7 +444,8 @@ public class NetworkedHook : MonoBehaviourPun
         }
 
         hookedObject = null;
-        rbPlayer.useGravity = true;
+        if (!playerController.ledgeGrabbing && !isPlayerGrounded)
+            rbPlayer.useGravity = true;
         ReturnHook();
     }
 
@@ -503,6 +514,29 @@ public class NetworkedHook : MonoBehaviourPun
         if (isPlayerGrounded)
         {
             leftGround = false;
+        }
+    }
+
+    void DistanceCheck()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Save the info
+        RaycastHit hit;
+        // You successfully hit
+        if (Physics.Raycast(ray, out hit))
+        {
+            if(Vector3.Distance(hookStartPosition.transform.position, hit.point) > hookMaxDistance)
+            {
+                centreDot.GetComponent<Image>().color = new Color32(255, 0, 0, 128);
+            }
+            else
+            {
+                centreDot.GetComponent<Image>(). color = new Color32(255, 255, 255, 128);
+            }
+        }
+        else
+        {
+            centreDot.GetComponent<Image>().color = new Color32(255, 0, 0, 128);
         }
     }
 }

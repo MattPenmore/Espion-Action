@@ -16,6 +16,15 @@ public class Respawn : MonoBehaviour
 
     IEnumerator RespawnPlayer(GameObject spawnPoint, GameObject player)
     {
+        if(StealBriefCase.ownBriefcase)
+        {
+            StealBriefCase.ownBriefcase = false;
+            player.GetComponent<StealBriefCase>().briefCase.transform.parent = null;
+            player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().stealable = true;
+            player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;
+            player.GetComponent<StealBriefCase>().briefCase.transform.rotation = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingRotation;
+        }
+
         yield return new WaitForSeconds(respawnTime);
         player.transform.position = spawnPoint.transform.position;
         player.transform.rotation = spawnPoint.transform.rotation;
@@ -26,13 +35,5 @@ public class Respawn : MonoBehaviour
         player.GetComponent<NetworkedHook>().hookReturning = false;
         player.GetComponent<NetworkedHook>().hook.layer = 8;
 
-        if(StealBriefCase.ownBriefcase)
-        {
-            StealBriefCase.ownBriefcase = false;
-            player.GetComponent<StealBriefCase>().briefCase.transform.parent = null;
-            player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().stealable = true;
-            player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;
-            player.GetComponent<StealBriefCase>().briefCase.transform.rotation = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingRotation;
-        }
     }
 }

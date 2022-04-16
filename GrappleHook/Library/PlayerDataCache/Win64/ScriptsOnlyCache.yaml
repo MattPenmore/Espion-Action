@@ -3,6 +3,8 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BriefCase
     - GameScript
+    - GrapplingHook
+    - HookDetector
     - LobbyInfo
     - LobbyScript
     - NetworkedHook
@@ -10,6 +12,8 @@ ScriptsOnlyBuild:
     - NetworkedLook
     - PlayerController
     - PlayerInfo
+    - PlayerLook
+    - PlayerMovement
     - PlayerUpgrades
     - Respawn
     - StealBriefCase
@@ -25,8 +29,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
-    PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -765,7 +767,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: d4cc43938915ac59263ac30975bf8584
+      Hash: 19870d05922dcbf6b0820336856a1d75
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1167,7 +1169,7 @@ ScriptsOnlyBuild:
     className: ThirdPersonUserControl
   - hash:
       serializedVersion: 2
-      Hash: 5d58a27c2f8f1135e474dc1b4da9fd1c
+      Hash: c19017b952203de16d25fa7df0ed5a2a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkedHook

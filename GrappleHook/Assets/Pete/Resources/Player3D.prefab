@@ -45,6 +45,7 @@ MonoBehaviour:
   rbHook: {fileID: 0}
   ropeLength: 0
   isReeling: 0
+  centreDot: {fileID: 0}
 --- !u!114 &5848895208445722268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,10 +88,12 @@ MonoBehaviour:
   audioListener: {fileID: 7618910748845692640}
   _rb: {fileID: 7618910749157658080}
   spawnPoint: {fileID: 0}
+  ledgeGrabbing: 0
+  ledgeGrabTarget: {x: 0, y: 0, z: 0}
   speed: 10
   isPlayerGrounded: 1
   move: {x: 0, y: 0, z: 0}
-  jumpHeight: 8
+  jumpHeight: 4
   maxNumberOfJumps: 2
   boostCooldown: 5
   boostForce: {x: 0, y: 600, z: 500}

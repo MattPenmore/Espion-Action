@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
     public GameObject spawnPoint;
     Vector3 targetPosition;
 
+    public bool ledgeGrabbing;
+
+    [SerializeField]
+    Vector3 ledgeGrabTarget;
+
+
     [PunRPC]
     private void Initialise(int playerID)
     {
@@ -104,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
     float timeSinceBoost;
     public bool jumping = false;
-    float jumpTime = 0.1f;
+    float jumpTime = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -139,7 +145,7 @@ public class PlayerController : MonoBehaviour
             if (jumpTime <= 0)
             {
                 jumping = false;
-                jumpTime = 0.1f;
+                jumpTime = 0.2f;
             }
         }
         //Upgrades to jumping and speed
@@ -182,7 +188,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = move;
             //rb.MovePosition(transform.position + move);
         }
-        else if (!hook.hasHooked || jumping)
+        else if ((!hook.hasHooked || jumping) && !ledgeGrabbing)
         {
 
             float x = Input.GetAxis("Horizontal");
@@ -203,7 +209,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) /*&& !hook.hasHooked*/)
+        if (Input.GetKeyDown(KeyCode.Space) && !ledgeGrabbing /*&& !hook.hasHooked*/)
         {
             if (isPlayerGrounded)
             {
@@ -211,7 +217,7 @@ public class PlayerController : MonoBehaviour
             }
             if (currentNumberOfJumps < maxNumberOfJumps)
             {
-                rb.velocity += new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * 9.81f * jumpUpgradeValue), 0);
+                rb.velocity += new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * -Physics.gravity.y * jumpUpgradeValue), 0);
                 currentNumberOfJumps++;
                 jumping = true;
             }
@@ -219,15 +225,62 @@ public class PlayerController : MonoBehaviour
 
         //Boost
         timeSinceBoost += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.LeftShift) && timeSinceBoost >= boostCooldown)
-        {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && timeSinceBoost >= boostCooldown && !ledgeGrabbing)
+        { 
             rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
             timeSinceBoost = 0;
         }
 
         if(isPlayerGrounded && !jumping && !netHook.isReeling)
         {
-            transform.position = targetPosition;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, 5 * Time.deltaTime);
+        }
+
+        //Ledge Grab
+        if (!isPlayerGrounded && !ledgeGrabbing && !hook.hasHooked && !jumping)
+        {
+            LayerMask avoid = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
+            RaycastHit hitHoriz;
+            RaycastHit hitVert;
+            RaycastHit hitAbove;
+            Vector3 vertPos = transform.position + transform.forward * 1.02f + transform.up * 2;
+            Vector3 horizPos = transform.position;
+            horizPos.y += 1; 
+            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 0.51f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, 2.8f, ~avoid))
+            {
+
+                ledgeGrabbing = true;
+                rb.useGravity = false;
+                rb.velocity = Vector3.zero;
+                ledgeGrabTarget = hitVert.point;
+                ledgeGrabTarget.y += 1;
+            }
+        }
+
+        if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5)
+        {
+            ledgeGrabbing = false;
+        }
+        
+
+
+        if(ledgeGrabbing)
+        {
+            rb.velocity = (ledgeGrabTarget - transform.position) * 3;
+            //transform.position = Vector3.Lerp(transform.position, ledgeGrabTarget, 5 * Time.deltaTime);
+            rb.useGravity = false;
+            if (isPlayerGrounded /*|| rb.velocity.y < 0.1f*/)
+            {
+                ledgeGrabbing = false;
+                //rb.velocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            if(!isPlayerGrounded)
+                rb.useGravity = true;
+
+            ledgeGrabbing = false;
         }
     }
 
@@ -247,12 +300,13 @@ public class PlayerController : MonoBehaviour
                 currentNumberOfJumps = 0;
             }
             isPlayerGrounded = true;
+            rb.useGravity = false;
         }
         else
         {
             isPlayerGrounded = false;
+            rb.useGravity = true;
         }
-
     }
 }
 
