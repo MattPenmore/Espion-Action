@@ -523,7 +523,8 @@ public class NetworkedHook : MonoBehaviourPun
         // Save the info
         RaycastHit hit;
         // You successfully hit
-        if (Physics.Raycast(ray, out hit))
+
+        if (Physics.Raycast(ray, out hit) && hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Hook") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WraithPlayer"))
         {
             if(Vector3.Distance(hookStartPosition.transform.position, hit.point) > hookMaxDistance)
             {

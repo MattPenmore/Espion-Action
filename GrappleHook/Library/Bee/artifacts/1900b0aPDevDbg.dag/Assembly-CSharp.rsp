@@ -324,6 +324,7 @@
 "Assets/Photon/PhotonLibs/WebSocket/WebSocket.cs"
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
 "Assets/Scripts/BriefCase/BriefCase.cs"
+"Assets/Scripts/BriefCase/BriefCasePointerObject.cs"
 "Assets/Scripts/BriefCase/StealBriefCase.cs"
 "Assets/Scripts/Player/GrapplingHook/GrapplingHook.cs"
 "Assets/Scripts/Player/GrapplingHook/HookDetector.cs"

@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - SpawnPoint
   - GameManager
+  - Pointer
   layers:
   - Default
   - TransparentFX
