@@ -30,20 +30,6 @@ Transform:
   m_Father: {fileID: 7618910748845692646}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5505379511142364010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618910748845692643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff6d227879d1704989691a95ab29ba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 300
-  playerBody: {fileID: 7618910749157658087}
 --- !u!114 &435704575209667237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +143,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &5505379511142364010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910748845692643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff6d227879d1704989691a95ab29ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 300
+  playerBody: {fileID: 7618910749157658087}
 --- !u!114 &519255519857910240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +216,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3812924180082916986, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3812924180082916988, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -346,11 +350,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3812924181191105243, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Height
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3812924181191105243, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Center.y
-      value: 0.25
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 3812924181191105243, guid: f90d95628aea18c4984bb7e8f8631761, type: 3}
       propertyPath: m_Material

@@ -187,7 +187,8 @@ public class GrapplingHook : MonoBehaviour
                 {
                     SwingPlayer();
                 }
-                else if (Input.GetMouseButton(1))
+
+                if (Input.GetMouseButton(1))
                 {
                     ReelPlayer();
                 }
@@ -331,12 +332,6 @@ public class GrapplingHook : MonoBehaviour
         if (rbPlayer.velocity.magnitude > playerMoveSpeed)
         {
             rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
-        }
-
-        //New Method
-        if (Input.GetMouseButton(1))
-        {
-            ReelPlayer();
         }
     }
 

@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class StealBriefCase : MonoBehaviourPun
 {
-    public static float winTime = 30f;
+    public static float winTime = 60f;
     public static bool ownBriefcase;
 
     public GameObject briefCase;

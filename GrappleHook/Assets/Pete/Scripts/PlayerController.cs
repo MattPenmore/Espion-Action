@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
         if(isPlayerGrounded && !jumping && !netHook.isReeling)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, 5 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, 50 * Time.deltaTime);
         }
 
         //Ledge Grab
@@ -248,12 +248,23 @@ public class PlayerController : MonoBehaviour
             horizPos.y += 1; 
             if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 0.51f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, 2.8f, ~avoid))
             {
+                RaycastHit[] vertCheck = Physics.BoxCastAll(vertPos, Vector3.one * 0.5f, -Vector3.up, transform.rotation, 2f, ~avoid);
+                foreach(RaycastHit vert in vertCheck)
+                {
 
-                ledgeGrabbing = true;
-                rb.useGravity = false;
-                rb.velocity = Vector3.zero;
-                ledgeGrabTarget = hitVert.point;
-                ledgeGrabTarget.y += 1;
+                    ledgeGrabTarget = vert.point;
+                    ledgeGrabTarget.y += 1;
+
+                    Collider[] hitColliders = Physics.OverlapBox(ledgeGrabTarget, new Vector3(0.49f, 0.98f, 0.49f), transform.rotation);
+                    if (hitColliders.Length == 0)
+                    {
+                        ledgeGrabbing = true;
+                        rb.useGravity = false;
+                        rb.velocity = Vector3.zero;
+                        break;
+                    }
+                }
+
             }
         }
 

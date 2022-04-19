@@ -95,6 +95,22 @@ public class NetworkedHook : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+
+
+        // Draw rope.
+        Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
+        DrawRope(ropePositions);
+        
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        //Break out of update loop if not the owner of this gameobject.
+        if (!gameObject.GetPhotonView().IsMine)
+            return;
+
+        // Break out for the first 1s.
+        if (Time.time < 1f)
+            return;
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
         if(playerController.jumping)
         {
             isJumping = true;
@@ -113,21 +129,6 @@ public class NetworkedHook : MonoBehaviourPun
 
         //Check if target to fire at is in range
         DistanceCheck();
-
-
-        // Draw rope.
-        Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
-        DrawRope(ropePositions);
-        
-        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        //Break out of update loop if not the owner of this gameobject.
-        if (!gameObject.GetPhotonView().IsMine)
-            return;
-
-        // Break out for the first 1s.
-        if (Time.time < 1f)
-            return;
-        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
         CheckIfGrounded();
 
@@ -233,10 +234,6 @@ public class NetworkedHook : MonoBehaviourPun
                 {
                     isReeling = true;
                     ReelPlayer();
-                }
-                else
-                {
-                    //isReeling = false;
                 }
             }
             else
@@ -472,10 +469,13 @@ public class NetworkedHook : MonoBehaviourPun
         if (Physics.BoxCast(transform.position,Vector3.one * 0.3f, dir, out hit, transform.rotation ,dist))
         {
             isPlayerGrounded = true;
+            jumpTime = 2;
         }
         else
         {
             isPlayerGrounded = false;
+            if (!leftGround)
+                isJumping = true;
             leftGround = true;
         }
 
