@@ -37,11 +37,8 @@ MonoBehaviour:
   - BriefcaseStolen
   - ClickRpc
   - DestroyRpc
-  - DestroySpaceship
   - EndGame
-  - Fire
   - Initialise
-  - RespawnSpaceship
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

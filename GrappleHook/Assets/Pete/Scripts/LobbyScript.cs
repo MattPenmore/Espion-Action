@@ -74,6 +74,17 @@ public class LobbyScript : MonoBehaviourPunCallbacks
         UpdateRoomListView();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (loginScreen.activeInHierarchy)
+                OnLoginButtonClicked();
+            else if (hostGameScreen.activeInHierarchy)
+                OnCreateLobbyPressed();
+        }
+    }
+
     #endregion //MonoBehaviour
 
     #region PUN Callbacks
@@ -165,8 +176,37 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
     #region UI Callbacks
 
+    public void OnBackButtonLobbyBrowserPressed()
+    {
+        // Switch the UI panel.
+        SetUIPanel(loginScreen);
+        // Deactivate the Join Game button.
+        joinGameButton.SetActive(false);
+        // Disconnect from the matchmaking server.
+        PhotonNetwork.Disconnect();
+    }
+
+    public void OnBackButtonHostGamePressed()
+    {
+        // Switch the UI panel.
+        SetUIPanel(lobbyBrowser);
+        // Reset the lobby name text field.
+        lobbyNameInput.text = "";
+        // Remove name warning (if it's active).
+        lobbyNameWarning.SetActive(false);
+    }
+
+    public void OnBackButtonLobbyPressed()
+    {
+        // Switch the UI panel.
+        SetUIPanel(lobbyBrowser);
+        // Leave the room.
+        PhotonNetwork.LeaveRoom();
+    }
+
     public void OnLoginButtonClicked()
     {
+        Debug.Log("LOGIN");
         string playerName = playerNameInput.text;
         // Check player has entered a name.
         if (playerName != "")
@@ -207,6 +247,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
     public void OnCreateLobbyPressed()
     {
+        Debug.Log("CREATE");
         string lobbyName = lobbyNameInput.text;
         // Check player has entered a name.
         if (lobbyName != "")
@@ -219,6 +260,8 @@ public class LobbyScript : MonoBehaviourPunCallbacks
             PhotonNetwork.CreateRoom(lobbyName, options, null);
             // Remove name warning (if it's active).
             lobbyNameWarning.SetActive(false);
+            // Reset the lobby name text field.
+            lobbyNameInput.text = "";
         }
         // If no name is entered, display a warning message.
         else

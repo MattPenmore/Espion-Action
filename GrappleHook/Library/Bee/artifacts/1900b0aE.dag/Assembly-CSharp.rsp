@@ -112,8 +112,8 @@
 -define:PUN_2_19_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"Assets/Pete/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll"
--r:"Assets/Pete/Photon/PhotonLibs/WebSocket/websocket-sharp.dll"
+-r:"Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll"
+-r:"Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll"
 -r:"D:/Unity/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"D:/Unity/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"D:/Unity/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll"
@@ -334,8 +334,6 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
-"Assets/Pete/Photon/PhotonLibs/WebSocket/SocketWebTcp.cs"
-"Assets/Pete/Photon/PhotonLibs/WebSocket/WebSocket.cs"
 "Assets/Pete/Scripts/GameScript.cs"
 "Assets/Pete/Scripts/LobbyInfo.cs"
 "Assets/Pete/Scripts/LobbyScript.cs"
@@ -344,7 +342,10 @@
 "Assets/Pete/Scripts/NetworkedLook.cs"
 "Assets/Pete/Scripts/PlayerController.cs"
 "Assets/Pete/Scripts/PlayerInfo.cs"
+"Assets/Photon/PhotonLibs/WebSocket/SocketWebTcp.cs"
+"Assets/Photon/PhotonLibs/WebSocket/WebSocket.cs"
 "Assets/Scripts/BriefCase/BriefCase.cs"
+"Assets/Scripts/BriefCase/BriefCasePointerObject.cs"
 "Assets/Scripts/BriefCase/StealBriefCase.cs"
 "Assets/Scripts/Player/GrapplingHook/GrapplingHook.cs"
 "Assets/Scripts/Player/GrapplingHook/HookDetector.cs"
