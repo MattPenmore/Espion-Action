@@ -102,11 +102,13 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        Debug.Log("JOINED ROOM");
         cachedRoomList.Clear();
 
         // Leave lobby if currently in one.
         if (PhotonNetwork.InLobby)
         {
+            Debug.Log("LEFT LOBBY");
             PhotonNetwork.LeaveLobby();
         }
 
@@ -168,8 +170,12 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Destroy(playerListEntries[otherPlayer.ActorNumber].gameObject);
-        playerListEntries.Remove(otherPlayer.ActorNumber);
+        if (playerListEntries.ContainsKey(otherPlayer.ActorNumber))
+        {
+            Destroy(playerListEntries[otherPlayer.ActorNumber].gameObject);
+            playerListEntries.Remove(otherPlayer.ActorNumber);
+        }
+        Debug.Log(playerListEntries.Count);
     }
 
     #endregion //PUN Callbacks
@@ -202,6 +208,11 @@ public class LobbyScript : MonoBehaviourPunCallbacks
         SetUIPanel(lobbyBrowser);
         // Leave the room.
         PhotonNetwork.LeaveRoom();
+        // Clear the player list.
+        foreach (KeyValuePair<int, GameObject> entry in playerListEntries)
+            Destroy(playerListEntries[entry.Key].gameObject);
+        playerListEntries.Clear();
+        Debug.Log("CLEARED PLAYER LIST");
     }
 
     public void OnLoginButtonClicked()
