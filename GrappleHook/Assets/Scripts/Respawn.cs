@@ -34,6 +34,7 @@ public class Respawn : MonoBehaviour
         player.GetComponent<NetworkedHook>().hasHookFired = false;
         player.GetComponent<NetworkedHook>().hookReturning = false;
         player.GetComponent<NetworkedHook>().hook.layer = 8;
+        player.GetComponent<StealBriefCase>().ownedTime -= 5;
 
     }
 }

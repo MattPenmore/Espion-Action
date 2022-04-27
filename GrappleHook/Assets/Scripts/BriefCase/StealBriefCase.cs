@@ -14,7 +14,7 @@ public class StealBriefCase : MonoBehaviourPun
     float maxStealTime = 1f;
 
     bool stealingBriefCase;
-    float ownedTime;
+    public float ownedTime;
     float stealTimer;
     bool gameOver;
 
@@ -41,8 +41,11 @@ public class StealBriefCase : MonoBehaviourPun
     {
         //Break out of update loop if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
-            return; 
-        
+            return;
+
+        if (ownedTime < 0)
+            ownedTime = 0;
+
         if (ownBriefcase && !gameOver)
         {
             ownedTime += Time.deltaTime;
