@@ -1747,7 +1747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -55.049133}
+  m_AnchoredPosition: {x: 960, y: -55.049072}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &657824476
@@ -6059,6 +6059,7 @@ GameObject:
   - component: {fileID: 2131774250}
   - component: {fileID: 2131774249}
   - component: {fileID: 2131774253}
+  - component: {fileID: 2131774254}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -6180,6 +6181,28 @@ MonoBehaviour:
   playerCount: {fileID: 497639025}
   playerInfo: {fileID: 1304662448678162589, guid: dfa414aa3dfaf9742b5d15a5c1a39391, type: 3}
   playerList: {fileID: 808727272}
+--- !u!114 &2131774254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131774248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2145530400
 GameObject:
   m_ObjectHideFlags: 0

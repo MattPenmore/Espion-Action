@@ -64,9 +64,9 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
         UIPanels = new GameObject[]
         {
-            loginScreen, 
-            infoPanel, 
-            lobbyBrowser, 
+            loginScreen,
+            infoPanel,
+            lobbyBrowser,
             hostGameScreen,
             lobbyScreen
         };
@@ -170,12 +170,14 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        // Delete player info prefab and remove from 
         if (playerListEntries.ContainsKey(otherPlayer.ActorNumber))
         {
             Destroy(playerListEntries[otherPlayer.ActorNumber].gameObject);
             playerListEntries.Remove(otherPlayer.ActorNumber);
         }
-        Debug.Log(playerListEntries.Count);
+        // Update player count.
+        playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;
     }
 
     #endregion //PUN Callbacks
@@ -203,6 +205,16 @@ public class LobbyScript : MonoBehaviourPunCallbacks
     }
 
     public void OnBackButtonLobbyPressed()
+    {
+        // If master client, kick everyone out.
+        if (PhotonNetwork.IsMasterClient)
+            photonView.RPC("LeaveLobby", RpcTarget.AllBuffered);
+        else
+            LeaveLobby();
+    }
+
+    [PunRPC]
+    public void LeaveLobby()
     {
         // Switch the UI panel.
         SetUIPanel(lobbyBrowser);
@@ -267,7 +279,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks
             infoText.text = "Creating lobby...";
             SetUIPanel(infoPanel);
             // Create lobby.
-            RoomOptions options = new RoomOptions {MaxPlayers = maxPlayers, PlayerTtl = 1000 };
+            RoomOptions options = new RoomOptions { MaxPlayers = maxPlayers, PlayerTtl = 1000 };
             PhotonNetwork.CreateRoom(lobbyName, options, null);
             // Remove name warning (if it's active).
             lobbyNameWarning.SetActive(false);
@@ -336,7 +348,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks
                 {
                     cachedRoomList.Remove(info.Name);
                 }
-                
+
                 continue;
             }
 
