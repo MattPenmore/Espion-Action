@@ -21,16 +21,13 @@ public class NetworkedHook : MonoBehaviourPun
     public GameObject hookStartPosition;
 
     [SerializeField]
-    float playerReelInSpeed;
+    float playerReelInSpeed = 40;
 
     [SerializeField]
-    float playerMoveSpeed;
+    float playerMoveSpeed = 15;
 
     [SerializeField]
     float hookMoveSpeed;
-
-    [SerializeField]
-    float playerEndForce;
 
     [SerializeField]
     float hookMaxDistance;
@@ -39,7 +36,7 @@ public class NetworkedHook : MonoBehaviourPun
     LineRenderer rope;
 
     [SerializeField]
-    float swingVelocity;
+    float swingVelocity = 40;
 
     [SerializeField]
     PlayerController playerController;
@@ -235,6 +232,11 @@ public class NetworkedHook : MonoBehaviourPun
                     isReeling = true;
                     ReelPlayer();
                 }
+
+                if (rbPlayer.velocity.magnitude > playerMoveSpeed)
+                {
+                    rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
+                }
             }
             else
             {
@@ -288,7 +290,8 @@ public class NetworkedHook : MonoBehaviourPun
             hookDirection = ray.direction.normalized;
         }
         Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
-        rbHook.MovePosition(hookPosition);
+        rbHook.velocity = hookDirection.normalized * hookMoveSpeed;
+        //rbHook.MovePosition(hookPosition);
         hasHookFired = true;
         isReeling = false;
     }
@@ -357,8 +360,19 @@ public class NetworkedHook : MonoBehaviourPun
 
         if (isSwinging && leftGround)
         {
-            float disChange = playerReelInSpeed * Time.deltaTime;
-            ropeLength = ropeLength - disChange;
+            //float disChange = playerReelInSpeed * Time.deltaTime;
+            //ropeLength = ropeLength - disChange;
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
+            Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+            rbPlayer.velocity = dir + move;
+            if (rbPlayer.velocity.magnitude > playerMoveSpeed)
+            {
+                rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
+            }
+
         }
         else
         {
@@ -376,7 +390,7 @@ public class NetworkedHook : MonoBehaviourPun
         if (distanceToHook < 1)
         {
             hookedObject = null;
-            rbPlayer.useGravity = true;
+            //rbPlayer.useGravity = true;
             ReturnHook();
         }
     }
@@ -401,30 +415,15 @@ public class NetworkedHook : MonoBehaviourPun
             joint.damper = 7f;
             joint.massScale = 1f;
         }
-        rbPlayer.useGravity = true;
+        rbPlayer.useGravity = false;
 
+        ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
         joint.maxDistance = ropeLength; /** 0.8f;*/
         joint.minDistance = 0;
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        
+        isReeling = true;
+        ReelPlayer();
 
-        Vector3 move = (transform.right * x + transform.forward * z) * swingVelocity;
-        rbPlayer.AddForce(move, ForceMode.Acceleration);
-        if (rbPlayer.velocity.magnitude > playerMoveSpeed)
-        {
-            rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
-        }
-
-        //New Method
-        if (Input.GetMouseButton(0))
-        {
-            isReeling = true;
-            ReelPlayer();
-        }
-        else
-        {
-            isReeling = false;
-        }
     }
 
     void BreakHook()

@@ -97,6 +97,11 @@ public class StealBriefCase : MonoBehaviourPun
                 stealTimer = 0f;
             }
         }
+        else if(ownBriefcase)
+        {
+            briefCase.transform.position = briefCaseLocation.transform.position;
+            briefCase.transform.rotation = briefCaseLocation.transform.rotation;
+        }
     }
 
     [PunRPC]

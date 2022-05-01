@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject hookObject;
     [SerializeField] NetworkedHook netHook;
     [SerializeField] Camera playerCam;
-    [SerializeField] Renderer body;
+    [SerializeField] SkinnedMeshRenderer body;
     [SerializeField] AudioListener audioListener;
     [SerializeField] Rigidbody _rb;
     GameObject[] spawnPoints = null;
@@ -243,10 +243,10 @@ public class PlayerController : MonoBehaviour
             RaycastHit hitHoriz;
             RaycastHit hitVert;
             RaycastHit hitAbove;
-            Vector3 vertPos = transform.position + transform.forward * 1.02f + transform.up * 2;
+            Vector3 vertPos = transform.position + transform.forward * 1.32f + transform.up * 2;
             Vector3 horizPos = transform.position;
             horizPos.y += 1; 
-            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 0.51f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, 2.8f, ~avoid))
+            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 0.81f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, 2.8f, ~avoid))
             {
                 RaycastHit[] vertCheck = Physics.BoxCastAll(vertPos, Vector3.one * 0.5f, -Vector3.up, transform.rotation, 2f, ~avoid);
                 foreach(RaycastHit vert in vertCheck)
@@ -288,7 +288,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(!isPlayerGrounded)
+            if(!isPlayerGrounded && !netHook.hasHooked)
                 rb.useGravity = true;
 
             ledgeGrabbing = false;
@@ -316,7 +316,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             isPlayerGrounded = false;
-            rb.useGravity = true;
+            if (!netHook.hasHooked)
+                rb.useGravity = true;
         }
     }
 }
