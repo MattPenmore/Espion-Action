@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Vector3 ledgeGrabTarget;
 
+    [SerializeField]
+    Animator anim;
 
     [PunRPC]
     private void Initialise(int playerID)
@@ -78,7 +80,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RemoveComponents()
     {
-        Destroy(GetComponent<Rigidbody>());
+        //Destroy(GetComponent<Rigidbody>());
     }
 
     Rigidbody rb;
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
     float timeSinceBoost;
     public bool jumping = false;
-    float jumpTime = 0.2f;
+    float jumpTime = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -145,7 +147,8 @@ public class PlayerController : MonoBehaviour
             if (jumpTime <= 0)
             {
                 jumping = false;
-                jumpTime = 0.2f;
+                anim.SetBool("isJumping", false);
+                jumpTime = 0.5f;
             }
         }
         //Upgrades to jumping and speed
@@ -180,17 +183,23 @@ public class PlayerController : MonoBehaviour
 
         if (isPlayerGrounded)
         {
+            anim.SetBool("IsGrounded", true);
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
             move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue/* * Time.deltaTime*/;
 
             rb.velocity = move;
+            if (move.magnitude != 0)
+                anim.SetBool("isRunning", true);
+            else
+                anim.SetBool("isRunning", false);
             //rb.MovePosition(transform.position + move);
         }
         else if ((!hook.hasHooked || jumping) && !ledgeGrabbing)
         {
-
+            anim.SetBool("isRunning", false);
+            anim.SetBool("IsGrounded", false);
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
@@ -207,6 +216,10 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = rb.velocity + move;
             }
         }
+        else
+        {
+            anim.SetBool("IsGrounded", false);
+        }
 
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && !ledgeGrabbing /*&& !hook.hasHooked*/)
@@ -220,6 +233,8 @@ public class PlayerController : MonoBehaviour
                 rb.velocity += new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * -Physics.gravity.y * jumpUpgradeValue), 0);
                 currentNumberOfJumps++;
                 jumping = true;
+                jumpTime = 0.5f;
+                anim.SetBool("isJumping", true);
             }
         }
 
@@ -229,6 +244,7 @@ public class PlayerController : MonoBehaviour
         { 
             rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
             timeSinceBoost = 0;
+            
         }
 
         if(isPlayerGrounded && !jumping && !netHook.isReeling)

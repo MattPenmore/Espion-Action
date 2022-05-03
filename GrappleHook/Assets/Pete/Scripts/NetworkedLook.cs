@@ -33,8 +33,8 @@ public class NetworkedLook : MonoBehaviour
         if (Time.time < 1f)
             return;
 
-        if (Vector3.Magnitude(transform.position - head.transform.position) > 0.07f)
-            transform.position = Vector3.Lerp(transform.position, head.transform.position, Time.deltaTime);
+        //if (Vector3.Magnitude(transform.position - head.transform.position) > 0.07f)
+        transform.position = head.transform.position;
 
         //Look around with mouse
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;

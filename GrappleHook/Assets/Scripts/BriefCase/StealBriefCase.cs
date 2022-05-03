@@ -24,6 +24,9 @@ public class StealBriefCase : MonoBehaviourPun
     [SerializeField]
     GameObject briefCaseLocation;
 
+    [SerializeField]
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,7 @@ public class StealBriefCase : MonoBehaviourPun
 
         if (ownBriefcase && !gameOver)
         {
+            anim.SetBool("HasBriefCase", true);
             ownedTime += Time.deltaTime;
             if(ownedTime >= winTime)
             {
@@ -60,7 +64,8 @@ public class StealBriefCase : MonoBehaviourPun
         }
         else if(briefCase.GetComponent<BriefCase>().stealable == true)
         {
-            if(Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance && Input.GetKeyDown(KeyCode.E))
+            anim.SetBool("HasBriefCase", false);
+            if (Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance && Input.GetKeyDown(KeyCode.E))
             {
                 //if(briefCase.transform.parent)
                 //{
@@ -80,8 +85,10 @@ public class StealBriefCase : MonoBehaviourPun
                 Debug.Log("ownBriefcase = true;");
             }
         }
+        else
+            anim.SetBool("HasBriefCase", false);
 
-        if(stealingBriefCase)
+        if (stealingBriefCase)
         {
             stealTimer += Time.deltaTime;
             float briefcaseDistance = (briefCase.transform.position - briefCaseLocation.transform.position).magnitude;

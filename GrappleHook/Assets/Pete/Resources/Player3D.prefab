@@ -1702,6 +1702,7 @@ GameObject:
   - component: {fileID: 5848895208445722268}
   - component: {fileID: 6210210295820723502}
   - component: {fileID: 8537137832666130860}
+  - component: {fileID: 8075587176472957581}
   m_Layer: 9
   m_Name: Player3D
   m_TagString: Player
@@ -1759,6 +1760,7 @@ MonoBehaviour:
   ownedTime: 0
   stealDistance: 5
   briefCaseLocation: {fileID: 7618910748614593362}
+  anim: {fileID: 4746738190508578204}
 --- !u!114 &1844785841952312548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1794,12 +1796,12 @@ MonoBehaviour:
   hook: {fileID: 7618910749430407372}
   grappleHook: {fileID: 7618910750410382683}
   hookStartPosition: {fileID: 7618910749131538442}
-  playerReelInSpeed: 40
-  playerMoveSpeed: 15
+  playerReelInSpeed: 20
+  playerMoveSpeed: 20
   hookMoveSpeed: 50
   hookMaxDistance: 50
   rope: {fileID: 0}
-  swingVelocity: 40
+  swingVelocity: 20
   playerController: {fileID: 6210210295820723502}
   hasHookFired: 0
   hasHooked: 0
@@ -1842,6 +1844,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8537137832666130860}
+  - {fileID: 8075587176472957581}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1866,6 +1869,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   ledgeGrabbing: 0
   ledgeGrabTarget: {x: 0, y: 0, z: 0}
+  anim: {fileID: 4746738190508578204}
   speed: 10
   isPlayerGrounded: 1
   move: {x: 0, y: 0, z: 0}
@@ -1888,8 +1892,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &8075587176472957581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910749157658083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &7618910749430407372
 GameObject:
   m_ObjectHideFlags: 0

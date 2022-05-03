@@ -4,10 +4,13 @@ Library\Bee\artifacts\movedfrom\Unity.ProBuilder.AssetIdRemapUtility.ref.dll_111
 Library\Bee\artifacts\movedfrom\Unity.ProBuilder.Editor.ref.dll_13960433098842018620.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.ProBuilder.ref.dll_1779887186292406213.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.Rider.Editor.ref.dll_565157460453298584.movedfrom
+Library\Bee\artifacts\movedfrom\Unity.Sysroot.Linux_x86_64.ref.dll_8977739054833815784.movedfrom
+Library\Bee\artifacts\movedfrom\Unity.SysrootPackage.Editor.ref.dll_9174414563051462291.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.TextMeshPro.Editor.ref.dll_4028791150417061583.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.TextMeshPro.ref.dll_11868243631685928706.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.Timeline.Editor.ref.dll_982740893485812729.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.Timeline.ref.dll_8300757311124903736.movedfrom
+Library\Bee\artifacts\movedfrom\Unity.Toolchain.Win-x86_64-Linux-x86_64.ref.dll_17238183107107275695.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.VSCode.Editor.ref.dll_4856774419750939424.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Core.Editor.ref.dll_458458207557429540.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Core.ref.dll_3399541932646146909.movedfrom
@@ -95,4 +98,7 @@ Library\Bee\artifacts\movedfrom\UnityEngine.VirtualTexturingModule.dll_954154731
 Library\Bee\artifacts\movedfrom\UnityEngine.VRModule.dll_12814840327733256791.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.WindModule.dll_17836940887645951059.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.XRModule.dll_16471414699454263221.movedfrom
-Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Antlr3.Runtime.dll_8575897387143516398.movedfrom
+Library\Bee\artifacts\movedfrom\UnityEditor.iOS.Extensions.Xcode.dll_15512930782391399015.movedfrom
+Library\Bee\artifacts\movedfrom\UnityEditor.iOS.Extensions.Common.dll_4850589304103872804.movedfrom
+Library\Bee\artifacts\movedfrom\UnityEditor.iOS.Extensions.Xcode.dll_11439913773497623144.movedfrom
+Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Antlr3.Runtime.dll_7568752114337878733.movedfrom
