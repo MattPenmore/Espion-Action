@@ -456,7 +456,7 @@ public class NetworkedHook : MonoBehaviourPun
                 return;
             }
         }
-        else if (gameObject.GetPhotonView().IsMine)
+        else if (!gameObject.GetPhotonView().IsMine)
         {
             return;
         }
