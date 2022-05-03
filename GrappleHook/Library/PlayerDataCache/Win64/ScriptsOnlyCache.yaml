@@ -19,6 +19,7 @@ ScriptsOnlyBuild:
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
+    - Photon.Pun.PhotonRigidbodyView
     - Photon.Pun.PhotonTransformView
     - Photon.Pun.PhotonView
     - Photon.Pun.ServerSettings
@@ -27,6 +28,8 @@ ScriptsOnlyBuild:
     - UnityEngine.ProBuilder.Shapes.ProBuilderShape
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.Timeline.Editor.dll:
+    - TimelinePreferences
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -34,7 +37,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
     - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -89,47 +91,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1526}
     - Class: 114
-      Script: {instanceID: 2618}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2760}
+      Script: {instanceID: 2772}
     - Class: 114
-      Script: {instanceID: 2844}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 2890}
+      Script: {instanceID: 2902}
     - Class: 114
-      Script: {instanceID: 2942}
+      Script: {instanceID: 2954}
     - Class: 114
-      Script: {instanceID: 3054}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3146}
+      Script: {instanceID: 3158}
     - Class: 114
-      Script: {instanceID: 3192}
+      Script: {instanceID: 3204}
     - Class: 114
-      Script: {instanceID: 3216}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 4810}
+      Script: {instanceID: 4822}
     - Class: 114
-      Script: {instanceID: 5514}
+      Script: {instanceID: 5526}
     - Class: 114
-      Script: {instanceID: 5840}
+      Script: {instanceID: 5852}
     - Class: 114
-      Script: {instanceID: 6358}
+      Script: {instanceID: 6370}
     - Class: 114
-      Script: {instanceID: 6390}
+      Script: {instanceID: 6402}
     - Class: 114
-      Script: {instanceID: 6624}
+      Script: {instanceID: 6636}
     - Class: 114
-      Script: {instanceID: 6838}
+      Script: {instanceID: 6850}
     - Class: 114
-      Script: {instanceID: 7218}
+      Script: {instanceID: 7230}
     - Class: 114
-      Script: {instanceID: 7666}
+      Script: {instanceID: 7586}
     - Class: 114
-      Script: {instanceID: 7680}
+      Script: {instanceID: 7678}
     - Class: 114
-      Script: {instanceID: 7950}
+      Script: {instanceID: 7692}
     - Class: 114
-      Script: {instanceID: 8084}
+      Script: {instanceID: 7962}
+    - Class: 114
+      Script: {instanceID: 8096}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -200,47 +204,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1526}
     - Class: 114
-      Script: {instanceID: 2618}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2844}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 2942}
+      Script: {instanceID: 2954}
     - Class: 114
-      Script: {instanceID: 3054}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3132}
+      Script: {instanceID: 3144}
     - Class: 114
-      Script: {instanceID: 3192}
+      Script: {instanceID: 3204}
     - Class: 114
-      Script: {instanceID: 3328}
+      Script: {instanceID: 3340}
     - Class: 114
-      Script: {instanceID: 4810}
+      Script: {instanceID: 4822}
     - Class: 114
-      Script: {instanceID: 5514}
+      Script: {instanceID: 5526}
     - Class: 114
-      Script: {instanceID: 5840}
+      Script: {instanceID: 5852}
     - Class: 114
-      Script: {instanceID: 6296}
+      Script: {instanceID: 6308}
     - Class: 114
-      Script: {instanceID: 6358}
+      Script: {instanceID: 6370}
     - Class: 114
-      Script: {instanceID: 6390}
+      Script: {instanceID: 6402}
     - Class: 114
-      Script: {instanceID: 6624}
+      Script: {instanceID: 6636}
     - Class: 114
-      Script: {instanceID: 6838}
+      Script: {instanceID: 6850}
     - Class: 114
-      Script: {instanceID: 7218}
+      Script: {instanceID: 7230}
     - Class: 114
-      Script: {instanceID: 7666}
+      Script: {instanceID: 7586}
     - Class: 114
-      Script: {instanceID: 7886}
+      Script: {instanceID: 7678}
     - Class: 114
-      Script: {instanceID: 7950}
+      Script: {instanceID: 7898}
     - Class: 114
-      Script: {instanceID: 8076}
+      Script: {instanceID: 7962}
     - Class: 114
-      Script: {instanceID: 8344}
+      Script: {instanceID: 8088}
+    - Class: 114
+      Script: {instanceID: 8356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -1440,4 +1446,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Pete/Scenes/Lobby.unity
   - Assets/Pete/Scenes/WhiteBox.unity
-  playerPath: C:/Users/Matt/Documents/GitHub/Espion-Action/test_builds/NewWhitebox/GrappleHook.exe
+  playerPath: C:/trash/local_builds/GrappleHook.exe

@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RemoveComponents()
     {
-        Destroy(GetComponent<Rigidbody>());
+        //Destroy(GetComponent<Rigidbody>());
     }
 
     Rigidbody rb;
@@ -128,12 +128,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Break out of update loop if not the owner of this gameobject.
-        if (!gameObject.GetPhotonView().IsMine)
-            return;
-
-        // Break out for the first 1s.
-        if (Time.time < 1f)
+        //Break out of update loop if not the owner of this gameobject, for the first 1s, or if there is no rigidbody.
+        if (!gameObject.GetPhotonView().IsMine ||
+            Time.time < 1f ||
+            rb == null)
             return;
 
         targetPosition = transform.position;

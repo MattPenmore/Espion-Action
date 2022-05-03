@@ -28,7 +28,8 @@ public class Respawn : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
         player.transform.position = spawnPoint.transform.position;
         player.transform.rotation = spawnPoint.transform.rotation;
-        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        if (player.GetComponent<Rigidbody>() != null)
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.GetComponent<NetworkedHook>().hook.transform.position = player.GetComponent<NetworkedHook>().hookStartPosition.transform.position;
         player.GetComponent<NetworkedHook>().rbHook.velocity = Vector3.zero;
         player.GetComponent<NetworkedHook>().hasHookFired = false;

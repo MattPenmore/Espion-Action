@@ -92,23 +92,19 @@ public class NetworkedHook : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-
-
         // Draw rope.
         Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
         DrawRope(ropePositions);
-        
-        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        //Break out of update loop if not the owner of this gameobject.
-        if (!gameObject.GetPhotonView().IsMine)
-            return;
 
-        // Break out for the first 1s.
-        if (Time.time < 1f)
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        //Break out of update loop if not the owner of this gameobject, for the first 1s, or if there is no rigidbody.
+        if (!gameObject.GetPhotonView().IsMine ||
+            Time.time < 1f ||
+            rbPlayer == null || rbHook == null)
             return;
         //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-        if(playerController.jumping)
+        if (playerController.jumping)
         {
             isJumping = true;
             jumpTime = 2;
@@ -264,7 +260,7 @@ public class NetworkedHook : MonoBehaviourPun
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
 
-            if(!playerController.ledgeGrabbing && !isPlayerGrounded)
+            if(!playerController.ledgeGrabbing && !isPlayerGrounded && rbPlayer != null)
                 rbPlayer.useGravity = true;
             isReeling = false;
         }
@@ -367,12 +363,11 @@ public class NetworkedHook : MonoBehaviourPun
 
             Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
             Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-            rbPlayer.velocity = dir + move;
+            rbPlayer.velocity = (dir + move).normalized * playerMoveSpeed;
             if (rbPlayer.velocity.magnitude > playerMoveSpeed)
             {
                 rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
             }
-
         }
         else
         {
@@ -383,8 +378,9 @@ public class NetworkedHook : MonoBehaviourPun
 
             Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
             Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-            rbPlayer.velocity = dir + move;
-            rbPlayer.MovePosition(playerPosition);
+            rbPlayer.velocity = dir /*+ move*/;
+            if(dir.magnitude != 0)
+                rbPlayer.MovePosition(playerPosition);
         }
 
         if (distanceToHook < 1)
@@ -401,7 +397,7 @@ public class NetworkedHook : MonoBehaviourPun
         if (!isSwinging)
         {
             isSwinging = true;
-            ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
+            ropeLength = Vector3.Distance(transform.position, hook.transform.position);
 
             joint = gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -411,14 +407,14 @@ public class NetworkedHook : MonoBehaviourPun
             joint.minDistance = 0;
 
             joint.tolerance = 0;
-            joint.spring = 100f;
+            joint.spring = 0f;
             joint.damper = 7f;
             joint.massScale = 1f;
         }
         rbPlayer.useGravity = false;
 
-        ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
-        joint.maxDistance = ropeLength; /** 0.8f;*/
+        ropeLength = Vector3.Distance(transform.position, hook.transform.position);
+        //joint.maxDistance = ropeLength; /** 0.8f;*/
         joint.minDistance = 0;
         
         isReeling = true;
@@ -456,7 +452,7 @@ public class NetworkedHook : MonoBehaviourPun
                 return;
             }
         }
-        else if (gameObject.GetPhotonView().IsMine)
+        else if (!gameObject.GetPhotonView().IsMine)
         {
             return;
         }
