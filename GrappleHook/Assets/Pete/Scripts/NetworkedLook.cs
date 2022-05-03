@@ -12,8 +12,6 @@ public class NetworkedLook : MonoBehaviour
     float xRotation = 0;
 
     bool isStarting = true;
-    [SerializeField]
-    GameObject head;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +30,6 @@ public class NetworkedLook : MonoBehaviour
         // Break out for the first 1s.
         if (Time.time < 1f)
             return;
-
-        //if (Vector3.Magnitude(transform.position - head.transform.position) > 0.07f)
-        transform.position = head.transform.position;
 
         //Look around with mouse
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;

@@ -97,7 +97,7 @@ public class NetworkedHook : MonoBehaviourPun
         // Draw rope.
         Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
         DrawRope(ropePositions);
-        
+
         //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         //Break out of update loop if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
@@ -108,16 +108,16 @@ public class NetworkedHook : MonoBehaviourPun
             return;
         //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-        if(playerController.jumping)
+        if (playerController.jumping)
         {
             isJumping = true;
             jumpTime = 2;
         }
 
-        if(isJumping)
+        if (isJumping)
         {
             jumpTime -= Time.deltaTime;
-            if(jumpTime <= 0)
+            if (jumpTime <= 0)
             {
                 isJumping = false;
                 jumpTime = 2;
@@ -137,7 +137,7 @@ public class NetworkedHook : MonoBehaviourPun
         //Fire hook
         if (Input.GetMouseButtonDown(0) && !hasHookFired && !playerController.ledgeGrabbing)
             FireHook();
-            //photonView.RPC("FireHook", RpcTarget.All);
+        //photonView.RPC("FireHook", RpcTarget.All);
 
         // Determine hook action.
         if (hasHookFired && StealBriefCase.ownBriefcase == false && !playerController.ledgeGrabbing)
@@ -264,7 +264,7 @@ public class NetworkedHook : MonoBehaviourPun
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
 
-            if(!playerController.ledgeGrabbing && !isPlayerGrounded)
+            if (!playerController.ledgeGrabbing && !isPlayerGrounded)
                 rbPlayer.useGravity = true;
             isReeling = false;
         }
@@ -358,20 +358,18 @@ public class NetworkedHook : MonoBehaviourPun
         //New Method
         float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
 
+        if (distanceToHook < 1)
+        {
+            hookedObject = null;
+            //rbPlayer.useGravity = true;
+            ReturnHook();
+            return;
+        }
+
         if (isSwinging && leftGround)
         {
-            //float disChange = playerReelInSpeed * Time.deltaTime;
-            //ropeLength = ropeLength - disChange;
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
-            Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-            rbPlayer.velocity = dir + move;
-            if (rbPlayer.velocity.magnitude > playerMoveSpeed)
-            {
-                rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
-            }
+            float disChange = playerReelInSpeed * Time.deltaTime;
+            ropeLength = ropeLength - disChange;
 
         }
         else
@@ -387,16 +385,20 @@ public class NetworkedHook : MonoBehaviourPun
             rbPlayer.MovePosition(playerPosition);
         }
 
+    }
+
+    void SwingPlayer()
+    {
+        float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
+
         if (distanceToHook < 1)
         {
             hookedObject = null;
             //rbPlayer.useGravity = true;
             ReturnHook();
+            return;
         }
-    }
 
-    void SwingPlayer()
-    {
         //rbPlayer.useGravity = true;
         if (!isSwinging)
         {
@@ -411,16 +413,28 @@ public class NetworkedHook : MonoBehaviourPun
             joint.minDistance = 0;
 
             joint.tolerance = 0;
-            joint.spring = 100f;
-            joint.damper = 7f;
+            joint.spring = 10000f;
+            joint.damper = 3f;
             joint.massScale = 1f;
         }
         rbPlayer.useGravity = false;
 
-        ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
+        //ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
         joint.maxDistance = ropeLength; /** 0.8f;*/
         joint.minDistance = 0;
-        
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
+
+        rbPlayer.velocity = move;
+
+        if (rbPlayer.velocity.magnitude > playerMoveSpeed)
+        {
+            rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
+        }
+
         isReeling = true;
         ReelPlayer();
 
@@ -428,17 +442,6 @@ public class NetworkedHook : MonoBehaviourPun
 
     void BreakHook()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
-        Vector3 dir = Vector3.zero;
-
-        if (!isSwinging)
-        {
-            dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-        }
-
         hookedObject = null;
         if (!playerController.ledgeGrabbing && !isPlayerGrounded)
             rbPlayer.useGravity = true;
@@ -465,7 +468,7 @@ public class NetworkedHook : MonoBehaviourPun
         float dist = 0.71f;
         Vector3 dir = Vector3.down;
 
-        if (Physics.BoxCast(transform.position,Vector3.one * 0.3f, dir, out hit, transform.rotation ,dist))
+        if (Physics.BoxCast(transform.position, Vector3.one * 0.3f, dir, out hit, transform.rotation, dist))
         {
             isPlayerGrounded = true;
             jumpTime = 2;
@@ -525,13 +528,13 @@ public class NetworkedHook : MonoBehaviourPun
 
         if (Physics.Raycast(ray, out hit) && hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Hook") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WraithPlayer"))
         {
-            if(Vector3.Distance(hookStartPosition.transform.position, hit.point) > hookMaxDistance)
+            if (Vector3.Distance(hookStartPosition.transform.position, hit.point) > hookMaxDistance)
             {
                 centreDot.GetComponent<Image>().color = new Color32(255, 0, 0, 128);
             }
             else
             {
-                centreDot.GetComponent<Image>(). color = new Color32(255, 255, 255, 128);
+                centreDot.GetComponent<Image>().color = new Color32(255, 255, 255, 128);
             }
         }
         else
