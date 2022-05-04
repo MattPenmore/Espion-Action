@@ -262,7 +262,7 @@ public class PlayerController : MonoBehaviour
             Vector3 vertPos = transform.position + transform.forward * 1.32f + transform.up * 2;
             Vector3 horizPos = transform.position;
             horizPos.y += 1; 
-            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 0.81f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, 2.8f, ~avoid))
+            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 0.81f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, /*0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y)*/2.8f, ~avoid))
             {
                 RaycastHit[] vertCheck = Physics.BoxCastAll(vertPos, Vector3.one * 0.5f, -Vector3.up, transform.rotation, 2f, ~avoid);
                 foreach(RaycastHit vert in vertCheck)
@@ -284,7 +284,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5)
+        RaycastHit hitAboveCheck;
+        LayerMask avoidCheck = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
+        if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5 /*|| !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAboveCheck, transform.rotation, 0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y), ~avoidCheck)*/)
         {
             ledgeGrabbing = false;
         }
@@ -293,6 +295,7 @@ public class PlayerController : MonoBehaviour
 
         if(ledgeGrabbing)
         {
+            anim.SetBool("LedgeGrabbing", true);
             rb.velocity = (ledgeGrabTarget - transform.position) * 3;
             //transform.position = Vector3.Lerp(transform.position, ledgeGrabTarget, 5 * Time.deltaTime);
             rb.useGravity = false;
@@ -304,7 +307,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(!isPlayerGrounded && !netHook.hasHooked)
+            anim.SetBool("LedgeGrabbing", false);
+            if (!isPlayerGrounded && !netHook.hasHooked)
                 rb.useGravity = true;
 
             ledgeGrabbing = false;
