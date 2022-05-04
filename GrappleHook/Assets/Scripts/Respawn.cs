@@ -6,23 +6,27 @@ public class Respawn : MonoBehaviour
 {
     [SerializeField]
     float respawnTime;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.root.tag == "Player")
         {
-            StartCoroutine(RespawnPlayer(other.transform.root.gameObject.GetComponent<PlayerController>().spawnPoint, other.transform.root.gameObject));
+            if(!other.transform.root.gameObject.GetComponent<PlayerController>().respawning)
+                StartCoroutine(RespawnPlayer(other.transform.root.gameObject.GetComponent<PlayerController>().spawnPoint, other.transform.root.gameObject));
         }
     }
 
     IEnumerator RespawnPlayer(GameObject spawnPoint, GameObject player)
     {
-        if(StealBriefCase.ownBriefcase)
+        player.GetComponent<PlayerController>().respawning = true;
+        if (StealBriefCase.ownBriefcase)
         {
             StealBriefCase.ownBriefcase = false;
             player.GetComponent<StealBriefCase>().briefCase.transform.parent = null;
             player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().stealable = true;
             player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;
             player.GetComponent<StealBriefCase>().briefCase.transform.rotation = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingRotation;
+            player.GetComponent<StealBriefCase>().ownedTime -= 5;
         }
 
         yield return new WaitForSeconds(respawnTime);
@@ -34,7 +38,8 @@ public class Respawn : MonoBehaviour
         player.GetComponent<NetworkedHook>().hasHookFired = false;
         player.GetComponent<NetworkedHook>().hookReturning = false;
         player.GetComponent<NetworkedHook>().hook.layer = 8;
-        player.GetComponent<StealBriefCase>().ownedTime -= 5;
+        player.GetComponent<PlayerController>().respawning = false;
+
 
     }
 }

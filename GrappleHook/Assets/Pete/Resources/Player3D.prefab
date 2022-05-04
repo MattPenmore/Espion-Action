@@ -1852,6 +1852,7 @@ MonoBehaviour:
   ledgeGrabbing: 0
   ledgeGrabTarget: {x: 0, y: 0, z: 0}
   anim: {fileID: 4746738190508578204}
+  respawning: 0
   speed: 10
   isPlayerGrounded: 1
   move: {x: 0, y: 0, z: 0}

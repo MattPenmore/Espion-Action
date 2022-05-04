@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Animator anim;
 
+    public bool respawning;
+
     [PunRPC]
     private void Initialise(int playerID)
     {
