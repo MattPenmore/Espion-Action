@@ -24,7 +24,10 @@ public class StealBriefCase : MonoBehaviourPun
     float stealDistance;
 
     [SerializeField]
-    GameObject briefCaseLocation;
+    GameObject briefCaseLocationXZ;
+
+    [SerializeField]
+    GameObject briefCaseLocationY;
 
     [SerializeField]
     Animator anim;
@@ -92,18 +95,18 @@ public class StealBriefCase : MonoBehaviourPun
         }
         else
             anim.SetBool("HasBriefCase", false);
-
+        Vector3 briefCasePosition = new Vector3(briefCaseLocationXZ.transform.position.x, briefCaseLocationY.transform.position.y, briefCaseLocationXZ.transform.position.z);
         if (stealingBriefCase)
         {
             stealTimer += Time.deltaTime;
-            float briefcaseDistance = (briefCase.transform.position - briefCaseLocation.transform.position).magnitude;
-            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCaseLocation.transform.position, Mathf.Max(20, 20 * briefcaseDistance) * Time.deltaTime);
-            briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocation.transform.rotation, 1);
+            float briefcaseDistance = (briefCase.transform.position - briefCasePosition).magnitude;
+            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCasePosition, Mathf.Max(20, 20 * briefcaseDistance) * Time.deltaTime);
+            briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocationXZ.transform.localRotation, 1);
 
-            if(Vector3.Distance(briefCase.transform.position, briefCaseLocation.transform.position) < 0.1f || stealTimer >= maxStealTime)
+            if(Vector3.Distance(briefCase.transform.position, briefCasePosition) < 0.1f || stealTimer >= maxStealTime)
             {
-                briefCase.transform.position = briefCaseLocation.transform.position;
-                briefCase.transform.rotation = briefCaseLocation.transform.rotation;
+                briefCase.transform.position = briefCasePosition;
+                briefCase.transform.rotation = briefCaseLocationXZ.transform.localRotation;
                 briefCase.transform.parent = transform;
                 stealingBriefCase = false;
                 stealTimer = 0f;
@@ -111,8 +114,8 @@ public class StealBriefCase : MonoBehaviourPun
         }
         else if(ownBriefcase)
         {
-            briefCase.transform.position = briefCaseLocation.transform.position;
-            briefCase.transform.rotation = briefCaseLocation.transform.rotation;
+            briefCase.transform.position = briefCasePosition;
+            briefCase.transform.localRotation = briefCaseLocationXZ.transform.localRotation;
         }
     }
 
