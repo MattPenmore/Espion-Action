@@ -330,8 +330,14 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
+"Assets/Pete/Scripts/LobbyInfo.cs"
+"Assets/Pete/Scripts/NetworkedHookDetector.cs"
+"Assets/Pete/Scripts/PlayerInfo.cs"
+"Assets/Scripts/Player/GrapplingHook/HookDetector.cs"
 "Assets/Scripts/Player/PlayerLook.cs"
+"Assets/Scripts/Player/PlayerUpgrades.cs"
 "Assets/Scripts/Player/UpgradeSpawner.cs"
+"Assets/Scripts/Upgrade.cs"
 -langversion:8.0
 
 /deterministic
