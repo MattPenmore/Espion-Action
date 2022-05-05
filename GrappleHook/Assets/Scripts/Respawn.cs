@@ -19,9 +19,9 @@ public class Respawn : MonoBehaviour
     IEnumerator RespawnPlayer(GameObject spawnPoint, GameObject player)
     {
         player.GetComponent<PlayerController>().respawning = true;
-        if (StealBriefCase.ownBriefcase)
+        if (player.GetComponent<StealBriefCase>().ownBriefcase)
         {
-            StealBriefCase.ownBriefcase = false;
+            player.GetComponent<StealBriefCase>().ownBriefcase = false;
             player.GetComponent<StealBriefCase>().briefCase.transform.parent = null;
             player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().stealable = true;
             player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;

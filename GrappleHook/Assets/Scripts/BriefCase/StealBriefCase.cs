@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class StealBriefCase : MonoBehaviourPun
 {
     public static float winTime = 60f;
-    public static bool ownBriefcase;
+    public bool ownBriefcase;
 
     public GameObject briefCase;
     private GameObject gameManager;
+    private GameObject playerTimerText;
 
     float maxStealTime = 1f;
 
@@ -37,6 +39,7 @@ public class StealBriefCase : MonoBehaviourPun
         ownBriefcase = false;
         briefCase = GameObject.FindGameObjectWithTag("BriefCase");
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        playerTimerText = GameObject.Find("PlayerTimerText");
     }
 
     // Update is called once per frame
@@ -48,6 +51,8 @@ public class StealBriefCase : MonoBehaviourPun
 
         if (ownedTime < 0)
             ownedTime = 0;
+
+        playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F1");
 
         if (ownBriefcase && !gameOver)
         {

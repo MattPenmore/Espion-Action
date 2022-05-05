@@ -16,6 +16,7 @@ public class GameScript : MonoBehaviourPun
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Canvas winScreen;
     [SerializeField] private Text winnerText;
+    [SerializeField] private Text playerTimer;
 
     private bool gameOver;
 
@@ -35,6 +36,11 @@ public class GameScript : MonoBehaviourPun
             go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(i + 1);
             go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, i);
         }
+    }
+
+    private void Update()
+    {
+        playerTimer.text = "";
     }
 
     [PunRPC]

@@ -140,7 +140,7 @@ public class NetworkedHook : MonoBehaviourPun
         //photonView.RPC("FireHook", RpcTarget.All);
 
         // Determine hook action.
-        if (hasHookFired && StealBriefCase.ownBriefcase == false && !playerController.ledgeGrabbing)
+        if (hasHookFired && GetComponent<StealBriefCase>().ownBriefcase == false && !playerController.ledgeGrabbing)
         {
             //photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
             //rope.SetPosition(0, grappleHook.transform.position);

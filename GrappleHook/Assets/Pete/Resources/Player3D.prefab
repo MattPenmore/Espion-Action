@@ -1738,6 +1738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7993f0ed9cec04993dbd37edef6247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownBriefcase: 0
   briefCase: {fileID: 0}
   ownedTime: 0
   stealDistance: 5
