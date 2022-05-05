@@ -213,10 +213,7 @@ public class NetworkedHook : MonoBehaviourPun
             //}
             if (hasHooked)
             {
-                if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
-                {
-                    BreakHook();
-                }
+                
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -236,6 +233,16 @@ public class NetworkedHook : MonoBehaviourPun
                 if (rbPlayer.velocity.magnitude > playerMoveSpeed)
                 {
                     rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
+                }
+
+                if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
+                {
+                    rbPlayer.velocity = Vector3.zero;
+                    if (gameObject.GetComponent<SpringJoint>() != null)
+                    {
+                        isSwinging = false;
+                        Destroy(gameObject.GetComponent<SpringJoint>());
+                    }
                 }
             }
             else
@@ -356,15 +363,15 @@ public class NetworkedHook : MonoBehaviourPun
         //rbPlayer.useGravity = false;
         //isSwinging = false;
         //New Method
-        float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
+        //float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
 
-        if (distanceToHook < 1)
-        {
-            hookedObject = null;
-            //rbPlayer.useGravity = true;
-            ReturnHook();
-            return;
-        }
+        //if (distanceToHook < 1)
+        //{
+        //    hookedObject = null;
+        //    //rbPlayer.useGravity = true;
+        //    ReturnHook();
+        //    return;
+        //}
 
         if (isSwinging && leftGround)
         {
@@ -389,15 +396,15 @@ public class NetworkedHook : MonoBehaviourPun
 
     void SwingPlayer()
     {
-        float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
+        //float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
 
-        if (distanceToHook < 1)
-        {
-            hookedObject = null;
-            //rbPlayer.useGravity = true;
-            ReturnHook();
-            return;
-        }
+        //if (distanceToHook < 1)
+        //{
+        //    hookedObject = null;
+        //    //rbPlayer.useGravity = true;
+        //    ReturnHook();
+        //    return;
+        //}
 
         //rbPlayer.useGravity = true;
         if (!isSwinging)
@@ -440,7 +447,7 @@ public class NetworkedHook : MonoBehaviourPun
 
     }
 
-    void BreakHook()
+    public void BreakHook()
     {
         hookedObject = null;
         if (!playerController.ledgeGrabbing && !isPlayerGrounded)

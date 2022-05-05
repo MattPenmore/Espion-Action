@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     public bool respawning;
 
+    float ledgeGrabTime = 0;
+    float maxLedgeGrabTime = 3;
+
     [PunRPC]
     private void Initialise(int playerID)
     {
@@ -255,7 +258,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Ledge Grab
-        if (!isPlayerGrounded && !ledgeGrabbing && !hook.hasHooked && !jumping)
+        if (!isPlayerGrounded && !ledgeGrabbing && /*!hook.hasHooked &&*/ !jumping)
         {
             LayerMask avoid = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
             RaycastHit hitHoriz;
@@ -288,7 +291,7 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit hitAboveCheck;
         LayerMask avoidCheck = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
-        if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5 /*|| !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAboveCheck, transform.rotation, 0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y), ~avoidCheck)*/)
+        if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5 || ledgeGrabTime > maxLedgeGrabTime /*|| !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAboveCheck, transform.rotation, 0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y), ~avoidCheck)*/)
         {
             ledgeGrabbing = false;
         }
@@ -297,6 +300,10 @@ public class PlayerController : MonoBehaviour
 
         if(ledgeGrabbing)
         {
+            if (netHook.hasHookFired)
+                netHook.BreakHook();
+
+            ledgeGrabTime += Time.deltaTime;
             anim.SetBool("LedgeGrabbing", true);
             rb.velocity = (ledgeGrabTarget - transform.position) * 3;
             //transform.position = Vector3.Lerp(transform.position, ledgeGrabTarget, 5 * Time.deltaTime);
@@ -309,12 +316,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            ledgeGrabTime = 0;
             anim.SetBool("LedgeGrabbing", false);
             if (!isPlayerGrounded && !netHook.hasHooked)
                 rb.useGravity = true;
 
             ledgeGrabbing = false;
         }
+
+        MapDistanceCheck();
     }
 
     void CheckIfGrounded()
@@ -341,6 +351,13 @@ public class PlayerController : MonoBehaviour
             if (!netHook.hasHooked)
                 rb.useGravity = true;
         }
+    }
+
+    void MapDistanceCheck()
+    {
+        float dist = transform.position.magnitude;
+        if (dist > 200 && !respawning)
+            FindObjectOfType<Respawn>().RespawnPlayerPush(gameObject);
     }
 }
 

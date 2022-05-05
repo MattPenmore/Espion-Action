@@ -33,7 +33,7 @@ public class StealBriefCase : MonoBehaviourPun
     void Start()
     {
         stealTimer = 0f;
-        ownedTime = 0;
+        ownedTime = winTime;
         gameOver = false;
         stealingBriefCase = false;
         ownBriefcase = false;
@@ -49,16 +49,16 @@ public class StealBriefCase : MonoBehaviourPun
         if (!gameObject.GetPhotonView().IsMine)
             return;
 
-        if (ownedTime < 0)
-            ownedTime = 0;
+        if (ownedTime > winTime)
+            ownedTime = winTime;
 
         playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F1");
 
         if (ownBriefcase && !gameOver)
         {
             anim.SetBool("HasBriefCase", true);
-            ownedTime += Time.deltaTime;
-            if(ownedTime >= winTime)
+            ownedTime -= Time.deltaTime;
+            if(ownedTime <= 0)
             {
                 gameOver = true;
                 Debug.Log("Win");
