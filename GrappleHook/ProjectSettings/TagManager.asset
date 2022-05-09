@@ -10,6 +10,8 @@ TagManager:
   - SpawnPoint
   - GameManager
   - Pointer
+  - SpecCam
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

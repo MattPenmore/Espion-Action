@@ -13,6 +13,7 @@ ScriptsOnlyBuild:
     - PlayerInfo
     - PlayerUpgrades
     - Respawn
+    - SpecCamController
     - StealBriefCase
     - Upgrade
     - UpgradeSpawner
@@ -28,14 +29,6 @@ ScriptsOnlyBuild:
     - UnityEngine.ProBuilder.Shapes.ProBuilderShape
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -90,49 +83,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1526}
     - Class: 114
-      Script: {instanceID: 2628}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2770}
+      Script: {instanceID: 2772}
     - Class: 114
-      Script: {instanceID: 2854}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 2900}
+      Script: {instanceID: 2902}
     - Class: 114
-      Script: {instanceID: 2952}
+      Script: {instanceID: 2954}
     - Class: 114
-      Script: {instanceID: 3064}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3156}
+      Script: {instanceID: 3158}
     - Class: 114
-      Script: {instanceID: 3202}
+      Script: {instanceID: 3204}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 4822}
+      Script: {instanceID: 4824}
     - Class: 114
-      Script: {instanceID: 5526}
+      Script: {instanceID: 5528}
     - Class: 114
-      Script: {instanceID: 5852}
+      Script: {instanceID: 5854}
     - Class: 114
-      Script: {instanceID: 6372}
+      Script: {instanceID: 6374}
     - Class: 114
-      Script: {instanceID: 6404}
+      Script: {instanceID: 6406}
     - Class: 114
-      Script: {instanceID: 6638}
+      Script: {instanceID: 6640}
     - Class: 114
-      Script: {instanceID: 6852}
+      Script: {instanceID: 6854}
     - Class: 114
-      Script: {instanceID: 7232}
+      Script: {instanceID: 7234}
     - Class: 114
-      Script: {instanceID: 7592}
+      Script: {instanceID: 7594}
     - Class: 114
-      Script: {instanceID: 7684}
+      Script: {instanceID: 7686}
     - Class: 114
-      Script: {instanceID: 7698}
+      Script: {instanceID: 7700}
     - Class: 114
-      Script: {instanceID: 7968}
+      Script: {instanceID: 7970}
     - Class: 114
-      Script: {instanceID: 8102}
+      Script: {instanceID: 8104}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -203,49 +196,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1526}
     - Class: 114
-      Script: {instanceID: 2628}
+      Script: {instanceID: 2616}
     - Class: 114
-      Script: {instanceID: 2854}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2952}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 3064}
+      Script: {instanceID: 2954}
     - Class: 114
-      Script: {instanceID: 3142}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3202}
+      Script: {instanceID: 3144}
     - Class: 114
-      Script: {instanceID: 3338}
+      Script: {instanceID: 3204}
     - Class: 114
-      Script: {instanceID: 4822}
+      Script: {instanceID: 3340}
     - Class: 114
-      Script: {instanceID: 5526}
+      Script: {instanceID: 4824}
     - Class: 114
-      Script: {instanceID: 5852}
+      Script: {instanceID: 5528}
     - Class: 114
-      Script: {instanceID: 6310}
+      Script: {instanceID: 5854}
     - Class: 114
-      Script: {instanceID: 6372}
+      Script: {instanceID: 6312}
     - Class: 114
-      Script: {instanceID: 6404}
+      Script: {instanceID: 6374}
     - Class: 114
-      Script: {instanceID: 6638}
+      Script: {instanceID: 6406}
     - Class: 114
-      Script: {instanceID: 6852}
+      Script: {instanceID: 6640}
     - Class: 114
-      Script: {instanceID: 7232}
+      Script: {instanceID: 6854}
     - Class: 114
-      Script: {instanceID: 7592}
+      Script: {instanceID: 7234}
     - Class: 114
-      Script: {instanceID: 7684}
+      Script: {instanceID: 7594}
     - Class: 114
-      Script: {instanceID: 7904}
+      Script: {instanceID: 7686}
     - Class: 114
-      Script: {instanceID: 7968}
+      Script: {instanceID: 7906}
     - Class: 114
-      Script: {instanceID: 8094}
+      Script: {instanceID: 7970}
     - Class: 114
-      Script: {instanceID: 8362}
+      Script: {instanceID: 8096}
+    - Class: 114
+      Script: {instanceID: 8364}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -409,6 +404,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
     className: CountdownTimer
+  - hash:
+      serializedVersion: 2
+      Hash: 9502c0081b97e1b8c1229e2645899a00
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpecCamController
   - hash:
       serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
@@ -1431,7 +1432,7 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
-      Hash: 155d9dc980b8e82ef3aa6da1f3af138d
+      Hash: d0808b5e727b30e27fc365d822ab783a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameScript
@@ -1451,4 +1452,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Pete/Scenes/Lobby.unity
   - Assets/Pete/Scenes/WhiteBox.unity
-  playerPath: C:/Users/Matt/Documents/GitHub/Espion-Action/test_builds/NewWhitebox/GrappleHook.exe
+  playerPath: D:/UnityProjects/Espionaction/Espion-Action/test_builds/NewWhitebox/GrappleHook.exe

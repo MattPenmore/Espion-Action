@@ -9,14 +9,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class GameScript : MonoBehaviourPun
+public class GameScript : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Canvas winScreen;
     [SerializeField] private Text winnerText;
-    [SerializeField] private Text playerTimer;
 
     private bool gameOver;
 
@@ -38,10 +38,25 @@ public class GameScript : MonoBehaviourPun
         }
     }
 
-    private void Update()
+    public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        playerTimer.text = "";
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
+        Debug.Log("SPECTATOR JOINED");  
     }
+
+    //private void ActivateSpecCam()
+    //{
+    //    // Check if a camera is currently rendering and if so, return.
+    //    if (Camera.current != null)
+    //        return;
+    //
+    //    // Enable scene camera and audio listener.
+    //    GameObject sceneCam = GameObject.Find("SceneCamera");
+    //    sceneCam.GetComponent<Camera>().enabled = true;
+    //    sceneCam.GetComponent<AudioListener>().enabled = true;
+    //}
 
     [PunRPC]
     public void EndGame(string playerName, float[] playerColour)

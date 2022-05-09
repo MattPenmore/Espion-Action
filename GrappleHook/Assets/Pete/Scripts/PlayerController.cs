@@ -53,16 +53,14 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Initialising object with ViewID: " + gameObject.GetPhotonView().ViewID);
 
-        // Disable scene camera and audio listener.
-        GameObject sceneCam = GameObject.Find("SceneCamera");
-        sceneCam.GetComponent<Camera>().enabled = false;
-        sceneCam.GetComponent<AudioListener>().enabled = false;
-
-        // Enable player camera, audio listener, and gravity.
+        // Disable spec cam, Enable player UI, camera, audio listener, and gravity.
         if (PhotonNetwork.IsMasterClient)
         {
             if (gameObject.GetPhotonView().ViewID == 1001)
             {
+                DisableSpecCam();
+                EnablePlayerUI();
+
                 playerCam.enabled = true;
                 audioListener.enabled = true;
                 _rb.useGravity = true;
@@ -74,6 +72,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (gameObject.GetPhotonView().IsMine)
         {
+            DisableSpecCam();
+            EnablePlayerUI();
+           
             playerCam.enabled = true;
             audioListener.enabled = true;
             _rb.useGravity = true;
@@ -86,6 +87,27 @@ public class PlayerController : MonoBehaviour
     private void RemoveComponents()
     {
         //Destroy(GetComponent<Rigidbody>());
+    }
+
+    private void DisableSpecCam()
+    {
+        // Disable scene camera and audio listener.
+        GameObject sceneCam = GameObject.FindGameObjectWithTag("SpecCam");
+        if (sceneCam != null)
+            sceneCam.SetActive(false);        
+    }
+
+    private void EnablePlayerUI()
+    {
+        // Enable the player UI.
+        GameObject playerUI = GameObject.FindGameObjectWithTag("PlayerUI");
+
+        if (playerUI != null)
+        {
+            Canvas[] canvasses = playerUI.GetComponentsInChildren<Canvas>();
+            foreach (Canvas c in canvasses)
+                c.enabled = true;
+        }
     }
 
     Rigidbody rb;
