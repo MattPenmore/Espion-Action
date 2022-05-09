@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5763265904150246799}
   - component: {fileID: 8700720049899925636}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Case
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,6 +62,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f8a5cc72fd0671440866fb7ae7a263c1, type: 2}
+  - {fileID: 2100000, guid: b3a14f5389271f3459f6c1ba74b84d82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +110,7 @@ GameObject:
   - component: {fileID: 5488044701665146996}
   - component: {fileID: 8958023051990552479}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Handle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,6 +159,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6a6d8ee8745526240ac6415c32b0141a, type: 2}
+  - {fileID: 2100000, guid: ac857f1f854560642817d5c44fee42b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -316,7 +318,7 @@ GameObject:
   - component: {fileID: 2781855668763840238}
   - component: {fileID: 2692514806475653008}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Handle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,8 +332,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6157066920491401061}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.293, z: 0.15}
-  m_LocalScale: {x: 0.03, y: 0.1, z: 0.03}
+  m_LocalPosition: {x: 0, y: 0.285, z: 0.15}
+  m_LocalScale: {x: 0.03, y: 0.07, z: 0.03}
   m_Children: []
   m_Father: {fileID: 9053192321818123549}
   m_RootOrder: 2
@@ -365,6 +367,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6a6d8ee8745526240ac6415c32b0141a, type: 2}
+  - {fileID: 2100000, guid: ac857f1f854560642817d5c44fee42b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -412,7 +415,7 @@ GameObject:
   - component: {fileID: 5927541526201885968}
   - component: {fileID: 682749603206462508}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Handle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,8 +429,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7949997992364458949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.293, z: -0.15}
-  m_LocalScale: {x: 0.03, y: 0.1, z: 0.03}
+  m_LocalPosition: {x: 0, y: 0.285, z: -0.15}
+  m_LocalScale: {x: 0.03, y: 0.07, z: 0.03}
   m_Children: []
   m_Father: {fileID: 9053192321818123549}
   m_RootOrder: 1
@@ -461,6 +464,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6a6d8ee8745526240ac6415c32b0141a, type: 2}
+  - {fileID: 2100000, guid: ac857f1f854560642817d5c44fee42b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
