@@ -83,12 +83,16 @@
   <ItemGroup>
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
+    <None Include="Assets\Shaders\OutlineAlwaysVisible.shader" />
+    <None Include="Assets\Shaders\TSF.shader" />
     <None Include="Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll" />
+    <None Include="Assets\Shaders\TSFOutline.shader" />
     <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
     <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll" />
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.dll" />
     <None Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
+    <None Include="Assets\Shaders\AlwaysVisible.shader" />
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
   </ItemGroup>
