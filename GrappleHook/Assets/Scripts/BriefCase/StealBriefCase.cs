@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class StealBriefCase : MonoBehaviourPun
 {
     public static float winTime = 60f;
-    public bool ownBriefcase;
+    public static bool ownBriefcase;
 
     public GameObject briefCase;
     private GameObject gameManager;
@@ -84,13 +84,16 @@ public class StealBriefCase : MonoBehaviourPun
                 //}
                 //briefCase.transform.parent = null;
 
-                briefCase.GetPhotonView().RequestOwnership();
-                photonView.RPC("BriefcaseStolen", RpcTarget.All);
-                
-                stealingBriefCase = true;
-                ownBriefcase = true;
 
-                Debug.Log("ownBriefcase = true;");
+                //briefCase.GetPhotonView().RequestOwnership();
+                //photonView.RPC("BriefcaseStolen", RpcTarget.All);
+                
+                photonView.RPC(nameof(TransferBriefcase), RpcTarget.MasterClient, photonView.OwnerActorNr);
+                
+                //stealingBriefCase = true;
+                //ownBriefcase = true;
+
+                //Debug.Log("ownBriefcase = true;");
             }
         }
         else
@@ -120,12 +123,28 @@ public class StealBriefCase : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void BriefcaseStolen()
+    public void TransferBriefcase(int actorNo)
+    {
+        briefCase.GetPhotonView().TransferOwnership(actorNo);
+        photonView.RPC(nameof(BriefcaseStolen), RpcTarget.AllBufferedViaServer, actorNo);
+    }
+
+    [PunRPC]
+    public void BriefcaseStolen(int actorNo)
     {
         briefCase.transform.parent = null;
         briefCase.GetComponent<BriefCase>().ResetStolenTimer();
         ownBriefcase = false;
 
-        Debug.Log("ownBriefcase = false;");
+        string logMsg = "ownBriefcase = false;";
+        
+        if (PhotonNetwork.LocalPlayer.ActorNumber == actorNo)
+        {
+            stealingBriefCase = true;
+            ownBriefcase = true;
+            logMsg = "ownBriefcase = true;";
+        }
+
+        Debug.Log(logMsg);
     }
 }

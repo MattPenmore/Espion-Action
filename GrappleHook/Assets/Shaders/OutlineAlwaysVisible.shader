@@ -1,21 +1,17 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 Shader "Custom/OutlineAlwaysVisible"
 {
     Properties 
     {
 
-		[MaterialToggle(_TEX_ON)] _DetailTex ("Enable Detail texture", Float) = 0 	//1
-		_MainTex ("Detail", 2D) = "white" {}        								//2
-		_ToonShade ("Shade", 2D) = "white" {}  										//3
-		[MaterialToggle(_COLOR_ON)] _TintColor ("Enable Color Tint", Float) = 0 	//4
-		_Color ("Base Color", Color) = (1,1,1,1)									//5	
-		[MaterialToggle(_VCOLOR_ON)] _VertexColor ("Enable Vertex Color", Float) = 0//6        
-		_Brightness ("Brightness 1 = neutral", Float) = 1.0							//7	
-		_OutlineColor ("Outline Color", Color) = (0.5,0.5,0.5,1.0)					//10
-		_Outline ("Outline width", Float) = 0.01									//11
+		//[MaterialToggle(_TEX_ON)] _DetailTex ("Enable Detail texture", Float) = 0 	//1
+		//_MainTex ("Detail", 2D) = "white" {}        								//2
+		//_ToonShade ("Shade", 2D) = "white" {}  										//3
+		//[MaterialToggle(_COLOR_ON)] _TintColor ("Enable Color Tint", Float) = 0 	//4
+		_Color ("Base Colour", Color) = (1,1,1,1)									//5	
+		//[MaterialToggle(_VCOLOR_ON)] _VertexColor ("Enable Vertex Color", Float) = 0//6        
+		//_Brightness ("Brightness 1 = neutral", Float) = 1.0							//7	
+		//_OutlineColor ("Outline Color", Color) = (0.5,0.5,0.5,1.0)					//10
+		//_Outline ("Outline width", Float) = 0.01									//11
 
     }
  
@@ -68,29 +64,36 @@ Shader "Custom/OutlineAlwaysVisible"
 		//	{
 		//    	return _OutlineColor;
 		//	}
-            Pass {
-             Cull Front
-             CGPROGRAM
-             #pragma vertex vert
-             #pragma fragment frag
-             fixed4 _Color;
-             float4 vert(float4 v:POSITION) : SV_POSITION {
-                 return UnityObjectToClipPos(v);
-             }
-             fixed4 frag() : COLOR {
-                 return _Color;
-             }
+        Pass 
+        {
+
+            Cull Front
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            fixed4 _Color;
+
+            float4 vert(float4 v:POSITION) : SV_POSITION 
+            {
+                return UnityObjectToClipPos(v);
+            }
+
+            fixed4 frag() : COLOR 
+            {
+                return _Color;
+            }
             
             ENDCG
         }
-        //Pass
-        //{
-        //    ZWrite Off
-        //    ZTest Greater
-        //    Lighting Off
-        //    Color[_OutlineColor]
-        //}
-        //
+
+        Pass
+        {
+            ZWrite Off
+            ZTest Greater
+            Lighting Off
+            Color[_Color]
+        }
+        
         //Pass
         //{
         //    Blend SrcAlpha OneMinusSrcAlpha

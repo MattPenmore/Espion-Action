@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Respawn : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Respawn : MonoBehaviour
     {
         if(other.transform.root.tag == "Player")
         {
-            if(!other.transform.root.gameObject.GetComponent<PlayerController>().respawning)
+            if(!other.transform.root.gameObject.GetComponent<PlayerController>().respawning && other.transform.root.gameObject.GetPhotonView().IsMine)
                 StartCoroutine(RespawnPlayer(other.transform.root.gameObject.GetComponent<PlayerController>().spawnPoint, other.transform.root.gameObject));
         }
     }
@@ -23,10 +24,12 @@ public class Respawn : MonoBehaviour
 
     IEnumerator RespawnPlayer(GameObject spawnPoint, GameObject player)
     {
+        Debug.Log("RESPAWNING");
+
         player.GetComponent<PlayerController>().respawning = true;
-        if (player.GetComponent<StealBriefCase>().ownBriefcase)
+        if (StealBriefCase.ownBriefcase)
         {
-            player.GetComponent<StealBriefCase>().ownBriefcase = false;
+            StealBriefCase.ownBriefcase = false;
             player.GetComponent<StealBriefCase>().briefCase.transform.parent = null;
             player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().stealable = true;
             player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;
@@ -44,7 +47,5 @@ public class Respawn : MonoBehaviour
         player.GetComponent<NetworkedHook>().hookReturning = false;
         player.GetComponent<NetworkedHook>().hook.layer = 8;
         player.GetComponent<PlayerController>().respawning = false;
-
-
     }
 }

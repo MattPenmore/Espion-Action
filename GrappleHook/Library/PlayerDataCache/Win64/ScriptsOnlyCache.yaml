@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
+    - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
     - Photon.Pun.PhotonTransformView
     - Photon.Pun.PhotonView
@@ -81,51 +82,53 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1526}
+      Script: {instanceID: 1540}
     - Class: 114
-      Script: {instanceID: 2630}
+      Script: {instanceID: 2644}
     - Class: 114
-      Script: {instanceID: 2772}
+      Script: {instanceID: 2786}
     - Class: 114
-      Script: {instanceID: 2856}
+      Script: {instanceID: 2870}
     - Class: 114
-      Script: {instanceID: 2902}
+      Script: {instanceID: 2916}
     - Class: 114
-      Script: {instanceID: 2954}
+      Script: {instanceID: 2968}
     - Class: 114
-      Script: {instanceID: 3066}
+      Script: {instanceID: 3080}
     - Class: 114
-      Script: {instanceID: 3158}
+      Script: {instanceID: 3172}
     - Class: 114
-      Script: {instanceID: 3204}
+      Script: {instanceID: 3218}
     - Class: 114
-      Script: {instanceID: 3228}
+      Script: {instanceID: 3242}
     - Class: 114
-      Script: {instanceID: 4824}
+      Script: {instanceID: 4838}
     - Class: 114
-      Script: {instanceID: 5528}
+      Script: {instanceID: 5542}
     - Class: 114
-      Script: {instanceID: 5854}
+      Script: {instanceID: 5868}
     - Class: 114
-      Script: {instanceID: 6374}
+      Script: {instanceID: 6388}
     - Class: 114
-      Script: {instanceID: 6406}
+      Script: {instanceID: 6396}
     - Class: 114
-      Script: {instanceID: 6640}
+      Script: {instanceID: 6420}
     - Class: 114
-      Script: {instanceID: 6854}
+      Script: {instanceID: 6654}
     - Class: 114
-      Script: {instanceID: 7234}
+      Script: {instanceID: 6868}
     - Class: 114
-      Script: {instanceID: 7594}
+      Script: {instanceID: 7248}
     - Class: 114
-      Script: {instanceID: 7686}
+      Script: {instanceID: 7608}
     - Class: 114
       Script: {instanceID: 7700}
     - Class: 114
-      Script: {instanceID: 7970}
+      Script: {instanceID: 7714}
     - Class: 114
-      Script: {instanceID: 8104}
+      Script: {instanceID: 7984}
+    - Class: 114
+      Script: {instanceID: 8118}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -194,53 +197,55 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1526}
-    - Class: 114
-      Script: {instanceID: 2616}
+      Script: {instanceID: 1540}
     - Class: 114
       Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2856}
+      Script: {instanceID: 2644}
     - Class: 114
-      Script: {instanceID: 2954}
+      Script: {instanceID: 2870}
     - Class: 114
-      Script: {instanceID: 3066}
+      Script: {instanceID: 2968}
     - Class: 114
-      Script: {instanceID: 3144}
+      Script: {instanceID: 3080}
     - Class: 114
-      Script: {instanceID: 3204}
+      Script: {instanceID: 3158}
     - Class: 114
-      Script: {instanceID: 3340}
+      Script: {instanceID: 3218}
     - Class: 114
-      Script: {instanceID: 4824}
+      Script: {instanceID: 3354}
     - Class: 114
-      Script: {instanceID: 5528}
+      Script: {instanceID: 4838}
     - Class: 114
-      Script: {instanceID: 5854}
+      Script: {instanceID: 5542}
     - Class: 114
-      Script: {instanceID: 6312}
+      Script: {instanceID: 5868}
     - Class: 114
-      Script: {instanceID: 6374}
+      Script: {instanceID: 6326}
     - Class: 114
-      Script: {instanceID: 6406}
+      Script: {instanceID: 6388}
     - Class: 114
-      Script: {instanceID: 6640}
+      Script: {instanceID: 6396}
     - Class: 114
-      Script: {instanceID: 6854}
+      Script: {instanceID: 6420}
     - Class: 114
-      Script: {instanceID: 7234}
+      Script: {instanceID: 6654}
     - Class: 114
-      Script: {instanceID: 7594}
+      Script: {instanceID: 6868}
     - Class: 114
-      Script: {instanceID: 7686}
+      Script: {instanceID: 7248}
     - Class: 114
-      Script: {instanceID: 7906}
+      Script: {instanceID: 7608}
     - Class: 114
-      Script: {instanceID: 7970}
+      Script: {instanceID: 7700}
     - Class: 114
-      Script: {instanceID: 8096}
+      Script: {instanceID: 7920}
     - Class: 114
-      Script: {instanceID: 8364}
+      Script: {instanceID: 7984}
+    - Class: 114
+      Script: {instanceID: 8110}
+    - Class: 114
+      Script: {instanceID: 8378}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -1114,7 +1119,7 @@ ScriptsOnlyBuild:
     className: TriggerBehaviour
   - hash:
       serializedVersion: 2
-      Hash: 479b36b42c6c55696c793083d8e0c37c
+      Hash: a4b1ae86db61a3df5e16a965d1156f37
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StealBriefCase
