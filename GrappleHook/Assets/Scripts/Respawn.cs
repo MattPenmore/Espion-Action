@@ -34,7 +34,8 @@ public class Respawn : MonoBehaviour
             player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().stealable = true;
             player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;
             player.GetComponent<StealBriefCase>().briefCase.transform.rotation = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingRotation;
-            player.GetComponent<StealBriefCase>().ownedTime += 5;
+            StealBriefCase.ownedTime += 5;
+            player.GetComponent<StealBriefCase>().CallBreifcaseTransfer(0, false, StealBriefCase.ownedTime);
         }
 
         yield return new WaitForSeconds(respawnTime);

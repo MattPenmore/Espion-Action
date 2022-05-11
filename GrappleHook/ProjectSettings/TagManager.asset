@@ -12,6 +12,8 @@ TagManager:
   - Pointer
   - SpecCam
   - PlayerUI
+  - Outline
+  - PlayerTimerText
   layers:
   - Default
   - TransparentFX

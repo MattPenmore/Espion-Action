@@ -92,8 +92,6 @@ public class NetworkedHook : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-
-
         // Draw rope.
         Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
         DrawRope(ropePositions);
@@ -281,12 +279,16 @@ public class NetworkedHook : MonoBehaviourPun
     //[PunRPC]
     public void FireHook()
     {
+        LayerMask layerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("Hook") | LayerMask.NameToLayer("WraithPlayer");
+
         // Cast a ray from screen point
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // Save the info
         RaycastHit hit;
         // You successfully hit
-        if (Physics.Raycast(ray, out hit))
+
+        //if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, hookMaxDistance, layerMask))
         {
             // Find the direction to move in
             Vector3 dir = hit.point - hook.transform.position;
@@ -303,7 +305,6 @@ public class NetworkedHook : MonoBehaviourPun
         isReeling = false;
     }
 
-    //[PunRPC]
     public void DrawRope(Vector3[] ropePositions)
     {
         rope.SetPosition(0, ropePositions[0]);
@@ -528,21 +529,15 @@ public class NetworkedHook : MonoBehaviourPun
 
     void DistanceCheck()
     {
+        LayerMask layerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("Hook") | LayerMask.NameToLayer("WraithPlayer");
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // Save the info
         RaycastHit hit;
         // You successfully hit
-
-        if (Physics.Raycast(ray, out hit) && hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Hook") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WraithPlayer"))
+        if (Physics.Raycast(ray, out hit, hookMaxDistance, layerMask))// && hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Hook") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WraithPlayer"))
         {
-            if (Vector3.Distance(hookStartPosition.transform.position, hit.point) > hookMaxDistance)
-            {
-                centreDot.GetComponent<Image>().color = new Color32(255, 0, 0, 128);
-            }
-            else
-            {
-                centreDot.GetComponent<Image>().color = new Color32(255, 255, 255, 128);
-            }
+            centreDot.GetComponent<Image>().color = new Color32(255, 255, 255, 128);
         }
         else
         {

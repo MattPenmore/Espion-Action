@@ -12,11 +12,15 @@ public class StealBriefCase : MonoBehaviourPun
     public GameObject briefCase;
     private GameObject gameManager;
     private GameObject playerTimerText;
+    //private GameObject otherPlayerTimerText;
+    private Color[] playerColours;
+    private GameObject briefcaseOutline;
 
     float maxStealTime = 1f;
 
     bool stealingBriefCase;
-    public float ownedTime;
+    public static float ownedTime;
+    public static float currentPlayerOwnedTime;
     float stealTimer;
     bool gameOver;
 
@@ -37,12 +41,16 @@ public class StealBriefCase : MonoBehaviourPun
     {
         stealTimer = 0f;
         ownedTime = winTime;
+        currentPlayerOwnedTime = winTime;
         gameOver = false;
         stealingBriefCase = false;
         ownBriefcase = false;
         briefCase = GameObject.FindGameObjectWithTag("BriefCase");
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        playerTimerText = GameObject.Find("PlayerTimerText");
+        playerTimerText = GameObject.FindGameObjectWithTag("PlayerTimerText");
+        //otherPlayerTimerText = GameObject.FindGameObjectWithTag("OtherPlayerTimerText");
+        briefcaseOutline = GameObject.FindGameObjectWithTag("Outline");
+        playerColours = new Color[] { Color.black, Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
     }
 
     // Update is called once per frame
@@ -55,10 +63,17 @@ public class StealBriefCase : MonoBehaviourPun
         if (ownedTime > winTime)
             ownedTime = winTime;
 
-        playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F1");
+        //Debug.Log(briefcaseOutline.GetComponent<Renderer>().material.color + " | " + playerColours[0]);
+        if (!ownBriefcase && briefcaseOutline.GetComponent<Renderer>().material.color != playerColours[0]) //black
+        {
+            currentPlayerOwnedTime -= Time.deltaTime;
+            playerTimerText.GetComponent<Text>().text = (currentPlayerOwnedTime).ToString("F0");
+        }
+
 
         if (ownBriefcase && !gameOver)
         {
+            playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F0");
             anim.SetBool("HasBriefCase", true);
             ownedTime -= Time.deltaTime;
             if(ownedTime <= 0)
@@ -87,8 +102,9 @@ public class StealBriefCase : MonoBehaviourPun
 
                 //briefCase.GetPhotonView().RequestOwnership();
                 //photonView.RPC("BriefcaseStolen", RpcTarget.All);
-                
-                photonView.RPC(nameof(TransferBriefcase), RpcTarget.MasterClient, photonView.OwnerActorNr);
+
+                CallBreifcaseTransfer(photonView.OwnerActorNr, true, ownedTime);
+                //photonView.RPC(nameof(TransferBriefcase), RpcTarget.MasterClient, photonView.OwnerActorNr);
                 
                 //stealingBriefCase = true;
                 //ownBriefcase = true;
@@ -122,27 +138,56 @@ public class StealBriefCase : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
-    public void TransferBriefcase(int actorNo)
+    public void CallBreifcaseTransfer(int actorNo, bool transferOwner, float currentOwnedTime)
     {
-        briefCase.GetPhotonView().TransferOwnership(actorNo);
-        photonView.RPC(nameof(BriefcaseStolen), RpcTarget.AllBufferedViaServer, actorNo);
+        photonView.RPC(nameof(TransferBriefcase), RpcTarget.MasterClient, actorNo, transferOwner, currentOwnedTime);
     }
 
     [PunRPC]
-    public void BriefcaseStolen(int actorNo)
+    public void TransferBriefcase(int actorNo, bool transferOwner, float currentOwnedTime)
+    {
+        if (transferOwner)
+            briefCase.GetPhotonView().TransferOwnership(actorNo);
+
+        photonView.RPC(nameof(BriefcaseStolen), RpcTarget.AllBufferedViaServer, actorNo, currentOwnedTime);
+    }
+
+    [PunRPC]
+    public void BriefcaseStolen(int actorNo, float currentOwnedTime)
     {
         briefCase.transform.parent = null;
         briefCase.GetComponent<BriefCase>().ResetStolenTimer();
         ownBriefcase = false;
-
+        briefcaseOutline.GetComponent<Renderer>().material.color = playerColours[actorNo];
+        currentPlayerOwnedTime = currentOwnedTime;
+        
         string logMsg = "ownBriefcase = false;";
         
+        // If we stole the briefcase.
         if (PhotonNetwork.LocalPlayer.ActorNumber == actorNo)
         {
             stealingBriefCase = true;
             ownBriefcase = true;
             logMsg = "ownBriefcase = true;";
+
+            playerTimerText.GetComponent<Text>().color = Color.green;
+        }
+        else
+        {
+            // If somebody else owns it.
+            if (briefcaseOutline.GetComponent<Renderer>().material.color != Color.black)
+            {
+                playerTimerText.GetComponent<Text>().color = Color.red;
+
+                playerTimerText.GetComponent<Text>().text = (currentPlayerOwnedTime).ToString("F0");
+            }
+            // If nobody owns it.
+            else
+            {
+                playerTimerText.GetComponent<Text>().color = Color.white;
+
+                playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F0");
+            }
         }
 
         Debug.Log(logMsg);

@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
             foreach (Canvas c in canvasses)
                 c.enabled = true;
         }
-    }
+    }    
 
     Rigidbody rb;
     public float speed;
@@ -119,6 +119,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 move;
 
     NetworkedHook hook;
+
+    [SerializeField] GameObject playerCamObject;
+    [SerializeField] Transform[] cameraPositions;
 
     [SerializeField]
     float jumpHeight;
@@ -166,6 +169,14 @@ public class PlayerController : MonoBehaviour
             return;
 
         targetPosition = transform.position;
+
+        // Camera control.
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            // Swap between first and third person.
+            playerCamObject.transform.localPosition = (playerCamObject.transform.localPosition == cameraPositions[0].localPosition) ? cameraPositions[1].localPosition : cameraPositions[0].localPosition;
+        }
+
 
         if (jumping)
         {
@@ -317,8 +328,6 @@ public class PlayerController : MonoBehaviour
         {
             ledgeGrabbing = false;
         }
-        
-
 
         if(ledgeGrabbing)
         {

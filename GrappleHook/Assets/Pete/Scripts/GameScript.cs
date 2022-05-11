@@ -46,17 +46,11 @@ public class GameScript : MonoBehaviourPunCallbacks
         Debug.Log("SPECTATOR JOINED");  
     }
 
-    //private void ActivateSpecCam()
-    //{
-    //    // Check if a camera is currently rendering and if so, return.
-    //    if (Camera.current != null)
-    //        return;
-    //
-    //    // Enable scene camera and audio listener.
-    //    GameObject sceneCam = GameObject.Find("SceneCamera");
-    //    sceneCam.GetComponent<Camera>().enabled = true;
-    //    sceneCam.GetComponent<AudioListener>().enabled = true;
-    //}
+    public override void OnPlayerLeftRoom(Player player)
+    {
+        if (player.ActorNumber == 1) //master
+            PhotonNetwork.LoadLevel("Lobby");
+    }
 
     [PunRPC]
     public void EndGame(string playerName, float[] playerColour)
@@ -67,6 +61,7 @@ public class GameScript : MonoBehaviourPunCallbacks
         winnerText.text = playerName + " Wins!";
         Vector4 pColour = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
         winnerText.color = pColour;
+        DisablePlayerUI();
         winScreen.enabled = true;
 
         Invoke("ReturnToLobby", 5);
@@ -74,10 +69,20 @@ public class GameScript : MonoBehaviourPunCallbacks
 
     private void ReturnToLobby()
     {
-        //DontDestroyOnLoad(this);
         if (PhotonNetwork.IsMasterClient)
             PhotonNetwork.LoadLevel("Lobby");
-        //PhotonNetwork.LoadLevel("Lobby");
-        //Destroy(this);
-    }    
+    }
+
+    public void DisablePlayerUI()
+    {
+        // Enable the player UI.
+        GameObject playerUI = GameObject.FindGameObjectWithTag("PlayerUI");
+
+        if (playerUI != null)
+        {
+            Canvas[] canvasses = playerUI.GetComponentsInChildren<Canvas>();
+            foreach (Canvas c in canvasses)
+                c.enabled = false;
+        }
+    }
 }
