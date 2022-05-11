@@ -345,6 +345,7 @@
 "Assets/Pete/Scripts/NetworkedLook.cs"
 "Assets/Pete/Scripts/PlayerController.cs"
 "Assets/Pete/Scripts/PlayerInfo.cs"
+"Assets/Pete/Scripts/SpecCamController.cs"
 "Assets/Photon/PhotonLibs/WebSocket/SocketWebTcp.cs"
 "Assets/Photon/PhotonLibs/WebSocket/WebSocket.cs"
 "Assets/Scripts/BriefCase/BriefCase.cs"

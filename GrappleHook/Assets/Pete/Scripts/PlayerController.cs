@@ -300,7 +300,7 @@ public class PlayerController : MonoBehaviour
             Vector3 vertPos = transform.position + transform.forward * 1.32f + transform.up * 2;
             Vector3 horizPos = transform.position;
             horizPos.y += 1; 
-            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 0.81f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, /*0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y)*/2.8f, ~avoid))
+            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 2f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, /*0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y)*/2.8f, ~avoid))
             {
                 RaycastHit[] vertCheck = Physics.BoxCastAll(vertPos, Vector3.one * 0.5f, -Vector3.up, transform.rotation, 2f, ~avoid);
                 foreach(RaycastHit vert in vertCheck)
@@ -336,7 +336,10 @@ public class PlayerController : MonoBehaviour
 
             ledgeGrabTime += Time.deltaTime;
             anim.SetBool("LedgeGrabbing", true);
-            rb.velocity = (ledgeGrabTarget - transform.position) * 3;
+            if(ledgeGrabTarget.y > (transform.position.y + 0.4f))
+                rb.velocity = Vector3.up * 6;
+            else
+                rb.velocity = (ledgeGrabTarget - transform.position).normalized * 6;
             //transform.position = Vector3.Lerp(transform.position, ledgeGrabTarget, 5 * Time.deltaTime);
             rb.useGravity = false;
             if (isPlayerGrounded /*|| rb.velocity.y < 0.1f*/)

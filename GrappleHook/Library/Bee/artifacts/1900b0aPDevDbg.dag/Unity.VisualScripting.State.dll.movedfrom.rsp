@@ -1,7 +1,6 @@
 Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Core.ref.dll_3649375730335453765.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Flow.ref.dll_8770215168809174772.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.UI.ref.dll_1316223851520833009.movedfrom
-Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Antlr3.Runtime.dll_5320237797158314864.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.AccessibilityModule.dll_17367182489571119799.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.AIModule.dll_8067787783318233107.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.AndroidJNIModule.dll_7655119262920421201.movedfrom
@@ -67,3 +66,4 @@ Library\Bee\artifacts\movedfrom\UnityEngine.VirtualTexturingModule.dll_448558419
 Library\Bee\artifacts\movedfrom\UnityEngine.VRModule.dll_13707918164714384183.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.WindModule.dll_15336505024352336179.movedfrom
 Library\Bee\artifacts\movedfrom\UnityEngine.XRModule.dll_17364492536435390613.movedfrom
+Library\Bee\artifacts\movedfrom\Unity.VisualScripting.Antlr3.Runtime.dll_8575897387143516398.movedfrom

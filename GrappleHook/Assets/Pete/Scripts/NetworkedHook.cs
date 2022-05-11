@@ -41,6 +41,9 @@ public class NetworkedHook : MonoBehaviourPun
     [SerializeField]
     PlayerController playerController;
 
+    [SerializeField]
+    Animator anim;
+
     bool ropeLengthReachedSwinging;
 
     float hookCurrentDistance;
@@ -140,6 +143,7 @@ public class NetworkedHook : MonoBehaviourPun
         // Determine hook action.
         if (hasHookFired && StealBriefCase.ownBriefcase == false && !playerController.ledgeGrabbing)
         {
+            anim.SetBool("FiredGrapple", true);
             //photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
             //rope.SetPosition(0, grappleHook.transform.position);
             //rope.SetPosition(1, hook.transform.position);
@@ -254,6 +258,7 @@ public class NetworkedHook : MonoBehaviourPun
         }
         else
         {
+            anim.SetBool("FiredGrapple", false);
             if (gameObject.GetComponent<SpringJoint>() != null)
             {
                 isSwinging = false;
@@ -378,6 +383,8 @@ public class NetworkedHook : MonoBehaviourPun
         {
             float disChange = playerReelInSpeed * Time.deltaTime;
             ropeLength = ropeLength - disChange;
+            if (ropeLength < 0)
+                ropeLength = 0;
 
         }
         else
@@ -411,7 +418,7 @@ public class NetworkedHook : MonoBehaviourPun
         if (!isSwinging)
         {
             isSwinging = true;
-            ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
+            ropeLength = Vector3.Distance(transform.position, hook.transform.position);
 
             joint = gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
