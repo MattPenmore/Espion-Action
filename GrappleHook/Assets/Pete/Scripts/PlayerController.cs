@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] NetworkedHook netHook;
     [SerializeField] Camera playerCam;
     [SerializeField] SkinnedMeshRenderer body;
+    [SerializeField] Renderer hookMaterial;
+    [SerializeField] Renderer grapplingGunMaterial;
     [SerializeField] AudioListener audioListener;
     [SerializeField] Rigidbody _rb;
     GameObject[] spawnPoints = null;
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
         Color[] playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
         //GetComponent<Renderer>().material.color = playerColours[playerID];
         body.material.color = playerColours[playerID];
+        hookMaterial.material.color = playerColours[playerID];
+        grapplingGunMaterial.material.color = playerColours[playerID];
         hookObject.GetComponent<LineRenderer>().startColor = playerColours[playerID];
         hookObject.GetComponent<LineRenderer>().endColor = playerColours[playerID];
 
