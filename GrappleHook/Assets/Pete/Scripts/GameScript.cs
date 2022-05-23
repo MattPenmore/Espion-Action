@@ -34,7 +34,7 @@ public class GameScript : MonoBehaviourPunCallbacks
             GameObject go = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.one, Quaternion.identity);
             go.GetPhotonView().TransferOwnership(i + 1);
             go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(i + 1);
-            go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, i);
+            go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, i, false);
         }
     }
 

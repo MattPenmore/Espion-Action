@@ -8,7 +8,9 @@ public class StealBriefCase : MonoBehaviourPun
 {
     public static float winTime = 60f;
     public static bool ownBriefcase;
+    public bool inTutorial;
 
+    public bool firstPerson = true;
     public GameObject briefCase;
     private GameObject gameManager;
     private GameObject playerTimerText;
@@ -64,7 +66,7 @@ public class StealBriefCase : MonoBehaviourPun
             ownedTime = winTime;
 
         //Debug.Log(briefcaseOutline.GetComponent<Renderer>().material.color + " | " + playerColours[0]);
-        if (!ownBriefcase && briefcaseOutline.GetComponent<Renderer>().material.color != playerColours[0]) //black
+        if (!ownBriefcase && briefcaseOutline.GetComponent<Renderer>().material.color != playerColours[0] && !inTutorial) //black
         {
             currentPlayerOwnedTime -= Time.deltaTime;
             playerTimerText.GetComponent<Text>().text = (currentPlayerOwnedTime).ToString("F0");
@@ -73,10 +75,11 @@ public class StealBriefCase : MonoBehaviourPun
 
         if (ownBriefcase && !gameOver)
         {
-            playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F0");
+            if (playerTimerText != null)
+                playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F0");
             anim.SetBool("HasBriefCase", true);
             ownedTime -= Time.deltaTime;
-            if(ownedTime <= 0)
+            if(ownedTime <= 0 && !inTutorial)
             {
                 gameOver = true;
                 Debug.Log("Win");
@@ -138,6 +141,25 @@ public class StealBriefCase : MonoBehaviourPun
             briefCase.transform.position = briefCasePosition;
             briefCase.transform.localRotation = briefCaseLocationXZ.transform.localRotation;
         }
+
+        if(ownBriefcase)
+        {
+            if (firstPerson)
+                foreach(MeshRenderer renderer in briefCase.GetComponentsInChildren<MeshRenderer>())
+                {
+                    renderer.enabled = false;
+                }
+            else
+                foreach (MeshRenderer renderer in briefCase.GetComponentsInChildren<MeshRenderer>())
+                {
+                    renderer.enabled = true;
+                }
+        }
+        else
+            foreach(MeshRenderer renderer in briefCase.GetComponentsInChildren<MeshRenderer>())
+            {
+                renderer.enabled = true;
+            }
     }
 
     public void CallBreifcaseTransfer(int actorNo, bool transferOwner, float currentOwnedTime)
@@ -157,6 +179,8 @@ public class StealBriefCase : MonoBehaviourPun
     [PunRPC]
     public void BriefcaseStolen(int actorNo, float currentOwnedTime)
     {
+        Debug.Log("STOLEN BY " + actorNo + " | in tutorial? : " + inTutorial);
+
         briefCase.transform.parent = null;
         briefCase.GetComponent<BriefCase>().ResetStolenTimer();
         ownBriefcase = false;
@@ -168,17 +192,24 @@ public class StealBriefCase : MonoBehaviourPun
         // If we stole the briefcase.
         if (PhotonNetwork.LocalPlayer.ActorNumber == actorNo)
         {
+            Debug.Log("WE STOLE IT");
+
             stealingBriefCase = true;
             ownBriefcase = true;
             logMsg = "ownBriefcase = true;";
 
-            playerTimerText.GetComponent<Text>().color = Color.green;
+            if (playerTimerText != null)
+                playerTimerText.GetComponent<Text>().color = Color.green;
         }
-        else
+        else if (!inTutorial)
         {
+            Debug.Log("WE DIDN'T STOLE IT");
+
             // If somebody else owns it.
             if (briefcaseOutline.GetComponent<Renderer>().material.color != Color.black)
             {
+                Debug.Log("SOMEONE ELSE DID");
+
                 playerTimerText.GetComponent<Text>().color = Color.red;
 
                 playerTimerText.GetComponent<Text>().text = (currentPlayerOwnedTime).ToString("F0");
@@ -186,6 +217,8 @@ public class StealBriefCase : MonoBehaviourPun
             // If nobody owns it.
             else
             {
+                Debug.Log("SIKE IT WAS NO-ONE");
+
                 playerTimerText.GetComponent<Text>().color = Color.white;
 
                 playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F0");

@@ -18,7 +18,7 @@ public class BriefCasePointerObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (!gameObject.GetPhotonView().IsMine)
             return;

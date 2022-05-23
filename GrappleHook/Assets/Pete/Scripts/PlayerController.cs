@@ -37,8 +37,10 @@ public class PlayerController : MonoBehaviour
     float ledgeGrabTime = 0;
     float maxLedgeGrabTime = 3;
 
+    private StealBriefCase stealBriefCase;
+
     [PunRPC]
-    private void Initialise(int playerID)
+    private void Initialise(int playerID, bool inTutorial)
     {
         // Move player to spawn point.
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -60,19 +62,21 @@ public class PlayerController : MonoBehaviour
         // Disable spec cam, Enable player UI, camera, audio listener, and gravity.
         if (PhotonNetwork.IsMasterClient)
         {
-            if (gameObject.GetPhotonView().ViewID == 1001)
+            if (gameObject.GetPhotonView().ViewID == 1001 && inTutorial || gameObject.GetPhotonView().ViewID == 1001 + 2 * PhotonNetwork.PlayerList.Length && !inTutorial)
             {
                 DisableSpecCam();
                 EnablePlayerUI();
-
+        
                 playerCam.enabled = true;
                 audioListener.enabled = true;
                 _rb.useGravity = true;
+                Debug.Log("SETTING inTutorial = " + inTutorial);
             }
             else
             {
                 RemoveComponents();
             }
+            
         }
         else if (gameObject.GetPhotonView().IsMine)
         {
@@ -87,6 +91,8 @@ public class PlayerController : MonoBehaviour
         {
             RemoveComponents();
         }
+        stealBriefCase = GetComponent<StealBriefCase>();
+        stealBriefCase.inTutorial = inTutorial;
     }
     private void RemoveComponents()
     {
@@ -178,7 +184,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             // Swap between first and third person.
-            playerCamObject.transform.localPosition = (playerCamObject.transform.localPosition == cameraPositions[0].localPosition) ? cameraPositions[1].localPosition : cameraPositions[0].localPosition;
+            if (playerCamObject.transform.localPosition == cameraPositions[0].localPosition) // first person
+            {
+                playerCamObject.transform.localPosition = cameraPositions[1].localPosition;
+                stealBriefCase.firstPerson = false;
+            }
+            else
+            {
+                playerCamObject.transform.localPosition = cameraPositions[0].localPosition;
+                stealBriefCase.firstPerson = true;
+            }
+            // Swap between first and third person.
+            //playerCamObject.transform.localPosition = (playerCamObject.transform.localPosition == cameraPositions[0].localPosition) ? cameraPositions[1].localPosition : cameraPositions[0].localPosition;
         }
 
 
