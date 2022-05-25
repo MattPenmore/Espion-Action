@@ -17,31 +17,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.5, y: -0.50000006, z: -0.49999994, w: 0.5}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 0.5, y: -0.50000006, z: -0.49999994, w: 0.5}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base Human
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
         value: {x: -0.6000576, y: 0.60135907, z: 0.3719774, w: -0.37407348}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
@@ -61,7 +36,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis
+    path: Base HumanPelvis001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -158,7 +133,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh
+    path: Base HumanPelvis001/Base HumanLThigh001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -264,7 +239,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh/Base HumanLCalf
+    path: Base HumanPelvis001/Base HumanLThigh001/Base HumanLCalf001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -361,7 +336,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh/Base HumanLCalf/Base HumanLFoot
+    path: Base HumanPelvis001/Base HumanLThigh001/Base HumanLCalf001/Base HumanLFoot001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -422,24 +397,24 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh
+    path: Base HumanPelvis001/Base HumanRThigh001
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.0011207009, y: -0.000022618768, z: 0.0003444005, w: 0.99999934}
-        inSlope: {x: -0.000008979113, y: 0.00053544244, z: -0.015455813, w: 0}
-        outSlope: {x: -0.000008979113, y: 0.00053544244, z: -0.015455813, w: 0}
+        value: {x: -0.0011206665, y: -0.000022968921, z: 0.00034438522, w: 0.99999934}
+        inSlope: {x: -0.000017954733, y: 0.00068229774, z: -0.01545727, w: 0}
+        outSlope: {x: -0.000017954733, y: 0.00068229774, z: -0.01545727, w: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.033333335
-        value: {x: -0.0011210002, y: -0.0000047706853, z: -0.00017079327, w: 0.99999934}
-        inSlope: {x: 0.000026792404, y: -0.047217112, z: 0.8045705, w: -0.021946726}
-        outSlope: {x: 0.000026792404, y: -0.047217112, z: 0.8045705, w: -0.021946726}
+        value: {x: -0.001121265, y: -0.00000022566118, z: -0.00017085709, w: 0.99999934}
+        inSlope: {x: 0.000026277263, y: -0.047211863, z: 0.80457073, w: -0.021946726}
+        outSlope: {x: 0.000026277263, y: -0.047211863, z: 0.80457073, w: -0.021946726}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -447,35 +422,35 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.06666667
         value: {x: -0.0011189147, y: -0.0031704265, z: 0.053982437, w: 0.9985362}
-        inSlope: {x: 0.000071665265, y: -0.07686725, z: 1.3125241, w: -0.057507448}
-        outSlope: {x: 0.000071665265, y: -0.07686725, z: 1.3125241, w: -0.057507448}
+        inSlope: {x: 0.00007562396, y: -0.076935306, z: 1.3125249, w: -0.057507448}
+        outSlope: {x: 0.00007562396, y: -0.076935306, z: 1.3125249, w: -0.057507448}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: -0.0011059784, y: -0.008474323, z: 0.14394324, w: 0.98954904}
-        inSlope: {x: 0.000127026, y: -0.045888957, z: 0.7811476, w: -0.11330454}
-        outSlope: {x: 0.000127026, y: -0.045888957, z: 0.7811476, w: -0.11330454}
+        value: {x: -0.0011060827, y: -0.008473345, z: 0.1439432, w: 0.9895491}
+        inSlope: {x: 0.00012701727, y: -0.045888595, z: 0.78114283, w: -0.11330365}
+        outSlope: {x: 0.00012701727, y: -0.045888595, z: 0.78114283, w: -0.11330365}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.5666667
-        value: {x: -0.001014838, y: -0.016577173, z: 0.27969167, w: 0.9599462}
-        inSlope: {x: -0.00010589999, y: 0.011885015, z: -0.1987902, w: 0.05777748}
-        outSlope: {x: -0.00010589999, y: 0.011885015, z: -0.1987902, w: 0.05777748}
+        value: {x: -0.0010756821, y: -0.016431002, z: 0.27975845, w: 0.9599292}
+        inSlope: {x: -0.000115586416, y: 0.011870706, z: -0.1987902, w: 0.05777748}
+        outSlope: {x: -0.000115586416, y: 0.011870706, z: -0.1987902, w: 0.05777748}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.90000004
-        value: {x: -0.0011162222, y: -0.005129253, z: 0.087330796, w: 0.9961655}
-        inSlope: {x: -0.00009181329, y: 0.055491515, z: -0.9448093, w: 0.08137645}
-        outSlope: {x: -0.00009181329, y: 0.055491515, z: -0.9448093, w: 0.08137645}
+        value: {x: -0.0011162233, y: -0.005129245, z: 0.08733079, w: 0.9961655}
+        inSlope: {x: -0.00009179408, y: 0.05549141, z: -0.9448093, w: 0.08137645}
+        outSlope: {x: -0.00009179408, y: 0.05549141, z: -0.9448093, w: 0.08137645}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -483,17 +458,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.9333334
         value: {x: -0.0011189147, y: -0.0031704225, z: 0.053982362, w: 0.9985362}
-        inSlope: {x: -0.000071668765, y: 0.07686725, z: -1.3125242, w: 0.057507448}
-        outSlope: {x: -0.000071668765, y: 0.07686725, z: -1.3125242, w: 0.057507448}
+        inSlope: {x: -0.00007562572, y: 0.07693531, z: -1.312525, w: 0.057507448}
+        outSlope: {x: -0.00007562572, y: 0.07693531, z: -1.312525, w: 0.057507448}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.9666667
-        value: {x: -0.0011210002, y: -0.0000047706853, z: -0.00017079327, w: 0.99999934}
-        inSlope: {x: -0.00006256398, y: 0.094969645, z: -1.6245962, w: 0.043893497}
-        outSlope: {x: -0.00006256398, y: 0.094969645, z: -1.6245962, w: 0.043893497}
+        value: {x: -0.001121265, y: -0.00000022566118, z: -0.00017085709, w: 0.99999934}
+        inSlope: {x: -0.00007050933, y: 0.095106, z: -1.6245981, w: 0.043893497}
+        outSlope: {x: -0.00007050933, y: 0.095106, z: -1.6245981, w: 0.043893497}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -501,24 +476,24 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh/Base HumanRCalf
+    path: Base HumanPelvis001/Base HumanRThigh001/Base HumanRCalf001
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.31557003, y: 0.17285685, z: -0.54412645, w: 0.757933}
-        inSlope: {x: 0.0073903794, y: 0.03407702, z: -0.010482072, w: -0.01841068}
-        outSlope: {x: 0.0073903794, y: 0.03407702, z: -0.010482072, w: -0.01841068}
+        value: {x: 0.31556958, y: 0.17285848, z: -0.5441265, w: 0.7579329}
+        inSlope: {x: 0.007421672, y: 0.03371939, z: -0.010321139, w: -0.01822829}
+        outSlope: {x: 0.007421672, y: 0.03371939, z: -0.010321139, w: -0.01822829}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.033333335
-        value: {x: 0.31581637, y: 0.17399275, z: -0.54447585, w: 0.75731933}
-        inSlope: {x: 0.055068877, y: -0.0951784, z: -0.31429854, w: -0.2341461}
-        outSlope: {x: 0.055068877, y: -0.0951784, z: -0.31429854, w: -0.2341461}
+        value: {x: 0.31581697, y: 0.17398246, z: -0.54447055, w: 0.7573253}
+        inSlope: {x: 0.055075582, y: -0.09520277, z: -0.31429765, w: -0.23414432}
+        outSlope: {x: 0.055075582, y: -0.09520277, z: -0.31429765, w: -0.23414432}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -526,8 +501,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.06666667
         value: {x: 0.3192413, y: 0.16651163, z: -0.5650797, w: 0.7423233}
-        inSlope: {x: 0.08440777, y: -0.1812945, z: -0.49216115, w: -0.365695}
-        outSlope: {x: 0.08440777, y: -0.1812945, z: -0.49216115, w: -0.365695}
+        inSlope: {x: 0.08439883, y: -0.18113983, z: -0.49223983, w: -0.3657844}
+        outSlope: {x: 0.08439883, y: -0.18113983, z: -0.49223983, w: -0.3657844}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -535,26 +510,26 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.26666668
         value: {x: 0.3293307, y: 0.14352873, z: -0.6217079, w: 0.696003}
-        inSlope: {x: 0.03511593, y: -0.08899123, z: -0.20560832, w: -0.18166603}
-        outSlope: {x: 0.03511593, y: -0.08899123, z: -0.20560832, w: -0.18166603}
+        inSlope: {x: 0.035475347, y: -0.09038978, z: -0.2031389, w: -0.1793799}
+        outSlope: {x: 0.035475347, y: -0.09038978, z: -0.2031389, w: -0.1793799}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.8000001
-        value: {x: 0.32672033, y: 0.15010087, z: -0.6063963, w: 0.70922995}
-        inSlope: {x: -0.04232258, y: 0.11249454, z: 0.25370035, w: 0.21230224}
-        outSlope: {x: -0.04232258, y: 0.11249454, z: 0.25370035, w: 0.21230224}
+        value: {x: 0.32666314, y: 0.15011664, z: -0.60652995, w: 0.70913863}
+        inSlope: {x: -0.04195467, y: 0.111080125, z: 0.25618586, w: 0.21459998}
+        outSlope: {x: -0.04195467, y: 0.111080125, z: 0.25618586, w: 0.21459998}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.9666667
-        value: {x: 0.31581637, y: 0.17399275, z: -0.54447585, w: 0.75731933}
-        inSlope: {x: -0.10274748, y: 0.22443405, z: 0.61811566, w: 0.44988197}
-        outSlope: {x: -0.10274748, y: 0.22443405, z: 0.61811566, w: 0.44988197}
+        value: {x: 0.31581697, y: 0.17398246, z: -0.54447055, w: 0.7573253}
+        inSlope: {x: -0.102729596, y: 0.22412515, z: 0.6182748, w: 0.45006078}
+        outSlope: {x: -0.102729596, y: 0.22412515, z: 0.6182748, w: 0.45006078}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -562,7 +537,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh/Base HumanRCalf/Base HumanRFoot
+    path: Base HumanPelvis001/Base HumanRThigh001/Base HumanRCalf001/Base HumanRFoot001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -596,7 +571,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1
+    path: Base HumanPelvis001/Base HumanSpine005
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -630,7 +605,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -655,7 +630,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -689,8 +664,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -724,8 +699,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -750,8 +725,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -785,8 +760,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -820,9 +795,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -865,9 +840,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -892,9 +867,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit11
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit053
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -919,9 +894,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit11/Base HumanLDigit12
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit053/Base HumanLDigit054
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -946,9 +921,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit21
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit055
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -973,9 +948,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit21/Base HumanLDigit22
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit055/Base HumanLDigit056
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1000,9 +975,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit31
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit057
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1027,9 +1002,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit31/Base HumanLDigit32
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit057/Base HumanLDigit058
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1054,9 +1029,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit41
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit059
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1081,9 +1056,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit41/Base HumanLDigit42
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit059/Base HumanLDigit060
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1108,9 +1083,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit51
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit061
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1135,9 +1110,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit51/Base HumanLDigit52
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit061/Base HumanLDigit062
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1162,8 +1137,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1197,8 +1172,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1223,9 +1198,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1259,9 +1234,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1286,9 +1261,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit11
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit053
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1313,9 +1288,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit11/Base HumanRDigit12
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit053/Base HumanRDigit054
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1340,9 +1315,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit21
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit055
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1367,9 +1342,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit21/Base HumanRDigit22
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit055/Base HumanRDigit056
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1394,9 +1369,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit31
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit057
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1421,9 +1396,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit31/Base HumanRDigit32
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit057/Base HumanRDigit058
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1448,9 +1423,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit41
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit059
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1475,9 +1450,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit41/Base HumanRDigit42
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit059/Base HumanRDigit060
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1502,9 +1477,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit51
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit061
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1529,90 +1504,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit51/Base HumanRDigit52
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.099070646, y: -0.0052559413, z: -0.7046217, w: 0.7026135}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: -0.099070646, y: -0.0052559413, z: -0.7046217, w: 0.7026135}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Box003 1
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0, y: 0, z: 0.99904823, w: -0.043619253}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 0, y: 0, z: 0.99904823, w: -0.043619253}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Box003 1/Cylinder001
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.26726717, y: 0.6853814, z: 0.6055485, w: -0.3035319}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 0.26726717, y: 0.6853814, z: 0.6055485, w: -0.3035319}
-        inSlope: {x: 0, y: 0, z: 0, w: 0}
-        outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Line001
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit061/Base HumanRDigit062
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1646,8 +1540,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1672,8 +1566,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1/Base HumanNeck2
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003/Base HumanNeck004
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1707,8 +1601,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1/Base HumanNeck2/Base HumanHead
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003/Base HumanNeck004/Base
+      HumanHead001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1733,7 +1628,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanLPlatform
+    path: Base HumanLPlatform001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1758,35 +1653,10 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanRPlatform
+    path: Base HumanRPlatform001
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.0020929137, y: 1.5408084e-26, z: -0.014475588}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: -0.0020929137, y: 1.5408084e-26, z: -0.014475588}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base Human
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1820,7 +1690,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis
+    path: Base HumanPelvis001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1845,7 +1715,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh
+    path: Base HumanPelvis001/Base HumanLThigh001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1897,7 +1767,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh/Base HumanLCalf
+    path: Base HumanPelvis001/Base HumanLThigh001/Base HumanLCalf001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1949,7 +1819,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh/Base HumanLCalf/Base HumanLFoot
+    path: Base HumanPelvis001/Base HumanLThigh001/Base HumanLCalf001/Base HumanLFoot001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1974,15 +1844,15 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh
+    path: Base HumanPelvis001/Base HumanRThigh001
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.38282514, y: 0.0000002634287, z: 0.000000012111664}
-        inSlope: {x: -0.0000037373136, y: -0.000006994485, z: -0.0000007266998}
-        outSlope: {x: -0.0000037373136, y: -0.000006994485, z: -0.0000007266998}
+        value: {x: -0.38282514, y: 0.00000026040078, z: 0.000000012111664}
+        inSlope: {x: -0.0000037373136, y: -0.0000069036446, z: -0.0000007266998}
+        outSlope: {x: -0.0000037373136, y: -0.0000069036446, z: -0.0000007266998}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -1990,17 +1860,26 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.033333335
         value: {x: -0.38282508, y: 0.00000003027916, z: -0.000000012111664}
-        inSlope: {x: -0.0000037373136, y: -0.0000035880792, z: -0.00000018167512}
-        outSlope: {x: -5.6399325e-15, y: -0.0000035880803, z: -0.0000001816748}
+        inSlope: {x: -0.0000037373136, y: -0.0000035426594, z: -0.00000018167512}
+        outSlope: {x: -5.6399325e-15, y: -0.0000035426617, z: -0.0000001816748}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: -0.38282514, y: 0.000000024223327, z: -0.000000012111664}
-        inSlope: {x: 0.0000037373138, y: 0.000000090838064, z: -9.444149e-13}
-        outSlope: {x: -0.0000037373138, y: 0.00000009083781, z: 1.0550221e-12}
+        value: {x: -0.38282514, y: 0.000000024223327, z: 0}
+        inSlope: {x: 0.0000037373138, y: 0.00000018167485, z: -0.000000181676}
+        outSlope: {x: -0.0000037373138, y: 0.0000001816759, z: -0.00000018167485}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.8
+        value: {x: -0.38282508, y: 0.000000036334992, z: 0}
+        inSlope: {x: -0.0000018686553, y: -3.5234407e-12, z: 0.00000018167111}
+        outSlope: {x: 0.0000037373172, y: -4.932207e-13, z: 0.00000018167508}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -2017,51 +1896,51 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh/Base HumanRCalf
+    path: Base HumanPelvis001/Base HumanRThigh001/Base HumanRCalf001
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.40457636, y: -0.00013915695, z: -0.0000060679436}
-        inSlope: {x: 0.0000018686568, y: 0.0041749803, z: 0.00018203827}
-        outSlope: {x: 0.0000018686568, y: 0.0041749803, z: 0.00018203827}
+        value: {x: -0.40457627, y: -0.00013924477, z: -0.0000051353454}
+        inSlope: {x: 0.0000030106137, y: 0.0041772523, z: 0.00015406031}
+        outSlope: {x: 0.0000030106137, y: 0.0041772523, z: 0.00015406031}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.033333335
-        value: {x: -0.4045764, y: 0.000000009083748, z: 0}
-        inSlope: {x: 0.0000018686568, y: 0.0020873537, z: 0.00009083746}
-        outSlope: {x: -0.0000018686568, y: 0.0020873547, z: 0.00009083747}
+        value: {x: -0.40457633, y: -0.000000003027916, z: 0}
+        inSlope: {x: -0.0000004498613, y: 0.002088717, z: 0.000076848475}
+        outSlope: {x: -0.0000007266998, y: 0.002088717, z: 0.000076848504}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.06666667
-        value: {x: -0.40457636, y: 0, z: -0.000000012111664}
-        inSlope: {x: -0.0000018686568, y: 3.796752e-11, z: 1.6005807e-12}
-        outSlope: {x: 0.0000037373138, y: -1.1486127e-13, z: -8.68872e-14}
+        value: {x: -0.40457636, y: 0.000000003027916, z: -0.000000012111664}
+        inSlope: {x: -0.000004187175, y: 0.00000018165797, z: 3.5863546e-13}
+        outSlope: {x: 0.0000037373138, y: 0.000000181675, z: 4.383032e-15}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.93333334
-        value: {x: -0.40457636, y: 0, z: -0.000000012111664}
-        inSlope: {x: -0.0000037373106, y: 1.9712034e-12, z: 2.6264663e-12}
-        outSlope: {x: 0.0000018686586, y: 3.4819372e-13, z: 4.857438e-13}
+        value: {x: -0.40457636, y: 0.000000003027916, z: -0.000000012111664}
+        inSlope: {x: 0.0000023185162, y: -0.00000018167378, z: 2.6576634e-12}
+        outSlope: {x: -0.0000018686586, y: -0.00000018167519, z: 4.857438e-13}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.96666664
-        value: {x: -0.4045764, y: 0.000000009083748, z: 0}
-        inSlope: {x: 0.0000018686586, y: 0.00000027251443, z: 0.00000036335248}
-        outSlope: {x: 0.0000018686586, y: 0.00000027251443, z: 0.00000036335248}
+        value: {x: -0.40457633, y: -0.000000003027916, z: 0}
+        inSlope: {x: -0.0000018686586, y: -0.00000018167592, z: 0.00000036335248}
+        outSlope: {x: -0.0000018686586, y: -0.00000018167592, z: 0.00000036335248}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -2069,7 +1948,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh/Base HumanRCalf/Base HumanRFoot
+    path: Base HumanPelvis001/Base HumanRThigh001/Base HumanRCalf001/Base HumanRFoot001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2094,7 +1973,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1
+    path: Base HumanPelvis001/Base HumanSpine005
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2119,7 +1998,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2144,7 +2023,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2169,8 +2048,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2195,8 +2074,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2221,8 +2100,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2472,8 +2351,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2552,9 +2431,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2795,9 +2674,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2822,9 +2701,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit11
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit053
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3047,9 +2926,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit11/Base HumanLDigit12
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit053/Base HumanLDigit054
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3074,9 +2953,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit21
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit055
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3209,9 +3088,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit21/Base HumanLDigit22
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit055/Base HumanLDigit056
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3236,9 +3115,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit31
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit057
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3407,9 +3286,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit31/Base HumanLDigit32
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit057/Base HumanLDigit058
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3434,9 +3313,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit41
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit059
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3614,9 +3493,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit41/Base HumanLDigit42
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit059/Base HumanLDigit060
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3641,9 +3520,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit51
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit061
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3848,9 +3727,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit51/Base HumanLDigit52
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit061/Base HumanLDigit062
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3875,8 +3754,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4000,8 +3879,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4251,9 +4130,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4485,9 +4364,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4512,9 +4391,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit11
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit053
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4656,9 +4535,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit11/Base HumanRDigit12
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit053/Base HumanRDigit054
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4683,9 +4562,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit21
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit055
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4872,9 +4751,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit21/Base HumanRDigit22
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit055/Base HumanRDigit056
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4899,9 +4778,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit31
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit057
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5025,9 +4904,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit31/Base HumanRDigit32
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit057/Base HumanRDigit058
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5052,9 +4931,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit41
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit059
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5187,9 +5066,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit41/Base HumanRDigit42
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit059/Base HumanRDigit060
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5214,9 +5093,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit51
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit061
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5394,108 +5273,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit51/Base HumanRDigit52
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.083443455, y: 0.0002555319, z: -0.081842}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: -0.083443455, y: 0.0002555319, z: -0.081842}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Box003 1
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.063219756, y: -0.38319626, z: 1.2548985}
-        inSlope: {x: -0.0006959534, y: -0.0065795733, z: -0.0026386813}
-        outSlope: {x: -0.0006959534, y: -0.0065795733, z: -0.0026386813}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.53333336
-        value: {x: 0.06291927, y: -0.39906526, z: 1.2484099}
-        inSlope: {x: 0.0049018883, y: 0.012681696, z: 0.024504572}
-        outSlope: {x: 0.004902831, y: 0.01267881, z: 0.024545308}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.93333334
-        value: {x: 0.064943016, y: -0.38375613, z: 1.2629569}
-        inSlope: {x: -0.01874324, y: 0.018789982, z: -0.078263424}
-        outSlope: {x: -0.018742442, y: 0.018788598, z: -0.07826231}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 0.06420229, y: -0.38329315, z: 1.2596836}
-        inSlope: {x: -0.022221088, y: 0.01388856, z: -0.09820851}
-        outSlope: {x: -0.022221088, y: 0.01388856, z: -0.09820851}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Box003 1/Cylinder001
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.08541736, y: 0.045225713, z: -0.08818124}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: -0.08541736, y: 0.045225713, z: -0.08818124}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Line001
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit061/Base HumanRDigit062
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5520,8 +5300,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5546,8 +5326,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1/Base HumanNeck2
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003/Base HumanNeck004
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5572,8 +5352,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1/Base HumanNeck2/Base HumanHead
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003/Base HumanNeck004/Base
+      HumanHead001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5598,7 +5379,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanLPlatform
+    path: Base HumanLPlatform001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5623,7 +5404,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanRPlatform
+    path: Base HumanRPlatform001
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -5638,31 +5419,6 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base Human
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
         time: 0.9666667
         value: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
         inSlope: {x: 0, y: 0, z: 0}
@@ -5674,7 +5430,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis
+    path: Base HumanPelvis001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5699,7 +5455,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh
+    path: Base HumanPelvis001/Base HumanLThigh001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5724,7 +5480,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh/Base HumanLCalf
+    path: Base HumanPelvis001/Base HumanLThigh001/Base HumanLCalf001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5749,7 +5505,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanLThigh/Base HumanLCalf/Base HumanLFoot
+    path: Base HumanPelvis001/Base HumanLThigh001/Base HumanLCalf001/Base HumanLFoot001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5774,13 +5530,13 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh
+    path: Base HumanPelvis001/Base HumanRThigh001
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.9999888, y: 1.0000005, z: 1.0000104}
+        value: {x: 0.9999888, y: 1.0000004, z: 1.0000105}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -5789,7 +5545,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.9666667
-        value: {x: 0.9999888, y: 1.0000005, z: 1.0000104}
+        value: {x: 0.9999888, y: 1.0000004, z: 1.0000105}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -5799,13 +5555,13 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh/Base HumanRCalf
+    path: Base HumanPelvis001/Base HumanRThigh001/Base HumanRCalf001
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.9999858, y: 1.0000098, z: 1.0000043}
+        value: {x: 0.9999857, y: 1.0000097, z: 1.0000042}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -5814,7 +5570,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.9666667
-        value: {x: 0.9999858, y: 1.0000098, z: 1.0000043}
+        value: {x: 0.9999857, y: 1.0000097, z: 1.0000042}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -5824,7 +5580,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanRThigh/Base HumanRCalf/Base HumanRFoot
+    path: Base HumanPelvis001/Base HumanRThigh001/Base HumanRCalf001/Base HumanRFoot001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5849,7 +5605,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1
+    path: Base HumanPelvis001/Base HumanSpine005
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5874,7 +5630,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5899,7 +5655,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5924,8 +5680,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5950,8 +5706,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5976,8 +5732,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6002,8 +5758,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6028,9 +5784,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6055,9 +5811,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6082,9 +5838,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit11
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit053
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6109,9 +5865,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit11/Base HumanLDigit12
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit053/Base HumanLDigit054
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6136,9 +5892,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit21
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit055
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6163,9 +5919,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit21/Base HumanLDigit22
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit055/Base HumanLDigit056
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6190,9 +5946,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit31
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit057
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6217,9 +5973,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit31/Base HumanLDigit32
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit057/Base HumanLDigit058
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6244,9 +6000,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit41
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit059
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6271,9 +6027,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit41/Base HumanLDigit42
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit059/Base HumanLDigit060
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6298,9 +6054,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit51
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit061
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6325,9 +6081,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanLCollarbone/Base HumanLUpperarm/Base
-      HumanLForearm/Base HumanLPalm/Base HumanLDigit51/Base HumanLDigit52
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanLCollarbone001/Base HumanLUpperarm001/Base
+      HumanLForearm001/Base HumanLPalm001/Base HumanLDigit061/Base HumanLDigit062
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6352,8 +6108,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6378,8 +6134,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6404,9 +6160,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6431,9 +6187,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6458,9 +6214,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit11
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit053
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6485,9 +6241,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit11/Base HumanRDigit12
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit053/Base HumanRDigit054
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6512,9 +6268,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit21
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit055
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6539,9 +6295,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit21/Base HumanRDigit22
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit055/Base HumanRDigit056
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6566,9 +6322,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit31
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit057
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6593,9 +6349,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit31/Base HumanRDigit32
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit057/Base HumanRDigit058
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6620,9 +6376,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit41
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit059
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6647,9 +6403,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit41/Base HumanRDigit42
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit059/Base HumanRDigit060
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6674,9 +6430,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit51
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit061
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6701,90 +6457,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Base HumanRPalm/Base HumanRDigit51/Base HumanRDigit52
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.31032664, y: 0.3103268, z: 0.4515693}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 0.31032664, y: 0.3103268, z: 0.4515693}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Box003 1
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 1.0956697, y: 1.0956697, z: 1.08129}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 1.0956697, y: 1.0956697, z: 1.08129}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Box003 1/Cylinder001
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.9999992, y: 1.0000006, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.96666664
-        value: {x: 0.9999992, y: 1.0000006, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanRCollarbone/Base HumanRUpperarm/Base
-      HumanRForearm/Line001
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanRCollarbone001/Base HumanRUpperarm001/Base
+      HumanRForearm001/Base HumanRPalm001/Base HumanRDigit061/Base HumanRDigit062
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6809,8 +6484,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6835,8 +6510,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1/Base HumanNeck2
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003/Base HumanNeck004
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6861,8 +6536,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
-      HumanSpine4/Base HumanRibcage/Base HumanNeck1/Base HumanNeck2/Base HumanHead
+    path: Base HumanPelvis001/Base HumanSpine005/Base HumanSpine006/Base HumanSpine007/Base
+      HumanSpine008/Base HumanRibcage001/Base HumanNeck003/Base HumanNeck004/Base
+      HumanHead001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6887,7 +6563,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanLPlatform
+    path: Base HumanLPlatform001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6912,7 +6588,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Base HumanRPlatform
+    path: Base HumanRPlatform001
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 30
@@ -6923,1029 +6599,945 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 883898639
+      path: 369327745
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1029331812
+      path: 707257326
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2308229529
+      path: 170227436
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2161067078
+      path: 1348138881
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1466758931
+      path: 869512781
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3458225537
+      path: 1050061541
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3722609563
+      path: 1165099174
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 247315491
+      path: 2953651211
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2089836557
+      path: 2441680273
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 748925229
+      path: 2310697339
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2858550258
+      path: 2328255745
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2361660269
+      path: 2097121856
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 168141234
+      path: 2390445914
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 355693852
+      path: 3521583876
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3713640195
+      path: 3389318837
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2105545379
+      path: 1063508816
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 161812525
+      path: 303138246
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1503052045
+      path: 170058028
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3747050450
+      path: 157207894
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4193346381
+      path: 4284946967
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2133905810
+      path: 233037581
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 462813383
+      path: 537865136
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 707257326
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 170227436
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1141748307
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1348138881
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 869512781
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 807207379
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2921775848
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3181200687
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2279420123
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1050061541
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1165099174
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2953651211
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3521583876
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1063508816
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3781648922
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1462025221
+      attribute: 2
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 537865136
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1461778585
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1029331812
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2308229529
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1862048626
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2161067078
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1466758931
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 210975521
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1818285859
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 4020837060
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2519747960
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3458225537
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3722609563
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 247315491
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 355693852
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2105545379
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2813931854
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2058216621
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1822545895
+      path: 1141748307
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1461778585
+      path: 807207379
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1862048626
+      path: 2921775848
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 210975521
+      path: 2924541331
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1818285859
+      path: 3181200687
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3636333454
+      path: 2279420123
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4020837060
+      path: 3328129967
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2519747960
+      path: 3284321191
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1157146219
+      path: 715220626
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1777648231
+      path: 3299805118
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1121554852
+      path: 588720825
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1539481829
+      path: 115470664
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 344143394
+      path: 1802916419
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 228067171
+      path: 1663305539
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3094890918
+      path: 2319950454
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2906028648
+      path: 1682555738
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2249927083
+      path: 2213670493
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2667583722
+      path: 2785490348
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3493957165
+      path: 3781648922
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3378167660
+      path: 588134621
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2028167519
+      path: 1462025221
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1061878684
+      path: 2299953201
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2813931854
+      path: 1816116947
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 676993971
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2058216621
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3083603349
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3553530998
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1822545895
+      path: 369327745
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 883898639
+      path: 2924541331
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3636333454
+      path: 3328129967
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1157146219
+      path: 3284321191
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1777648231
+      path: 2441680273
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2089836557
+      path: 715220626
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1121554852
+      path: 2310697339
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 748925229
+      path: 3299805118
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1539481829
+      path: 2328255745
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2858550258
+      path: 588720825
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 344143394
+      path: 2097121856
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2361660269
+      path: 115470664
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 228067171
+      path: 2390445914
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 168141234
+      path: 1802916419
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3094890918
+      path: 3389318837
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3713640195
+      path: 1663305539
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2906028648
+      path: 303138246
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 161812525
+      path: 2319950454
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2249927083
+      path: 170058028
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1503052045
+      path: 1682555738
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2667583722
+      path: 157207894
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3747050450
+      path: 2213670493
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3493957165
+      path: 4284946967
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4193346381
+      path: 2785490348
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3378167660
+      path: 233037581
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2133905810
+      path: 588134621
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2028167519
+      path: 2299953201
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 462813383
+      path: 1816116947
       attribute: 2
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1061878684
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 676993971
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3083603349
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3553530998
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1822545895
+      path: 369327745
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 883898639
+      path: 537865136
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1461778585
+      path: 707257326
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1029331812
+      path: 170227436
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2308229529
+      path: 1141748307
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1862048626
+      path: 1348138881
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2161067078
+      path: 869512781
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1466758931
+      path: 807207379
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 210975521
+      path: 2921775848
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1818285859
+      path: 2924541331
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3636333454
+      path: 3181200687
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4020837060
+      path: 2279420123
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2519747960
+      path: 3328129967
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1157146219
+      path: 1050061541
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3458225537
+      path: 1165099174
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3722609563
+      path: 2953651211
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 247315491
+      path: 3284321191
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1777648231
+      path: 2441680273
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2089836557
+      path: 715220626
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1121554852
+      path: 2310697339
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 748925229
+      path: 3299805118
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1539481829
+      path: 2328255745
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2858550258
+      path: 588720825
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 344143394
+      path: 2097121856
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2361660269
+      path: 115470664
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 228067171
+      path: 2390445914
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 168141234
+      path: 1802916419
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3094890918
+      path: 3521583876
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 355693852
+      path: 3389318837
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3713640195
+      path: 1063508816
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2105545379
+      path: 1663305539
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2906028648
+      path: 303138246
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 161812525
+      path: 2319950454
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2249927083
+      path: 170058028
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1503052045
+      path: 1682555738
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2667583722
+      path: 157207894
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3747050450
+      path: 2213670493
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3493957165
+      path: 4284946967
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4193346381
+      path: 2785490348
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3378167660
+      path: 233037581
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2133905810
+      path: 3781648922
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2028167519
+      path: 588134621
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 462813383
+      path: 1462025221
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1061878684
+      path: 2299953201
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2813931854
-      attribute: 3
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 676993971
-      attribute: 3
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2058216621
-      attribute: 3
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3083603349
-      attribute: 3
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3553530998
+      path: 1816116947
       attribute: 3
       script: {fileID: 0}
       typeID: 4

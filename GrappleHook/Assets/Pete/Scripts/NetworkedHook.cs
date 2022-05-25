@@ -271,6 +271,7 @@ public class NetworkedHook : MonoBehaviourPun
             hasHooked = false;
             hook.transform.parent = grappleHook.transform;
             hook.transform.position = hookStartPosition.transform.position;
+            hook.transform.rotation = hookStartPosition.transform.rotation;
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
 
@@ -396,7 +397,7 @@ public class NetworkedHook : MonoBehaviourPun
 
             Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
             Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-            rbPlayer.velocity = dir + move;
+            //rbPlayer.velocity = dir + move;
             rbPlayer.MovePosition(playerPosition);
         }
 
@@ -434,7 +435,7 @@ public class NetworkedHook : MonoBehaviourPun
         }
         rbPlayer.useGravity = false;
 
-        //ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
+        ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
         joint.maxDistance = ropeLength; /** 0.8f;*/
         joint.minDistance = 0;
 
