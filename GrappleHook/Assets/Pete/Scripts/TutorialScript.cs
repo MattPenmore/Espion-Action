@@ -8,13 +8,10 @@ public class TutorialScript : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject playerPrefab;
 
-    private bool gameOver;
     private GameObject[] players;
 
     void Start()
     {
-        gameOver = false;
-
         if (!PhotonNetwork.IsMasterClient)
             return;
 

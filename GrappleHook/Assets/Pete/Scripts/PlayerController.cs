@@ -343,7 +343,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        RaycastHit hitAboveCheck;
+        //RaycastHit hitAboveCheck;
         LayerMask avoidCheck = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
         if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5 || ledgeGrabTime > maxLedgeGrabTime /*|| !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAboveCheck, transform.rotation, 0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y), ~avoidCheck)*/)
         {
