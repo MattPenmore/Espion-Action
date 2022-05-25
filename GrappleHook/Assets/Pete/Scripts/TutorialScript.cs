@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -8,10 +9,43 @@ public class TutorialScript : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject playerPrefab;
 
+    [Header("Lobby Screen")]
+    [SerializeField] private Text lobbyName;
+    [SerializeField] private Text playerCount;
+    [SerializeField] private GameObject playerInfo;
+    [SerializeField] private Transform playerList;
+
     private GameObject[] players;
+    private byte maxPlayers = 8;
+    private Dictionary<int, GameObject> playerListEntries;
 
     void Start()
     {
+        // Leave lobby if currently in one.
+        if (PhotonNetwork.InLobby)
+        {
+            Debug.Log("LEFT LOBBY");
+            PhotonNetwork.LeaveLobby();
+        }
+
+        // Display lobby name and player count.
+        lobbyName.text = PhotonNetwork.CurrentRoom.Name;
+        playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;
+        // Create dictionary of players.
+        if (playerListEntries == null)
+        {
+            playerListEntries = new Dictionary<int, GameObject>();
+        }
+        // Instantiate player info prefabs in a list and populate the dictionary.
+        foreach (Player p in PhotonNetwork.PlayerList)
+        {
+            GameObject info = Instantiate(playerInfo, playerList);
+            info.transform.localScale = Vector3.one;
+            info.GetComponent<PlayerInfo>().Initialise(p.NickName, p.ActorNumber);
+
+            playerListEntries.Add(p.ActorNumber, info);
+        }
+
         if (!PhotonNetwork.IsMasterClient)
             return;
 
@@ -44,6 +78,15 @@ public class TutorialScript : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        // Create player info prefab.
+        GameObject entry = Instantiate(playerInfo, playerList);
+        entry.transform.localScale = Vector3.one;
+        entry.GetComponent<PlayerInfo>().Initialise(newPlayer.NickName, newPlayer.ActorNumber);
+        // Add player to dictionary.wwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+        playerListEntries.Add(newPlayer.ActorNumber, entry);
+        // Update player count.
+        playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;
+
         if (!PhotonNetwork.IsMasterClient)
             return;
 
@@ -62,5 +105,14 @@ public class TutorialScript : MonoBehaviourPunCallbacks
     {
         if (player.ActorNumber == 1) //master
             PhotonNetwork.LoadLevel("Lobby");
+
+        // Delete player info prefab and remove from 
+        if (playerListEntries.ContainsKey(player.ActorNumber))
+        {
+            Destroy(playerListEntries[player.ActorNumber].gameObject);
+            playerListEntries.Remove(player.ActorNumber);
+        }
+        // Update player count.
+        playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;
     }
 }
