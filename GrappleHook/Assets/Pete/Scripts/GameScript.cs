@@ -13,6 +13,8 @@ using Photon.Realtime;
 
 public class GameScript : MonoBehaviourPunCallbacks
 {
+    public Canvas interactCanvas;
+   
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Canvas winScreen;

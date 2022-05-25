@@ -17,8 +17,10 @@ public class StealBriefCase : MonoBehaviourPun
     //private GameObject otherPlayerTimerText;
     private Color[] playerColours;
     private GameObject briefcaseOutline;
-
+    private TutorialScript tutorialScript;
+    private GameScript gameScript;
     float maxStealTime = 1f;
+    private Transform startGameButton;
 
     bool stealingBriefCase;
     public static float ownedTime;
@@ -49,10 +51,18 @@ public class StealBriefCase : MonoBehaviourPun
         ownBriefcase = false;
         briefCase = GameObject.FindGameObjectWithTag("BriefCase");
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        if (inTutorial)
+            tutorialScript = gameManager.GetComponent<TutorialScript>();
+        else
+            gameScript = gameManager.GetComponent<GameScript>();
         playerTimerText = GameObject.FindGameObjectWithTag("PlayerTimerText");
         //otherPlayerTimerText = GameObject.FindGameObjectWithTag("OtherPlayerTimerText");
         briefcaseOutline = GameObject.FindGameObjectWithTag("Outline");
         playerColours = new Color[] { Color.black, Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
+        if (inTutorial && PhotonNetwork.IsMasterClient)
+        {
+            startGameButton = tutorialScript.startGameButton.transform;
+        }
     }
 
     // Update is called once per frame
@@ -72,6 +82,11 @@ public class StealBriefCase : MonoBehaviourPun
             playerTimerText.GetComponent<Text>().text = (currentPlayerOwnedTime).ToString("F0");
         }
 
+        // Turn off interact canvas.
+        if (inTutorial)
+            tutorialScript.interactCanvas.enabled = false;
+        else
+            gameScript.interactCanvas.enabled = false;
 
         if (ownBriefcase && !gameOver)
         {
@@ -91,28 +106,18 @@ public class StealBriefCase : MonoBehaviourPun
         else if(briefCase.GetComponent<BriefCase>().stealable == true)
         {
             anim.SetBool("HasBriefCase", false);
-            if (Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance && Input.GetKeyDown(KeyCode.E))
+            if (Vector3.Distance(transform.position, briefCase.transform.position) <= stealDistance)
             {
-                //if(briefCase.transform.parent)
-                //{
-                //    if(briefCase.transform.parent.tag == "Player")
-                //    {
-                //        briefCase.transform.parent.GetComponent<StealBriefCase>().ownBriefcase = false;
-                //    }
-                //}
-                //briefCase.transform.parent = null;
+                // Turn on interact canvas.
+                if (inTutorial)
+                    tutorialScript.interactCanvas.enabled = true;
+                else
+                    gameScript.interactCanvas.enabled = true;
 
-
-                //briefCase.GetPhotonView().RequestOwnership();
-                //photonView.RPC("BriefcaseStolen", RpcTarget.All);
-
-                CallBreifcaseTransfer(photonView.OwnerActorNr, true, ownedTime);
-                //photonView.RPC(nameof(TransferBriefcase), RpcTarget.MasterClient, photonView.OwnerActorNr);
-                
-                //stealingBriefCase = true;
-                //ownBriefcase = true;
-
-                //Debug.Log("ownBriefcase = true;");
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    CallBreifcaseTransfer(photonView.OwnerActorNr, true, ownedTime);
+                }
             }
         }
         else
@@ -160,6 +165,27 @@ public class StealBriefCase : MonoBehaviourPun
             {
                 renderer.enabled = true;
             }
+
+        // Check if in tutorial and if we are master client.
+        if (inTutorial && PhotonNetwork.IsMasterClient)
+        {
+            //// Turn off interact canvas.
+            //tutorialScript.interactCanvas.enabled = false;
+            // Check if we are close to button.
+            if (Vector3.Distance(transform.position, startGameButton.position) < 5)
+            {
+                LayerMask layerMask = LayerMask.GetMask("Button");
+                // Raycast to see if we are looking at the button
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, 5f, layerMask, QueryTriggerInteraction.Collide))
+                {
+                    // Turn on interact canvas.
+                    tutorialScript.interactCanvas.enabled = true;
+                    // Start game if interact pressed.
+                    if (Input.GetKeyDown(KeyCode.E))
+                        tutorialScript.gameObject.GetPhotonView().RPC("StartGame", RpcTarget.AllBuffered);
+                }
+            }
+        }
     }
 
     public void CallBreifcaseTransfer(int actorNo, bool transferOwner, float currentOwnedTime)

@@ -36,17 +36,21 @@ public class PlayerController : MonoBehaviour
 
     float ledgeGrabTime = 0;
     float maxLedgeGrabTime = 3;
-
     private StealBriefCase stealBriefCase;
+
+    private TutorialScript tutorialScript;
+    //private Transform startGameButton;
+    private bool inTutorial;
 
     [PunRPC]
     private void Initialise(int playerID, bool inTutorial)
     {
+        this.inTutorial = inTutorial;
+
         // Move player to spawn point.
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         spawnPoint = spawnPoints[playerID];
         transform.position = spawnPoint.transform.position;
-        //transform.position = GameObject.Find("SpawnPoint").transform.position + transform.right * (playerID * 2);
 
         // Change player colour.
         Color[] playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
@@ -93,6 +97,12 @@ public class PlayerController : MonoBehaviour
         }
         stealBriefCase = GetComponent<StealBriefCase>();
         stealBriefCase.inTutorial = inTutorial;
+
+        //if (inTutorial && PhotonNetwork.IsMasterClient)
+        //{
+        //    tutorialScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TutorialScript>();
+        //    startGameButton = tutorialScript.startGameButton.transform;
+        //}
     }
     private void RemoveComponents()
     {
@@ -391,6 +401,27 @@ public class PlayerController : MonoBehaviour
 
             ledgeGrabbing = false;
         }
+
+        //// Check if in tutorial and if we are client.
+        //if (inTutorial && PhotonNetwork.IsMasterClient)
+        //{
+        //    // Turn off interact canvas.
+        //    tutorialScript.interactCanvas.enabled = false;
+        //    // Check if we are close to button.
+        //    if (Vector3.Distance(transform.position, startGameButton.position) < 5)
+        //    {
+        //        LayerMask layerMask = LayerMask.GetMask("Button");
+        //        // Raycast to see if we are looking at the button
+        //        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, 5f, layerMask, QueryTriggerInteraction.Collide))
+        //        {
+        //            // Turn on interact canvas.
+        //            tutorialScript.interactCanvas.enabled = true;
+        //            // Start game if interact pressed.
+        //            if (Input.GetKeyDown(KeyCode.E))
+        //                tutorialScript.gameObject.GetPhotonView().RPC("StartGame", RpcTarget.AllBuffered);
+        //        }
+        //    }
+        //}
 
         MapDistanceCheck();
     }

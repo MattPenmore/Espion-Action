@@ -7,6 +7,9 @@ using Photon.Realtime;
 
 public class TutorialScript : MonoBehaviourPunCallbacks
 {
+    public GameObject startGameButton;
+    public Canvas interactCanvas;
+
     [SerializeField] private GameObject playerPrefab;
 
     [Header("Lobby Screen")]
@@ -14,13 +17,19 @@ public class TutorialScript : MonoBehaviourPunCallbacks
     [SerializeField] private Text playerCount;
     [SerializeField] private GameObject playerInfo;
     [SerializeField] private Transform playerList;
+    [SerializeField] private Text gameStartingText;
+    [SerializeField] private Canvas gameStartingCanvas;
 
     private GameObject[] players;
     private byte maxPlayers = 8;
     private Dictionary<int, GameObject> playerListEntries;
 
+    private Coroutine startGameCoroutine;
+
     void Start()
     {
+        gameStartingCanvas.enabled = false;
+
         // Leave lobby if currently in one.
         if (PhotonNetwork.InLobby)
         {
@@ -72,7 +81,8 @@ public class TutorialScript : MonoBehaviourPunCallbacks
             //foreach (GameObject go in players)
             //    PhotonNetwork.Destroy(go);
             //PhotonNetwork.LoadLevel("Lobby");
-            PhotonNetwork.LoadLevel("WhiteBox");
+            //PhotonNetwork.LoadLevel("WhiteBox");
+            StartGame();
         }
     }
 
@@ -114,5 +124,29 @@ public class TutorialScript : MonoBehaviourPunCallbacks
         }
         // Update player count.
         playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;
+    }
+
+    [PunRPC]
+    public void StartGame()
+    {
+        if (startGameCoroutine != null) StopCoroutine(startGameCoroutine);
+        startGameCoroutine = StartCoroutine(StartGameCountdown());
+    }
+
+    private IEnumerator StartGameCountdown()
+    {
+        // Set countdown text, activate canvas, and change button colour.
+        gameStartingText.text = "Starting in 3...";
+        gameStartingCanvas.enabled = true;
+        startGameButton.GetComponent<Renderer>().material.color = Color.green;
+        startGameButton.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+        yield return new WaitForSeconds(1);
+        gameStartingText.text = "Starting in 2...";
+        yield return new WaitForSeconds(1);
+        gameStartingText.text = "Starting in 1...";
+        yield return new WaitForSeconds(1);
+        // Master client starts the game.
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.LoadLevel("Game");
     }
 }

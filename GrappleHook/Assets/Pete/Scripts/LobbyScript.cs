@@ -314,7 +314,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks
     {
         // Load the game scene via photon so that everyone loads in at once.
         if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.LoadLevel("WhiteBox");
+            PhotonNetwork.LoadLevel("Game");
     }
 
     #endregion //UI Callbacks
