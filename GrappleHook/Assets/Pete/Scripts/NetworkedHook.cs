@@ -133,7 +133,7 @@ public class NetworkedHook : MonoBehaviourPun
         currentPosition = transform.position;
         playerVelocity = (currentPosition - previousPosition) / Time.deltaTime;
 
-        hook.transform.parent = null;
+        
 
         //Fire hook
         if (Input.GetMouseButtonDown(0) && !hasHookFired && !playerController.ledgeGrabbing)
@@ -143,6 +143,9 @@ public class NetworkedHook : MonoBehaviourPun
         // Determine hook action.
         if (hasHookFired && StealBriefCase.ownBriefcase == false && !playerController.ledgeGrabbing)
         {
+            hook.transform.SetParent(null, true);
+            hook.transform.localScale = hookStartPosition.transform.lossyScale;
+            hook.transform.LookAt(hook.transform.position + hook.transform.position - grappleHook.transform.position);
             anim.SetBool("FiredGrapple", true);
             //photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
             //rope.SetPosition(0, grappleHook.transform.position);
@@ -269,8 +272,11 @@ public class NetworkedHook : MonoBehaviourPun
 
             hasHookFired = false;
             hasHooked = false;
-            hook.transform.parent = grappleHook.transform;
+            //hook.transform.parent = grappleHook.transform;
+            hook.transform.SetParent(grappleHook.transform, true);
             hook.transform.position = hookStartPosition.transform.position;
+            hook.transform.rotation = hookStartPosition.transform.rotation;
+            hook.transform.localScale = hookStartPosition.transform.localScale;
             rope.SetPosition(0, grappleHook.transform.position);
             rope.SetPosition(1, hook.transform.position);
 
@@ -381,10 +387,17 @@ public class NetworkedHook : MonoBehaviourPun
 
         if (isSwinging && leftGround)
         {
-            float disChange = playerReelInSpeed * Time.deltaTime;
-            ropeLength = ropeLength - disChange;
-            if (ropeLength < 0)
-                ropeLength = 0;
+            //float disChange = playerReelInSpeed * Time.deltaTime;
+            //ropeLength = ropeLength - disChange;
+
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
+
+            Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+            //Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+            rbPlayer.velocity = dir + move;
 
         }
         else
@@ -396,7 +409,7 @@ public class NetworkedHook : MonoBehaviourPun
 
             Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
             Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-            rbPlayer.velocity = dir + move;
+            //rbPlayer.velocity = dir + move;
             rbPlayer.MovePosition(playerPosition);
         }
 
@@ -434,7 +447,7 @@ public class NetworkedHook : MonoBehaviourPun
         }
         rbPlayer.useGravity = false;
 
-        //ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
+        ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
         joint.maxDistance = ropeLength; /** 0.8f;*/
         joint.minDistance = 0;
 

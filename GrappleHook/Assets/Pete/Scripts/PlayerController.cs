@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         // Change player colour.
         Color[] playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
         //GetComponent<Renderer>().material.color = playerColours[playerID];
-        body.material.color = playerColours[playerID];
+        //body.material.color = playerColours[playerID];
         hookMaterial.material.color = playerColours[playerID];
         grapplingGunMaterial.material.color = playerColours[playerID];
         hookObject.GetComponent<LineRenderer>().startColor = playerColours[playerID];
@@ -246,18 +246,31 @@ public class PlayerController : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            move = (transform.right * x + transform.forward * z) * speed * speedUpgradeValue/* * Time.deltaTime*/;
+            move = (transform.right * x + transform.forward * z).normalized * speed * speedUpgradeValue/* * Time.deltaTime*/;
 
             rb.velocity = move;
             if (move.magnitude != 0)
                 anim.SetBool("isRunning", true);
             else
                 anim.SetBool("isRunning", false);
+
+            if(x > 0)
+                anim.SetBool("RunLeft", true);
+            else
+                anim.SetBool("RunLeft", false);
+
+            if ( x < 0)
+                anim.SetBool("RunRight", true);
+            else
+                anim.SetBool("RunRight", false);
+
             //rb.MovePosition(transform.position + move);
         }
         else if ((!hook.hasHooked || jumping) && !ledgeGrabbing)
         {
             anim.SetBool("isRunning", false);
+            anim.SetBool("RunLeft", false);
+            anim.SetBool("RunRight", false);
             anim.SetBool("IsGrounded", false);
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
