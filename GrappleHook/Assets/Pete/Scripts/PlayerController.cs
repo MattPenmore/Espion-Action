@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Renderer hookMaterial;
     [SerializeField] Renderer grapplingGunMaterial;
     [SerializeField] AudioListener audioListener;
-    [SerializeField] Rigidbody _rb;
     GameObject[] spawnPoints = null;
 
     public GameObject spawnPoint;
@@ -33,6 +32,8 @@ public class PlayerController : MonoBehaviour
     Animator anim;
 
     public bool respawning;
+
+    internal float localTime = 0;
 
     float ledgeGrabTime = 0;
     float maxLedgeGrabTime = 3;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         spawnPoint = spawnPoints[playerID];
         transform.position = spawnPoint.transform.position;
+        transform.forward = spawnPoint.transform.forward;
 
         // Change player colour.
         Color[] playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
@@ -73,7 +75,6 @@ public class PlayerController : MonoBehaviour
         
                 playerCam.enabled = true;
                 audioListener.enabled = true;
-                _rb.useGravity = true;
                 Debug.Log("SETTING inTutorial = " + inTutorial);
             }
             else
@@ -89,7 +90,6 @@ public class PlayerController : MonoBehaviour
            
             playerCam.enabled = true;
             audioListener.enabled = true;
-            _rb.useGravity = true;
         }
         else
         {
@@ -166,11 +166,12 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+
         //Break out of start if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
             return;
 
-        rb = GetComponent<Rigidbody>();
         hook = GetComponent<NetworkedHook>();
         playerUpgrades = GetComponent<PlayerUpgrades>();
 
@@ -180,13 +181,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Break out of update loop if not the owner of this gameobject.
+        //Switch gravity on/off and then break out of update loop if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
+        {
+            CheckIfGrounded();
             return;
+        }
 
         // Break out for the first 1s.
-        if (Time.time < 1f)
+        if (localTime < 1f)
+        {
+            localTime += Time.deltaTime;
             return;
+        }
 
         targetPosition = transform.position;
 

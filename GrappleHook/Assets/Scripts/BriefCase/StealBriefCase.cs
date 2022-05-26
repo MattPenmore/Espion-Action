@@ -12,6 +12,9 @@ public class StealBriefCase : MonoBehaviourPun
 
     public bool firstPerson = true;
     public GameObject briefCase;
+
+    [SerializeField] private SkinnedMeshRenderer skin;
+
     private GameObject gameManager;
     private GameObject playerTimerText;
     //private GameObject otherPlayerTimerText;
@@ -71,6 +74,12 @@ public class StealBriefCase : MonoBehaviourPun
         //Break out of update loop if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
             return;
+
+        // Break out for the first 1s.
+        if (GetComponent<PlayerController>().localTime < 1f)
+        {
+            return;
+        }
 
         if (ownedTime > winTime)
             ownedTime = winTime;
@@ -147,7 +156,12 @@ public class StealBriefCase : MonoBehaviourPun
             briefCase.transform.localRotation = briefCaseLocationXZ.transform.localRotation;
         }
 
-        if(ownBriefcase)
+        if (firstPerson)
+            skin.enabled = false;
+        else
+            skin.enabled = true;
+
+        if (ownBriefcase)
         {
             if (firstPerson)
                 foreach(MeshRenderer renderer in briefCase.GetComponentsInChildren<MeshRenderer>())
