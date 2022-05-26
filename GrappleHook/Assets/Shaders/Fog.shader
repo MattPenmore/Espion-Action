@@ -69,11 +69,11 @@ Shader "Custom/Fog"
                 o.Alpha = c.a;
 
                 // Change alpha by depth
-                float2 screenUV = IN.screenPos.xy / IN.screenPos.w;
+                //float2 screenUV = IN.screenPos.xy / IN.screenPos.w;
                 float dist = (clamp(IN.eyeDepth, _DepthNear, _DepthFar) - _DepthNear) / (_DepthFar - _DepthNear);
                 dist = 1 - pow(1 - dist * 0.99999, _DepthPower);
 
-                o.Alpha = clamp(1 - dist, 0, 1);
+                o.Alpha = clamp(dist, 0, 1);
             }
             ENDCG
         }
