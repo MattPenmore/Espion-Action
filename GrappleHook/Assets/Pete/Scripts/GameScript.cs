@@ -20,6 +20,8 @@ public class GameScript : MonoBehaviourPunCallbacks
     [SerializeField] private Canvas winScreen;
     [SerializeField] private Text winnerText;
 
+    public bool gameEnded;
+
     private bool gameOver;
 
     void Start()
@@ -65,7 +67,7 @@ public class GameScript : MonoBehaviourPunCallbacks
         winnerText.color = pColour;
         DisablePlayerUI();
         winScreen.enabled = true;
-
+        gameEnded = true;
         Invoke("ReturnToLobby", 5);
     }
 

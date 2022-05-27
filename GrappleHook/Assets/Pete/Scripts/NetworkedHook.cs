@@ -44,6 +44,8 @@ public class NetworkedHook : MonoBehaviourPun
     [SerializeField]
     Animator anim;
 
+    [SerializeField] AudioClip[] clips;
+
     bool ropeLengthReachedSwinging;
 
     float hookCurrentDistance;
@@ -82,6 +84,8 @@ public class NetworkedHook : MonoBehaviourPun
 
     [SerializeField]
     GameObject centreDot;
+
+    float grappleSoundTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -131,12 +135,10 @@ public class NetworkedHook : MonoBehaviourPun
         CheckIfGrounded();
 
         currentPosition = transform.position;
-        playerVelocity = (currentPosition - previousPosition) / Time.deltaTime;
-
-        
+        playerVelocity = (currentPosition - previousPosition) / Time.deltaTime;        
 
         //Fire hook
-        if (Input.GetMouseButtonDown(0) && !hasHookFired && !playerController.ledgeGrabbing)
+        if (Input.GetMouseButtonDown(0) && !hasHookFired && !playerController.ledgeGrabbing && StealBriefCase.ownBriefcase == false)
             FireHook();
         //photonView.RPC("FireHook", RpcTarget.All);
 
@@ -218,8 +220,6 @@ public class NetworkedHook : MonoBehaviourPun
             //}
             if (hasHooked)
             {
-                
-
                 if (Input.GetMouseButtonUp(0))
                 {
                     BreakHook();
@@ -240,7 +240,7 @@ public class NetworkedHook : MonoBehaviourPun
                     rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
                 }
 
-                if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f && hasHooked)
+                if (Vector3.Distance(hook.transform.position, transform.position) < 0.52ff && hasHooked)
                 {
                     rbPlayer.velocity = Vector3.zero;
                     if (gameObject.GetComponent<SpringJoint>() != null)
@@ -249,9 +249,19 @@ public class NetworkedHook : MonoBehaviourPun
                         Destroy(gameObject.GetComponent<SpringJoint>());
                     }
                 }
+                else if(hasHookFired && Vector3.Distance(hook.transform.position, transform.position) > 2f)
+                {
+                    grappleSoundTime -= Time.deltaTime;
+                    if (grappleSoundTime <= 0)
+                    {
+                        grappleSoundTime = 1.3f;
+                        AudioSource.PlayClipAtPoint(clips[1], transform.position);
+                    }
+                }
             }
             else
             {
+                
                 if (gameObject.GetComponent<SpringJoint>() != null)
                 {
                     isSwinging = false;
@@ -269,7 +279,7 @@ public class NetworkedHook : MonoBehaviourPun
             }
 
             hook.GetComponent<SphereCollider>().isTrigger = true;
-
+            grappleSoundTime = 0;
             hasHookFired = false;
             hasHooked = false;
             //hook.transform.parent = grappleHook.transform;
@@ -314,6 +324,8 @@ public class NetworkedHook : MonoBehaviourPun
         //rbHook.MovePosition(hookPosition);
         hasHookFired = true;
         isReeling = false;
+
+        AudioSource.PlayClipAtPoint(clips[0], transform.position);
     }
 
     public void DrawRope(Vector3[] ropePositions)
@@ -333,6 +345,8 @@ public class NetworkedHook : MonoBehaviourPun
             }
         }
         //hookReturning = true;
+        if(hasHooked)
+            AudioSource.PlayClipAtPoint(clips[2], transform.position);
         hasHooked = false;
         //hook.layer = 10;
         if (!playerController.ledgeGrabbing && !isPlayerGrounded)
@@ -347,7 +361,7 @@ public class NetworkedHook : MonoBehaviourPun
         hasHookFired = false;
         //hookReturning = false;
         hook.layer = 8;
-        isReeling = false;
+        isReeling = false;       
         //}
     }
 

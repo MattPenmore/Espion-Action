@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class TutorialScript : MonoBehaviourPunCallbacks
 {
@@ -129,8 +130,13 @@ public class TutorialScript : MonoBehaviourPunCallbacks
     [PunRPC]
     public void StartGame()
     {
-        if (startGameCoroutine != null) StopCoroutine(startGameCoroutine);
-        startGameCoroutine = StartCoroutine(StartGameCountdown());
+        Scene scene = SceneManager.GetActiveScene();
+
+        if(scene.name == "Tutorial")
+        {
+            if (startGameCoroutine != null) StopCoroutine(startGameCoroutine);
+            startGameCoroutine = StartCoroutine(StartGameCountdown());
+        }
     }
 
     private IEnumerator StartGameCountdown()

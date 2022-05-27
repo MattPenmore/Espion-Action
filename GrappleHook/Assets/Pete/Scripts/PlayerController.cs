@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Renderer hookMaterial;
     [SerializeField] Renderer grapplingGunMaterial;
     [SerializeField] AudioListener audioListener;
+    [SerializeField] AudioClip[] clips;
     GameObject[] spawnPoints = null;
 
     public GameObject spawnPoint;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     Animator anim;
 
     public bool respawning;
+    public bool playedRespawnSound;
 
     internal float localTime = 0;
 
@@ -163,6 +165,8 @@ public class PlayerController : MonoBehaviour
     float timeSinceBoost;
     public bool jumping = false;
     float jumpTime = 0.5f;
+
+    float stepTimeAudio = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -267,7 +271,20 @@ public class PlayerController : MonoBehaviour
 
             rb.velocity = move;
             if (move.magnitude != 0)
+            {
                 anim.SetBool("isRunning", true);
+                stepTimeAudio -= Time.deltaTime;
+                if(stepTimeAudio <= 0)
+                {
+                    AudioSource.PlayClipAtPoint(clips[0], transform.position);
+                    stepTimeAudio = 0.4f;
+                }
+                //if(GetComponent<AudioSource>().clip != clips[0] || !GetComponent<AudioSource>().isPlaying)
+                //{
+                //    GetComponent<AudioSource>().clip = clips[0];
+                //    GetComponent<AudioSource>().Play();
+                //}
+            }
             else
                 anim.SetBool("isRunning", false);
 
@@ -327,6 +344,7 @@ public class PlayerController : MonoBehaviour
                 jumping = true;
                 jumpTime = 0.5f;
                 anim.SetBool("isJumping", true);
+                AudioSource.PlayClipAtPoint(clips[1], transform.position);
             }
         }
 
@@ -336,6 +354,7 @@ public class PlayerController : MonoBehaviour
         { 
             rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
             timeSinceBoost = 0;
+            AudioSource.PlayClipAtPoint(clips[3], transform.position);
             
         }
 
@@ -432,6 +451,11 @@ public class PlayerController : MonoBehaviour
         //        }
         //    }
         //}
+        if(respawning && !playedRespawnSound)
+        {
+            AudioSource.PlayClipAtPoint(clips[4], transform.position);
+            playedRespawnSound = true;
+        }
 
         MapDistanceCheck();
     }
@@ -439,7 +463,7 @@ public class PlayerController : MonoBehaviour
     void CheckIfGrounded()
     {
         RaycastHit hit;
-        float dist = 0.71f;
+        float dist = 0.75f;
         Vector3 dir = Vector3.down;
 
         if (Physics.BoxCast(transform.position, Vector3.one * 0.3f, dir, out hit, transform.rotation, dist) && !jumping)
@@ -450,6 +474,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
                 currentNumberOfJumps = 0;
+                AudioSource.PlayClipAtPoint(clips[2], transform.position);
             }
             isPlayerGrounded = true;
             rb.useGravity = false;

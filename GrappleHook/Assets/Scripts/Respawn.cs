@@ -48,5 +48,6 @@ public class Respawn : MonoBehaviour
         player.GetComponent<NetworkedHook>().hookReturning = false;
         player.GetComponent<NetworkedHook>().hook.layer = 8;
         player.GetComponent<PlayerController>().respawning = false;
+        player.GetComponent<PlayerController>().playedRespawnSound = false;
     }
 }

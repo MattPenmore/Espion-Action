@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class StealBriefCase : MonoBehaviourPun
 {
+
     public static float winTime = 60f;
     public static bool ownBriefcase;
     public bool inTutorial;
@@ -42,6 +43,9 @@ public class StealBriefCase : MonoBehaviourPun
 
     [SerializeField]
     Animator anim;
+
+    [SerializeField] AudioClip[] clips;
+    bool playedEndSound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -198,6 +202,19 @@ public class StealBriefCase : MonoBehaviourPun
                     if (Input.GetKeyDown(KeyCode.E))
                         tutorialScript.gameObject.GetPhotonView().RPC("StartGame", RpcTarget.AllBuffered);
                 }
+            }
+        }
+
+        if(!inTutorial && gameScript.gameEnded && !playedEndSound)
+        {
+            playedEndSound = true;
+            if(ownedTime < 0)
+            {
+                AudioSource.PlayClipAtPoint(clips[0], transform.position);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(clips[1], transform.position);
             }
         }
     }
