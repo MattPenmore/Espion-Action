@@ -240,7 +240,7 @@ public class NetworkedHook : MonoBehaviourPun
                     rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
                 }
 
-                if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
+                if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f && hasHooked)
                 {
                     rbPlayer.velocity = Vector3.zero;
                     if (gameObject.GetComponent<SpringJoint>() != null)
@@ -385,32 +385,54 @@ public class NetworkedHook : MonoBehaviourPun
         //    return;
         //}
 
-        if (isSwinging && leftGround)
+        //if (leftGround)
+        //{
+        //    float disChange = playerReelInSpeed * Time.deltaTime;
+        //    ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position) - disChange;
+
+        //    if(ropeLength < 0)
+        //    {
+        //        ropeLength = 0;
+        //    }
+
+        //    joint.maxDistance = ropeLength; /** 0.8f;*/
+        //    joint.minDistance = 0;
+
+        //    float x = Input.GetAxis("Horizontal");
+        //    float z = Input.GetAxis("Vertical");
+
+        //    Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
+
+        //    Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+        //    //Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+        //    rbPlayer.velocity = dir + move;
+
+        //}
+        //else
+        //{
+        //    float x = Input.GetAxis("Horizontal");
+        //    float z = Input.GetAxis("Vertical");
+
+        //    Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
+
+        //    Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+        //    Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+        //    //rbPlayer.velocity = dir + move;
+        //    rbPlayer.MovePosition(playerPosition);
+        //}
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
+
+        Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
+        Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
+        rbPlayer.velocity = dir + move;
+
+        if (rbPlayer.velocity.magnitude > playerMoveSpeed)
         {
-            //float disChange = playerReelInSpeed * Time.deltaTime;
-            //ropeLength = ropeLength - disChange;
-
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
-
-            Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-            //Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-            rbPlayer.velocity = dir + move;
-
-        }
-        else
-        {
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
-
-            Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-            Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-            //rbPlayer.velocity = dir + move;
-            rbPlayer.MovePosition(playerPosition);
+            rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
         }
 
     }
@@ -441,15 +463,13 @@ public class NetworkedHook : MonoBehaviourPun
             joint.minDistance = 0;
 
             joint.tolerance = 0;
-            joint.spring = 10000f;
+            joint.spring = 1000000f;
             joint.damper = 3f;
             joint.massScale = 1f;
         }
         rbPlayer.useGravity = false;
 
-        ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position);
-        joint.maxDistance = ropeLength; /** 0.8f;*/
-        joint.minDistance = 0;
+        
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -495,8 +515,8 @@ public class NetworkedHook : MonoBehaviourPun
         RaycastHit hit;
         float dist = 0.71f;
         Vector3 dir = Vector3.down;
-
-        if (Physics.BoxCast(transform.position, Vector3.one * 0.3f, dir, out hit, transform.rotation, dist))
+        LayerMask layerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("Hook") | LayerMask.NameToLayer("WraithPlayer");
+        if (Physics.BoxCast(transform.position, Vector3.one * 0.3f, dir, out hit, transform.rotation, dist, layerMask))
         {
             isPlayerGrounded = true;
             jumpTime = 2;

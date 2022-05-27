@@ -545,15 +545,11 @@ C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\UnityEng
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\unityplastic.dll
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.Plastic.Newtonsoft.Json.dll
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.Plastic.Antlr3.Runtime.dll
-C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonChat.pdb
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonUnityNetworking.Editor.pdb
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.pdb
-C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PunDemos.DemoHubEditor.pdb
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonRealtime.pdb
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonUnityNetworking.Utilities.pdb
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonUnityNetworking.pdb
-C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonUnityNetworking.Demos.pdb
-C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PunDemos.DemoSlotcarEditor.pdb
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\PhotonUnityNetworking.Utilities.Culling.Editor.pdb
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\UnityEngine.xml
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\UnityEngine.AIModule.xml
@@ -668,3 +664,9 @@ C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\obj\Debug\Assembly-CSha
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\obj\Debug\Assembly-CSharp.dll
 C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.Sysroot.Linux_x86_64.dll
+C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.SysrootPackage.Editor.dll
+C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll
+C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.Sysroot.Linux_x86_64.pdb
+C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.Toolchain.Win-x86_64-Linux-x86_64.pdb
+C:\Users\Matt\Documents\GitHub\Espion-Action\GrappleHook\Temp\Bin\Debug\Unity.SysrootPackage.Editor.pdb

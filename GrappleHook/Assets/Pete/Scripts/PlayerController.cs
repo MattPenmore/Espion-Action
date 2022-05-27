@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
 
         CheckIfGrounded();
 
-        if (isPlayerGrounded)
+        if (isPlayerGrounded && !hook.hasHooked)
         {
             anim.SetBool("IsGrounded", true);
             float x = Input.GetAxis("Horizontal");
@@ -308,6 +308,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             anim.SetBool("IsGrounded", false);
+            anim.SetBool("isRunning", false);
+            anim.SetBool("RunLeft", false);
+            anim.SetBool("RunRight", false);
         }
 
         //Jump
