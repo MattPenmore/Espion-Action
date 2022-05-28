@@ -264,8 +264,8 @@ public class PlayerController : MonoBehaviour
         if (isPlayerGrounded && !hook.hasHooked)
         {
             anim.SetBool("IsGrounded", true);
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            float x = Input.GetAxisRaw("Horizontal");
+            float z = Input.GetAxisRaw("Vertical");
 
             move = (transform.right * x + transform.forward * z).normalized * speed * speedUpgradeValue/* * Time.deltaTime*/;
 
@@ -288,15 +288,20 @@ public class PlayerController : MonoBehaviour
             else
                 anim.SetBool("isRunning", false);
 
-            if(x > 0)
+            if (x < 0)
                 anim.SetBool("RunLeft", true);
             else
                 anim.SetBool("RunLeft", false);
 
-            if ( x < 0)
+            if ( x > 0)
                 anim.SetBool("RunRight", true);
             else
                 anim.SetBool("RunRight", false);
+
+            if (z < 0)
+                anim.SetBool("RunBack", true);
+            else
+                anim.SetBool("RunBack", false);
 
             //rb.MovePosition(transform.position + move);
         }

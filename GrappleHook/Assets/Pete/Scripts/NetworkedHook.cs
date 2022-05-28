@@ -240,7 +240,7 @@ public class NetworkedHook : MonoBehaviourPun
                     rbPlayer.velocity = rbPlayer.velocity.normalized * playerMoveSpeed;
                 }
 
-                if (Vector3.Distance(hook.transform.position, transform.position) < 0.52ff && hasHooked)
+                if (Vector3.Distance(hook.transform.position, transform.position) < 0.52f && hasHooked)
                 {
                     rbPlayer.velocity = Vector3.zero;
                     if (gameObject.GetComponent<SpringJoint>() != null)

@@ -1848,6 +1848,9 @@ MonoBehaviour:
   firstPerson: 1
   briefCase: {fileID: 0}
   skin: {fileID: 1326057956954811284}
+  grappleGun:
+  - {fileID: 8260025663519461403}
+  - {fileID: 6279768082264739008}
   stealDistance: 5
   briefCaseLocationXZ: {fileID: 7618910748614593362}
   briefCaseLocationY: {fileID: 8268934513014235105}

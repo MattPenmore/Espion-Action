@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class Respawn : MonoBehaviour
 {
     [SerializeField]
     float respawnTime;
+
+    [SerializeField]
+    private Image whiteScreen;
+
+    private float fadeInProportion = 8;
+
+    private void Start()
+    {
+        //whiteScreen = GameObject.FindGameObjectWithTag("WhiteScreen").GetComponent<Image>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +37,8 @@ public class Respawn : MonoBehaviour
     {
         Debug.Log("RESPAWNING");
 
+        float localTimer = 0f;
+
         player.GetComponent<PlayerController>().respawning = true;
         if (StealBriefCase.ownBriefcase)
         {
@@ -38,7 +51,29 @@ public class Respawn : MonoBehaviour
             player.GetComponent<StealBriefCase>().CallBreifcaseTransfer(0, false, StealBriefCase.ownedTime);
         }
 
-        yield return new WaitForSeconds(respawnTime);
+        // Turn on the white screen.
+        whiteScreen.GetComponentInParent<Canvas>().enabled = true;
+        Color tempCol = Color.white;
+
+        while (localTimer < respawnTime / fadeInProportion)
+        {
+            // Fade in the white screen.
+            tempCol.a = localTimer / respawnTime * fadeInProportion;
+            whiteScreen.color = tempCol;
+
+            localTimer += Time.deltaTime;
+            yield return null;
+        }
+        // Set alpha to 100%.
+        tempCol.a = 1;
+        whiteScreen.color = tempCol;
+        // Do nothing while we wait to respawn.
+        while (localTimer < respawnTime)
+        {
+            localTimer += Time.deltaTime;
+            yield return null;
+        }
+        //yield return new WaitForSeconds(respawnTime);
         player.transform.position = spawnPoint.transform.position;
         player.transform.rotation = spawnPoint.transform.rotation;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -49,5 +84,8 @@ public class Respawn : MonoBehaviour
         player.GetComponent<NetworkedHook>().hook.layer = 8;
         player.GetComponent<PlayerController>().respawning = false;
         player.GetComponent<PlayerController>().playedRespawnSound = false;
+
+        // Turn off the white screen.
+        whiteScreen.GetComponentInParent<Canvas>().enabled = false;
     }
 }

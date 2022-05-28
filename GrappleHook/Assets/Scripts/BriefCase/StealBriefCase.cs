@@ -15,6 +15,7 @@ public class StealBriefCase : MonoBehaviourPun
     public GameObject briefCase;
 
     [SerializeField] private SkinnedMeshRenderer skin;
+    [SerializeField] private MeshRenderer[] grappleGun;
 
     private GameObject gameManager;
     private GameObject playerTimerText;
@@ -135,36 +136,48 @@ public class StealBriefCase : MonoBehaviourPun
         }
         else
             anim.SetBool("HasBriefCase", false);
-        Vector3 briefCasePosition = new Vector3(briefCaseLocationXZ.transform.position.x, briefCaseLocationY.transform.position.y, briefCaseLocationXZ.transform.position.z);
-        if (stealingBriefCase)
-        {
-            briefCase.transform.parent = null;
-            stealTimer += Time.deltaTime;
-            float briefcaseDistance = (briefCase.transform.position - briefCasePosition).magnitude;
-            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCasePosition, Mathf.Max(20, 20 * briefcaseDistance) * Time.deltaTime);
-            briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocationXZ.transform.localRotation, 1);
 
-            if(Vector3.Distance(briefCase.transform.position, briefCasePosition) < 0.1f || stealTimer >= maxStealTime)
-            {
-                briefCase.transform.position = briefCasePosition;
-                briefCase.transform.rotation = briefCaseLocationXZ.transform.localRotation;
-                briefCase.transform.parent = transform;
-                stealingBriefCase = false;
-                stealTimer = 0f;
-            }
-        }
-        else if(ownBriefcase && !gameOver)
-        {
-            briefCase.transform.parent = transform;
-            briefCase.transform.position = briefCasePosition;
-            briefCase.transform.localRotation = briefCaseLocationXZ.transform.localRotation;
-        }
+        //Vector3 briefCasePosition = new Vector3(briefCaseLocationXZ.transform.position.x, briefCaseLocationY.transform.position.y, briefCaseLocationXZ.transform.position.z);
+        //
+        //if (stealingBriefCase)
+        //{
+        //    briefCase.transform.parent = null;
+        //    stealTimer += Time.deltaTime;
+        //    float briefcaseDistance = (briefCase.transform.position - briefCasePosition).magnitude;
+        //    briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCasePosition, Mathf.Max(20, 20 * briefcaseDistance) * Time.deltaTime);
+        //    briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocationXZ.transform.localRotation, 1);
+        //
+        //    if(Vector3.Distance(briefCase.transform.position, briefCasePosition) < 0.1f || stealTimer >= maxStealTime)
+        //    {
+        //        briefCase.transform.position = briefCasePosition;
+        //        briefCase.transform.rotation = briefCaseLocationXZ.transform.localRotation;
+        //        briefCase.transform.parent = transform;
+        //        stealingBriefCase = false;
+        //        stealTimer = 0f;
+        //    }
+        //}
+        //else if(ownBriefcase && !gameOver)
+        //{
+        //    briefCase.transform.parent = transform;
+        //    briefCase.transform.position = briefCasePosition;
+        //    briefCase.transform.localRotation = briefCaseLocationXZ.transform.localRotation;
+        //}
 
+        // Turn off player renderers when in first person.
         if (firstPerson)
+        {
             skin.enabled = false;
+            foreach (MeshRenderer mr in grappleGun)
+                mr.enabled = false;
+        }
         else
+        {
             skin.enabled = true;
+            foreach (MeshRenderer mr in grappleGun)
+                mr.enabled = true;
+        }
 
+        // Turn off briefcase renderer when in first person and own briefcase.
         if (ownBriefcase)
         {
             if (firstPerson)
@@ -216,6 +229,35 @@ public class StealBriefCase : MonoBehaviourPun
             {
                 AudioSource.PlayClipAtPoint(clips[1], transform.position);
             }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        Vector3 briefCasePosition = new Vector3(briefCaseLocationXZ.transform.position.x, briefCaseLocationY.transform.position.y, briefCaseLocationXZ.transform.position.z);
+       
+        if (stealingBriefCase)
+        {
+            briefCase.transform.parent = null;
+            stealTimer += Time.deltaTime;
+            float briefcaseDistance = (briefCase.transform.position - briefCasePosition).magnitude;
+            briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCasePosition, Mathf.Max(20, 20 * briefcaseDistance) * Time.deltaTime);
+            briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocationXZ.transform.localRotation, 1);
+
+            if (Vector3.Distance(briefCase.transform.position, briefCasePosition) < 0.1f || stealTimer >= maxStealTime)
+            {
+                briefCase.transform.position = briefCasePosition;
+                briefCase.transform.rotation = briefCaseLocationXZ.transform.localRotation;
+                briefCase.transform.parent = transform;
+                stealingBriefCase = false;
+                stealTimer = 0f;
+            }
+        }
+        else if (ownBriefcase && !gameOver)
+        {
+            briefCase.transform.parent = transform;
+            briefCase.transform.position = briefCasePosition;
+            briefCase.transform.localRotation = briefCaseLocationXZ.transform.localRotation;
         }
     }
 
