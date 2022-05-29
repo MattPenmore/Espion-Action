@@ -48,7 +48,7 @@ public class Respawn : MonoBehaviour
             player.GetComponent<StealBriefCase>().briefCase.transform.position = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingPosition;
             player.GetComponent<StealBriefCase>().briefCase.transform.rotation = player.GetComponent<StealBriefCase>().briefCase.GetComponent<BriefCase>().startingRotation;
             StealBriefCase.ownedTime += 5;
-            player.GetComponent<StealBriefCase>().CallBreifcaseTransfer(0, false, StealBriefCase.ownedTime);
+            player.GetComponent<StealBriefCase>().CallBriefcaseTransfer(0, false, StealBriefCase.ownedTime);
         }
 
         // Turn on the white screen.

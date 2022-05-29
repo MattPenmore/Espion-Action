@@ -15,7 +15,7 @@ public class GameScript : MonoBehaviourPunCallbacks
 {
     public Canvas interactCanvas;
    
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Canvas winScreen;
     [SerializeField] private Text winnerText;
@@ -35,7 +35,15 @@ public class GameScript : MonoBehaviourPunCallbacks
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            GameObject go = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.one, Quaternion.identity);
+            int k = 0;
+            //if (i < playerPrefabs.Length)
+            //    k = i;
+            //else
+            //{
+            //    k = (i  % playerPrefabs.Length);
+            //}
+
+            GameObject go = PhotonNetwork.Instantiate(playerPrefabs[i % playerPrefabs.Length].name, Vector3.one, Quaternion.identity);
             go.GetPhotonView().TransferOwnership(i + 1);
             go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(i + 1);
             go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, i, false);

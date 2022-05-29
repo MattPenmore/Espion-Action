@@ -10817,7 +10817,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactCanvas: {fileID: 98422513}
-  playerPrefab: {fileID: 7618910749157658083, guid: ff76eadc5d6a8b14a8df4201f9a7811e, type: 3}
+  playerPrefabs:
+  - {fileID: 7618910749157658083, guid: ff76eadc5d6a8b14a8df4201f9a7811e, type: 3}
+  - {fileID: 7618910749157658083, guid: e2f764266209f414ab8f150c1a03aff1, type: 3}
   spawnPoint: {fileID: 1226970042}
   winScreen: {fileID: 73570638}
   winnerText: {fileID: 1135135752}
