@@ -234,6 +234,10 @@ public class StealBriefCase : MonoBehaviourPun
 
     private void LateUpdate()
     {
+        // Break out if not owner.
+        if (!gameObject.GetPhotonView().IsMine)
+            return;
+        
         Vector3 briefCasePosition = new Vector3(briefCaseLocationXZ.transform.position.x, briefCaseLocationY.transform.position.y, briefCaseLocationXZ.transform.position.z);
        
         if (stealingBriefCase)
