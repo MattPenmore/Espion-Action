@@ -130,7 +130,7 @@ public class StealBriefCase : MonoBehaviourPun
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    CallBreifcaseTransfer(photonView.OwnerActorNr, true, ownedTime);
+                    CallBriefcaseTransfer(photonView.OwnerActorNr, true, ownedTime);
                 }
             }
         }
@@ -261,7 +261,7 @@ public class StealBriefCase : MonoBehaviourPun
         }
     }
 
-    public void CallBreifcaseTransfer(int actorNo, bool transferOwner, float currentOwnedTime)
+    public void CallBriefcaseTransfer(int actorNo, bool transferOwner, float currentOwnedTime)
     {
         photonView.RPC(nameof(TransferBriefcase), RpcTarget.MasterClient, actorNo, transferOwner, currentOwnedTime);
     }

@@ -11,7 +11,7 @@ public class TutorialScript : MonoBehaviourPunCallbacks
     public GameObject startGameButton;
     public Canvas interactCanvas;
 
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject[] playerPrefabs;
 
     [Header("Lobby Screen")]
     [SerializeField] private Text lobbyName;
@@ -64,7 +64,7 @@ public class TutorialScript : MonoBehaviourPunCallbacks
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            GameObject go = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.one, Quaternion.identity);
+            GameObject go = PhotonNetwork.Instantiate(playerPrefabs[i % playerPrefabs.Length].name, Vector3.one, Quaternion.identity);
             go.GetPhotonView().TransferOwnership(i + 1);
             go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(i + 1);
             go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, i, true);
@@ -105,7 +105,7 @@ public class TutorialScript : MonoBehaviourPunCallbacks
         players = new GameObject[PhotonNetwork.PlayerList.Length];
         for (int i = 0; i < temp.Length; i++)
             players[i] = temp[i];
-        GameObject go = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.one, Quaternion.identity);
+        GameObject go = PhotonNetwork.Instantiate(playerPrefabs[(PhotonNetwork.PlayerList.Length - 1) % playerPrefabs.Length].name, Vector3.one, Quaternion.identity);
         go.GetPhotonView().TransferOwnership(PhotonNetwork.PlayerList.Length);
         go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(PhotonNetwork.PlayerList.Length);
         go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, PhotonNetwork.PlayerList.Length - 1, true);
