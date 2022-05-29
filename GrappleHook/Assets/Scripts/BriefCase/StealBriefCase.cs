@@ -223,11 +223,11 @@ public class StealBriefCase : MonoBehaviourPun
             playedEndSound = true;
             if(ownedTime < 0)
             {
-                AudioSource.PlayClipAtPoint(clips[0], transform.position);
+                AudioSource.PlayClipAtPoint(clips[0], transform.position, GetComponent<PlayerController>().oneShotVolume);
             }
             else
             {
-                AudioSource.PlayClipAtPoint(clips[1], transform.position);
+                AudioSource.PlayClipAtPoint(clips[1], transform.position, GetComponent<PlayerController>().oneShotVolume);
             }
         }
     }

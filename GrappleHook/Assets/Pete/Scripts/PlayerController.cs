@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     float maxLedgeGrabTime = 3;
     private StealBriefCase stealBriefCase;
 
+    internal float oneShotVolume = .4f;
+
     private TutorialScript tutorialScript;
     //private Transform startGameButton;
     private bool inTutorial;
@@ -276,7 +278,7 @@ public class PlayerController : MonoBehaviour
                 stepTimeAudio -= Time.deltaTime;
                 if(stepTimeAudio <= 0)
                 {
-                    AudioSource.PlayClipAtPoint(clips[0], transform.position);
+                    AudioSource.PlayClipAtPoint(clips[0], transform.position, oneShotVolume);
                     stepTimeAudio = 0.4f;
                 }
                 //if(GetComponent<AudioSource>().clip != clips[0] || !GetComponent<AudioSource>().isPlaying)
@@ -349,7 +351,7 @@ public class PlayerController : MonoBehaviour
                 jumping = true;
                 jumpTime = 0.5f;
                 anim.SetBool("isJumping", true);
-                AudioSource.PlayClipAtPoint(clips[1], transform.position);
+                AudioSource.PlayClipAtPoint(clips[1], transform.position, oneShotVolume);
             }
         }
 
@@ -359,7 +361,7 @@ public class PlayerController : MonoBehaviour
         { 
             rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
             timeSinceBoost = 0;
-            AudioSource.PlayClipAtPoint(clips[3], transform.position);
+            AudioSource.PlayClipAtPoint(clips[3], transform.position, oneShotVolume);
             
         }
 
@@ -458,7 +460,7 @@ public class PlayerController : MonoBehaviour
         //}
         if(respawning && !playedRespawnSound)
         {
-            AudioSource.PlayClipAtPoint(clips[4], transform.position);
+            AudioSource.PlayClipAtPoint(clips[4], transform.position, oneShotVolume);
             playedRespawnSound = true;
         }
 
@@ -479,7 +481,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
                 currentNumberOfJumps = 0;
-                AudioSource.PlayClipAtPoint(clips[2], transform.position);
+                AudioSource.PlayClipAtPoint(clips[2], transform.position, oneShotVolume);
             }
             isPlayerGrounded = true;
             rb.useGravity = false;

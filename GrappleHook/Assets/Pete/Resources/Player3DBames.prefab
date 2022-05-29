@@ -1698,7 +1698,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7618910748845692646}
   - component: {fileID: 7618910748845692641}
-  - component: {fileID: 7618910748845692640}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1764,14 +1763,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7618910748845692640
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618910748845692643}
-  m_Enabled: 0
 --- !u!1 &7618910749157658083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,6 +1782,7 @@ GameObject:
   - component: {fileID: 8537137832666130860}
   - component: {fileID: 8075587176472957581}
   - component: {fileID: 8315504962754766371}
+  - component: {fileID: 4402989537595445958}
   m_Layer: 9
   m_Name: Player3DBames
   m_TagString: Player
@@ -1969,7 +1961,7 @@ MonoBehaviour:
   body: {fileID: 1326057956954811284}
   hookMaterial: {fileID: 6758212951797916248}
   grapplingGunMaterial: {fileID: 8260025663519461403}
-  audioListener: {fileID: 7618910748845692640}
+  audioListener: {fileID: 4402989537595445958}
   clips:
   - {fileID: 8300000, guid: 8fed97304d9df6942b7ec8cb62e0fc8b, type: 3}
   - {fileID: 8300000, guid: 17250fd77a86167409ad51d9d01920ac, type: 3}
@@ -2038,7 +2030,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2122,6 +2114,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &4402989537595445958
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910749157658083}
+  m_Enabled: 0
 --- !u!1 &7618910749430407372
 GameObject:
   m_ObjectHideFlags: 0

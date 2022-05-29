@@ -106,36 +106,36 @@ public class LobbyScript : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
             PhotonNetwork.LoadLevel("Tutorial"); 
         
-        Debug.Log("JOINED ROOM");
-        cachedRoomList.Clear();
-
-        // Leave lobby if currently in one.
-        if (PhotonNetwork.InLobby)
-        {
-            Debug.Log("LEFT LOBBY");
-            PhotonNetwork.LeaveLobby();
-        }
-
-        // Once the client joins a room, switch the UI panel to the lobby screen.
-        SetUIPanel(lobbyScreen);
-        // Display lobby name and player count.
-        lobbyName.text = PhotonNetwork.CurrentRoom.Name;
-        playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;
-        // Create dictionary of players.
-        if (playerListEntries == null)
-        {
-            playerListEntries = new Dictionary<int, GameObject>();
-        }
-        // Instantiate player info prefabs in a list and populate the dictionary.
-        foreach (Player p in PhotonNetwork.PlayerList)
-        {
-            GameObject info = Instantiate(playerInfo);
-            info.transform.SetParent(playerList);
-            info.transform.localScale = Vector3.one;
-            info.GetComponent<PlayerInfo>().Initialise(p.NickName, p.ActorNumber);
-
-            playerListEntries.Add(p.ActorNumber, info);
-        }
+        //Debug.Log("JOINED ROOM");
+        //cachedRoomList.Clear();
+        //
+        //// Leave lobby if currently in one.
+        //if (PhotonNetwork.InLobby)
+        //{
+        //    Debug.Log("LEFT LOBBY");
+        //    PhotonNetwork.LeaveLobby();
+        //}
+        //
+        //// Once the client joins a room, switch the UI panel to the lobby screen.
+        //SetUIPanel(lobbyScreen);
+        //// Display lobby name and player count.
+        //lobbyName.text = PhotonNetwork.CurrentRoom.Name;
+        //playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;
+        //// Create dictionary of players.
+        //if (playerListEntries == null)
+        //{
+        //    playerListEntries = new Dictionary<int, GameObject>();
+        //}
+        //// Instantiate player info prefabs in a list and populate the dictionary.
+        //foreach (Player p in PhotonNetwork.PlayerList)
+        //{
+        //    GameObject info = Instantiate(playerInfo);
+        //    info.transform.SetParent(playerList);
+        //    info.transform.localScale = Vector3.one;
+        //    info.GetComponent<PlayerInfo>().Initialise(p.NickName, p.ActorNumber);
+        //
+        //    playerListEntries.Add(p.ActorNumber, info);
+        //}
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)

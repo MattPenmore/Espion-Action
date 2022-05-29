@@ -255,7 +255,7 @@ public class NetworkedHook : MonoBehaviourPun
                     if (grappleSoundTime <= 0)
                     {
                         grappleSoundTime = 1.3f;
-                        AudioSource.PlayClipAtPoint(clips[1], transform.position);
+                        AudioSource.PlayClipAtPoint(clips[1], transform.position, playerController.oneShotVolume);
                     }
                 }
             }
@@ -325,7 +325,7 @@ public class NetworkedHook : MonoBehaviourPun
         hasHookFired = true;
         isReeling = false;
 
-        AudioSource.PlayClipAtPoint(clips[0], transform.position);
+        AudioSource.PlayClipAtPoint(clips[0], transform.position, playerController.oneShotVolume);
     }
 
     public void DrawRope(Vector3[] ropePositions)
@@ -346,7 +346,7 @@ public class NetworkedHook : MonoBehaviourPun
         }
         //hookReturning = true;
         if(hasHooked)
-            AudioSource.PlayClipAtPoint(clips[2], transform.position);
+            AudioSource.PlayClipAtPoint(clips[2], transform.position, playerController.oneShotVolume);
         hasHooked = false;
         //hook.layer = 10;
         if (!playerController.ledgeGrabbing && !isPlayerGrounded)
