@@ -5095,13 +5095,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240614216}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.14199714, y: 0.73682004, z: -0.16334905, w: 0.6405078}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 700193315}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 25, y: 98, z: 0}
 --- !u!1 &1243165235
 GameObject:
   m_ObjectHideFlags: 0
@@ -5633,6 +5633,7 @@ MonoBehaviour:
   - {fileID: 7618910749157658083, guid: ff76eadc5d6a8b14a8df4201f9a7811e, type: 3}
   - {fileID: 7618910749157658083, guid: e2f764266209f414ab8f150c1a03aff1, type: 3}
   - {fileID: 7618910749157658083, guid: ed7acf71e8267da43841b6f10e260470, type: 3}
+  - {fileID: 7618910749157658083, guid: 0975f47070cab0b43a372775b184d69f, type: 3}
   lobbyName: {fileID: 769979956}
   playerCount: {fileID: 885472673}
   playerInfo: {fileID: 1304662448678162589, guid: dfa414aa3dfaf9742b5d15a5c1a39391, type: 3}

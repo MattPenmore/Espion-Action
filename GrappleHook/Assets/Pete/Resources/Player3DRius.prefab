@@ -113,7 +113,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 023752afc1b8c1840baa383192bdd6ee, type: 2}
+  - {fileID: 2100000, guid: 7b39c4d99fbf1234582424f37df81d70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,7 +142,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234954179075487351}
-  m_Mesh: {fileID: 973877516759717424, guid: bdb0ae73be440454e9a19828e26ddd9d, type: 3}
+  m_Mesh: {fileID: 7116845592555322686, guid: f2d4d2c7923f19f42b8d0cd6cf59fcb6, type: 3}
 --- !u!1 &328893142240038909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,6 +1845,7 @@ GameObject:
   - component: {fileID: 7618910748845692646}
   - component: {fileID: 7618910748845692641}
   - component: {fileID: 7618910748845692640}
+  - component: {fileID: 6378804116905696468}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1918,6 +1919,15 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7618910748845692643}
   m_Enabled: 0
+--- !u!45 &6378804116905696468
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618910748845692643}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 43c0ad03dcb6b2a469387975f5050350, type: 2}
 --- !u!1 &7618910749131538442
 GameObject:
   m_ObjectHideFlags: 0
