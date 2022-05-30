@@ -38,6 +38,7 @@ public class StealBriefCase : MonoBehaviourPun
     public static float[] allPlayersTimes;
     float stealTimer;
     bool gameOver;
+    private int numOfPlayers;
 
     //private string[] playerNamesOrdered;
     //private float[] playerTimesOrdered;
@@ -62,6 +63,7 @@ public class StealBriefCase : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        numOfPlayers = PhotonNetwork.PlayerList.Length;
         stealTimer = 0f;
         ownedTime = winTime;
         currentPlayerOwnedTime = winTime;
@@ -338,7 +340,7 @@ public class StealBriefCase : MonoBehaviourPun
     {
         yield return new WaitForSeconds(1f);
     
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        for (int i = 0; i < numOfPlayers; i++)
         {
             // Spawn a score prefab for each player other than the winner.
             GameObject go = Instantiate(playerScore, scoreBoard);
