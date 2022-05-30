@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4ba650aade0280c47827c1ee72ee5fb8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1efeda66dfa293446893cc3387086a4f, type: 2}
+      objectReference: {fileID: 2100000, guid: 9933f12a2ef614f4f9943247dc5eb7b3, type: 2}
     - target: {fileID: 919132149155446097, guid: 4ba650aade0280c47827c1ee72ee5fb8, type: 3}
       propertyPath: m_Name
       value: Briefcase

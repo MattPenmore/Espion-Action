@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class StealBriefCase : MonoBehaviourPun
 {
 
-    public static float winTime = 60f;
+    public static float winTime = 6f;
     public static bool ownBriefcase;
     public bool inTutorial;
 
@@ -16,6 +16,10 @@ public class StealBriefCase : MonoBehaviourPun
 
     [SerializeField] private SkinnedMeshRenderer skin;
     [SerializeField] private MeshRenderer[] grappleGun;
+    [SerializeField] private GameObject playerScore;
+
+    private Transform scoreBoard;
+    private Canvas returnText;
 
     private GameObject gameManager;
     private GameObject playerTimerText;
@@ -32,6 +36,11 @@ public class StealBriefCase : MonoBehaviourPun
     public static float currentPlayerOwnedTime;
     float stealTimer;
     bool gameOver;
+
+    private string[] playerNamesOrdered;
+    private float[] playerTimesOrdered;
+    private Color[] playerColoursOrdered;
+    private Coroutine scoresCo;
 
     [SerializeField]
     float stealDistance;
@@ -62,7 +71,16 @@ public class StealBriefCase : MonoBehaviourPun
         if (inTutorial)
             tutorialScript = gameManager.GetComponent<TutorialScript>();
         else
+        {
             gameScript = gameManager.GetComponent<GameScript>();
+            
+            playerNamesOrdered = new string[PhotonNetwork.PlayerList.Length];
+            playerTimesOrdered = new float[PhotonNetwork.PlayerList.Length];
+            playerColoursOrdered = new Color[PhotonNetwork.PlayerList.Length];
+            
+            scoreBoard = GameObject.FindGameObjectWithTag("ScoreBoard").transform;
+            returnText = GameObject.FindGameObjectWithTag("ReturnText").GetComponent<Canvas>();
+        }
         playerTimerText = GameObject.FindGameObjectWithTag("PlayerTimerText");
         //otherPlayerTimerText = GameObject.FindGameObjectWithTag("OtherPlayerTimerText");
         briefcaseOutline = GameObject.FindGameObjectWithTag("Outline");
@@ -98,9 +116,11 @@ public class StealBriefCase : MonoBehaviourPun
 
         // Turn off interact canvas.
         if (inTutorial)
-            tutorialScript.interactCanvas.enabled = false;
+            if (tutorialScript.interactCanvas != null)
+                tutorialScript.interactCanvas.enabled = false;
         else
-            gameScript.interactCanvas.enabled = false;
+            if (gameScript.interactCanvas != null)
+                gameScript.interactCanvas.enabled = false;
 
         if (ownBriefcase && !gameOver)
         {
@@ -114,6 +134,7 @@ public class StealBriefCase : MonoBehaviourPun
                 Debug.Log("Win");
                 Vector4 pColour = GetComponentInChildren<Renderer>().material.color;
                 float[] playerColour = { pColour.x, pColour.y, pColour.z, pColour.w };
+                photonView.RPC(nameof(SendMyScore), RpcTarget.AllBuffered);
                 gameManager.GetPhotonView().RPC("EndGame", RpcTarget.All, photonView.Owner.NickName, playerColour);
             }
         }
@@ -124,9 +145,11 @@ public class StealBriefCase : MonoBehaviourPun
             {
                 // Turn on interact canvas.
                 if (inTutorial)
-                    tutorialScript.interactCanvas.enabled = true;
+                    if (tutorialScript.interactCanvas != null)
+                        tutorialScript.interactCanvas.enabled = true;
                 else
-                    gameScript.interactCanvas.enabled = true;
+                    if (gameScript.interactCanvas != null)
+                        gameScript.interactCanvas.enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -210,7 +233,8 @@ public class StealBriefCase : MonoBehaviourPun
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, 5f, layerMask, QueryTriggerInteraction.Collide))
                 {
                     // Turn on interact canvas.
-                    tutorialScript.interactCanvas.enabled = true;
+                    if (tutorialScript.interactCanvas != null)
+                        tutorialScript.interactCanvas.enabled = true;
                     // Start game if interact pressed.
                     if (Input.GetKeyDown(KeyCode.E))
                         tutorialScript.gameObject.GetPhotonView().RPC("StartGame", RpcTarget.AllBuffered);
@@ -277,6 +301,51 @@ public class StealBriefCase : MonoBehaviourPun
             briefCase.GetPhotonView().TransferOwnership(actorNo);
 
         photonView.RPC(nameof(BriefcaseStolen), RpcTarget.AllBufferedViaServer, actorNo, currentOwnedTime);
+    }
+
+    [PunRPC]
+    public void SendMyScore()
+    {
+        //float[] thisColour = new float{playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r
+        photonView.RPC(nameof(SetScores), RpcTarget.AllBuffered, photonView.OwnerActorNr, photonView.Owner.NickName, ownedTime);
+        DisplayScores();
+    }
+
+    [PunRPC]
+    public void SetScores(int playerID, string playerName, float playerTime)
+    {
+        playerNamesOrdered[playerID - 1] = playerName;
+        playerTimesOrdered[playerID - 1] = playerTime;
+        playerColoursOrdered[playerID - 1] = playerColours[playerID];
+        //playerColoursOrdered[playerID] = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
+    }
+
+    public void DisplayScores()// string[] names, float[] times)
+    {
+        if (scoresCo != null) StopCoroutine(scoresCo);
+        scoresCo = StartCoroutine(ShowPlayerScores());//names, times));
+    }
+
+    private IEnumerator ShowPlayerScores()//string[] names, float[] times)
+    {
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 1; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            // Spawn a score prefab for each player other than the winner.
+            GameObject go = Instantiate(playerScore, scoreBoard);
+            Text[] nameAndTime = go.GetComponentsInChildren<Text>();
+            // Set player name and time.
+            nameAndTime[0].text = playerNamesOrdered[i];
+            nameAndTime[1].text = playerTimesOrdered[i].ToString() + "s";
+            // Set text colours.
+            nameAndTime[0].color = playerColoursOrdered[i];
+            nameAndTime[1].color = playerColoursOrdered[i];
+            // Wait 1 second between each spawn.
+            yield return new WaitForSeconds(1f);
+        }
+        // Show the "returning to lobby..." text.
+        returnText.enabled = true;
     }
 
     [PunRPC]

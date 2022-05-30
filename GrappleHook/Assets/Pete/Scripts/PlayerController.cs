@@ -347,11 +347,11 @@ public class PlayerController : MonoBehaviour
             if (currentNumberOfJumps < maxNumberOfJumps)
             {
                 rb.velocity += new Vector3(0, Mathf.Sqrt(jumpHeight * 2f * -Physics.gravity.y * jumpUpgradeValue), 0);
-                currentNumberOfJumps++;
                 jumping = true;
                 jumpTime = 0.5f;
                 anim.SetBool("isJumping", true);
-                AudioSource.PlayClipAtPoint(clips[1], transform.position, oneShotVolume);
+                AudioSource.PlayClipAtPoint((currentNumberOfJumps == 0) ? clips[1] : clips[3], transform.position, oneShotVolume);
+                currentNumberOfJumps++;
             }
         }
 

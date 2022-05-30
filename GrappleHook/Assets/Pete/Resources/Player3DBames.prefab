@@ -1843,6 +1843,7 @@ MonoBehaviour:
   grappleGun:
   - {fileID: 8260025663519461403}
   - {fileID: 6279768082264739008}
+  playerScore: {fileID: 5499627271281732396, guid: 067d8af7a594bf341acdb82ff9e0edaf, type: 3}
   stealDistance: 5
   briefCaseLocationXZ: {fileID: 7618910748614593362}
   briefCaseLocationY: {fileID: 8268934513014235105}
@@ -1885,8 +1886,8 @@ MonoBehaviour:
   hook: {fileID: 7618910749430407372}
   grappleHook: {fileID: 8110681148246932916}
   hookStartPosition: {fileID: 4095567730662733567}
-  playerReelInSpeed: 40
-  playerMoveSpeed: 50
+  playerReelInSpeed: 30
+  playerMoveSpeed: 25
   hookMoveSpeed: 50
   hookMaxDistance: 50
   rope: {fileID: 0}
@@ -1967,7 +1968,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17250fd77a86167409ad51d9d01920ac, type: 3}
   - {fileID: 8300000, guid: 88dc9253c76d8f0419eb90c48c2b136e, type: 3}
   - {fileID: 8300000, guid: 99c9c1c90a458c443ab7fc93cb7ac5c2, type: 3}
-  - {fileID: 8300000, guid: 4c2b23199160b874a94034adff24dfce, type: 3}
+  - {fileID: 8300000, guid: bac677b0047cc7f4ab081a3c96926fee, type: 3}
   spawnPoint: {fileID: 0}
   ledgeGrabbing: 0
   ledgeGrabTarget: {x: 0, y: 0, z: 0}

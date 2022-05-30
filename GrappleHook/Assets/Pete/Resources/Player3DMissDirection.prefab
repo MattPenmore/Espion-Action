@@ -1867,8 +1867,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7618910749131538442}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.0061829207, y: 0.70707977, z: 0.0061829207, w: 0.70707977}
+  m_LocalPosition: {x: 0.319, y: -0.019, z: -0.029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7618910750410382687}
@@ -1951,6 +1951,7 @@ MonoBehaviour:
   skin: {fileID: 6314211733269550519}
   grappleGun:
   - {fileID: 4665425185979109099}
+  playerScore: {fileID: 5499627271281732396, guid: 067d8af7a594bf341acdb82ff9e0edaf, type: 3}
   stealDistance: 5
   briefCaseLocationXZ: {fileID: 7618910748614593362}
   briefCaseLocationY: {fileID: 8268934513014235105}
@@ -1993,7 +1994,7 @@ MonoBehaviour:
   hook: {fileID: 7618910749430407372}
   grappleHook: {fileID: 7618910750410382683}
   hookStartPosition: {fileID: 7618910749131538442}
-  playerReelInSpeed: 40
+  playerReelInSpeed: 30
   playerMoveSpeed: 25
   hookMoveSpeed: 50
   hookMaxDistance: 50
@@ -2075,7 +2076,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17250fd77a86167409ad51d9d01920ac, type: 3}
   - {fileID: 8300000, guid: 88dc9253c76d8f0419eb90c48c2b136e, type: 3}
   - {fileID: 8300000, guid: 99c9c1c90a458c443ab7fc93cb7ac5c2, type: 3}
-  - {fileID: 8300000, guid: 4c2b23199160b874a94034adff24dfce, type: 3}
+  - {fileID: 8300000, guid: bac677b0047cc7f4ab081a3c96926fee, type: 3}
   spawnPoint: {fileID: 0}
   ledgeGrabbing: 0
   ledgeGrabTarget: {x: 0, y: 0, z: 0}
