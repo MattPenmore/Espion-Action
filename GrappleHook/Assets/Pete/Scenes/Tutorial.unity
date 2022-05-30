@@ -5856,9 +5856,9 @@ MonoBehaviour:
   startGameButton: {fileID: 1243165235}
   interactCanvas: {fileID: 1619029121}
   playerPrefabs:
-  - {fileID: 7618910749157658083, guid: ed7acf71e8267da43841b6f10e260470, type: 3}
   - {fileID: 7618910749157658083, guid: ff76eadc5d6a8b14a8df4201f9a7811e, type: 3}
   - {fileID: 7618910749157658083, guid: e2f764266209f414ab8f150c1a03aff1, type: 3}
+  - {fileID: 7618910749157658083, guid: ed7acf71e8267da43841b6f10e260470, type: 3}
   lobbyName: {fileID: 769979956}
   playerCount: {fileID: 885472673}
   playerInfo: {fileID: 1304662448678162589, guid: dfa414aa3dfaf9742b5d15a5c1a39391, type: 3}
