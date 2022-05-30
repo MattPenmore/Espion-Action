@@ -1850,7 +1850,7 @@ MonoBehaviour:
   anim: {fileID: 3446357796496217986}
   clips:
   - {fileID: 8300000, guid: d35b9a54d5bf1fe4086c01d2162d0705, type: 3}
-  - {fileID: 8300000, guid: a381926abf6e79f45ad4922186bd9d37, type: 3}
+  - {fileID: 8300000, guid: 4c2b23199160b874a94034adff24dfce, type: 3}
 --- !u!114 &1844785841952312548
 MonoBehaviour:
   m_ObjectHideFlags: 0
