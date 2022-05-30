@@ -47,7 +47,6 @@ public class SpecCamController : MonoBehaviour
 
         // Apply yaw and tilt to the camera rig.
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
-        //specCam.localRotation = Quaternion.Euler(xRotation, 0, 0);
     }
 
     private void CalculateMovement()

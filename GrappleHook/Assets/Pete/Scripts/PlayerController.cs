@@ -1,7 +1,7 @@
-///========================
-/// Peter Phillips, 2022
+///===================================
+/// Peter Phillips, Matt Penmore, 2022
 /// PlayerController.cs
-///========================
+///===================================
 
 
 using System.Collections;
@@ -34,11 +34,11 @@ public class PlayerController : MonoBehaviour
 
     public bool respawning;
     public bool playedRespawnSound;
-
+    float timeOfLedgeGrab;
     internal float localTime = 0;
 
     float ledgeGrabTime = 0;
-    float maxLedgeGrabTime = 3;
+    float maxLedgeGrabTime = 1;
     private StealBriefCase stealBriefCase;
 
     internal float oneShotVolume = .4f;
@@ -60,8 +60,6 @@ public class PlayerController : MonoBehaviour
 
         // Change player colour.
         Color[] playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
-        //GetComponent<Renderer>().material.color = playerColours[playerID];
-        //body.material.color = playerColours[playerID];
         hookMaterial.material.color = playerColours[playerID];
         grapplingGunMaterial.material.color = playerColours[playerID];
         hookObject.GetComponent<LineRenderer>().startColor = playerColours[playerID];
@@ -81,11 +79,6 @@ public class PlayerController : MonoBehaviour
                 audioListener.enabled = true;
                 Debug.Log("SETTING inTutorial = " + inTutorial);
             }
-            else
-            {
-                RemoveComponents();
-            }
-            
         }
         else if (gameObject.GetPhotonView().IsMine)
         {
@@ -95,22 +88,8 @@ public class PlayerController : MonoBehaviour
             playerCam.enabled = true;
             audioListener.enabled = true;
         }
-        else
-        {
-            RemoveComponents();
-        }
         stealBriefCase = GetComponent<StealBriefCase>();
         stealBriefCase.inTutorial = inTutorial;
-
-        //if (inTutorial && PhotonNetwork.IsMasterClient)
-        //{
-        //    tutorialScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TutorialScript>();
-        //    startGameButton = tutorialScript.startGameButton.transform;
-        //}
-    }
-    private void RemoveComponents()
-    {
-        //Destroy(GetComponent<Rigidbody>());
     }
 
     private void DisableSpecCam()
@@ -169,7 +148,7 @@ public class PlayerController : MonoBehaviour
     float jumpTime = 0.5f;
 
     float stepTimeAudio = 0f;
-    // Start is called before the first frame update
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -184,7 +163,6 @@ public class PlayerController : MonoBehaviour
         timeSinceBoost = boostCooldown;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Switch gravity on/off and then break out of update loop if not the owner of this gameobject.
@@ -217,8 +195,6 @@ public class PlayerController : MonoBehaviour
                 playerCamObject.transform.localPosition = cameraPositions[0].localPosition;
                 stealBriefCase.firstPerson = true;
             }
-            // Swap between first and third person.
-            //playerCamObject.transform.localPosition = (playerCamObject.transform.localPosition == cameraPositions[0].localPosition) ? cameraPositions[1].localPosition : cameraPositions[0].localPosition;
         }
 
 
@@ -269,7 +245,7 @@ public class PlayerController : MonoBehaviour
             float x = Input.GetAxisRaw("Horizontal");
             float z = Input.GetAxisRaw("Vertical");
 
-            move = (transform.right * x + transform.forward * z).normalized * speed * speedUpgradeValue/* * Time.deltaTime*/;
+            move = (transform.right * x + transform.forward * z).normalized * speed * speedUpgradeValue;
 
             rb.velocity = move;
             if (move.magnitude != 0)
@@ -281,11 +257,6 @@ public class PlayerController : MonoBehaviour
                     AudioSource.PlayClipAtPoint(clips[0], transform.position, oneShotVolume);
                     stepTimeAudio = 0.4f;
                 }
-                //if(GetComponent<AudioSource>().clip != clips[0] || !GetComponent<AudioSource>().isPlaying)
-                //{
-                //    GetComponent<AudioSource>().clip = clips[0];
-                //    GetComponent<AudioSource>().Play();
-                //}
             }
             else
                 anim.SetBool("isRunning", false);
@@ -304,8 +275,6 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("RunBack", true);
             else
                 anim.SetBool("RunBack", false);
-
-            //rb.MovePosition(transform.position + move);
         }
         else if ((!hook.hasHooked || jumping) && !ledgeGrabbing)
         {
@@ -338,7 +307,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && !ledgeGrabbing /*&& !hook.hasHooked*/)
+        if (Input.GetKeyDown(KeyCode.Space) && !ledgeGrabbing)
         {
             if (isPlayerGrounded)
             {
@@ -371,7 +340,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Ledge Grab
-        if (!isPlayerGrounded && !ledgeGrabbing && /*!hook.hasHooked &&*/ !jumping)
+        if (!isPlayerGrounded && !ledgeGrabbing && !jumping && Time.time - timeOfLedgeGrab > 2)
         {
             LayerMask avoid = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
             RaycastHit hitHoriz;
@@ -393,6 +362,7 @@ public class PlayerController : MonoBehaviour
                     if (hitColliders.Length == 0)
                     {
                         ledgeGrabbing = true;
+                        timeOfLedgeGrab = Time.time;
                         rb.useGravity = false;
                         rb.velocity = Vector3.zero;
                         break;
@@ -402,9 +372,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //RaycastHit hitAboveCheck;
         LayerMask avoidCheck = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
-        if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5 || ledgeGrabTime > maxLedgeGrabTime /*|| !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAboveCheck, transform.rotation, 0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y), ~avoidCheck)*/)
+        if (Mathf.Abs(Vector3.Magnitude(transform.position - ledgeGrabTarget)) > 5 || ledgeGrabTime > maxLedgeGrabTime)
         {
             ledgeGrabbing = false;
         }
@@ -420,12 +389,10 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector3.up * 6;
             else
                 rb.velocity = (ledgeGrabTarget - transform.position).normalized * 6;
-            //transform.position = Vector3.Lerp(transform.position, ledgeGrabTarget, 5 * Time.deltaTime);
             rb.useGravity = false;
-            if (isPlayerGrounded /*|| rb.velocity.y < 0.1f*/)
+            if (isPlayerGrounded)
             {
                 ledgeGrabbing = false;
-                //rb.velocity = Vector3.zero;
             }
         }
         else
@@ -438,26 +405,6 @@ public class PlayerController : MonoBehaviour
             ledgeGrabbing = false;
         }
 
-        //// Check if in tutorial and if we are client.
-        //if (inTutorial && PhotonNetwork.IsMasterClient)
-        //{
-        //    // Turn off interact canvas.
-        //    tutorialScript.interactCanvas.enabled = false;
-        //    // Check if we are close to button.
-        //    if (Vector3.Distance(transform.position, startGameButton.position) < 5)
-        //    {
-        //        LayerMask layerMask = LayerMask.GetMask("Button");
-        //        // Raycast to see if we are looking at the button
-        //        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, 5f, layerMask, QueryTriggerInteraction.Collide))
-        //        {
-        //            // Turn on interact canvas.
-        //            tutorialScript.interactCanvas.enabled = true;
-        //            // Start game if interact pressed.
-        //            if (Input.GetKeyDown(KeyCode.E))
-        //                tutorialScript.gameObject.GetPhotonView().RPC("StartGame", RpcTarget.AllBuffered);
-        //        }
-        //    }
-        //}
         if(respawning && !playedRespawnSound)
         {
             AudioSource.PlayClipAtPoint(clips[4], transform.position, oneShotVolume);
@@ -501,25 +448,3 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<Respawn>().RespawnPlayerPush(gameObject);
     }
 }
-
-//// Old update function for cube test.
-//void Update()
-//{
-//    // Break out of update loop if not the owner of this gameobject.
-//    if (!gameObject.GetPhotonView().IsMine)
-//        return;
-//
-//    // Side-to-side movement.da
-//    if (Input.GetAxis("X-Axis") != 0)
-//        transform.position += Vector3.right * Input.GetAxis("X-Axis") * Time.deltaTime * 10f;
-//
-//    // Forwards and backwards movement.
-//    if (Input.GetAxis("Z-Axis") != 0)
-//        transform.position += Vector3.forward * Input.GetAxis("Z-Axis") * Time.deltaTime * 10f;
-//
-//    // Up and down movement.
-//    if (Input.GetAxis("Y-Axis") != 0)
-//        transform.position += Vector3.up * Input.GetAxis("Y-Axis") * Time.deltaTime * 10f;
-//
-//    //transform.position = new Vector3(Mathf.Clamp(transform.position.x, -7f, 7f), Mathf.Clamp(transform.position.y, -3.5f, 3f), 0);
-//}

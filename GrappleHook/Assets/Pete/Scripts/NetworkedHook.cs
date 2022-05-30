@@ -86,7 +86,7 @@ public class NetworkedHook : MonoBehaviourPun
     GameObject centreDot;
 
     float grappleSoundTime = 0;
-    // Start is called before the first frame update
+    
     void Start()
     {
         rbPlayer = transform.GetComponent<Rigidbody>();
@@ -103,7 +103,6 @@ public class NetworkedHook : MonoBehaviourPun
         Vector3[] ropePositions = new Vector3[2] { grappleHook.transform.position, hook.transform.position };
         DrawRope(ropePositions);
 
-        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         //Break out of update loop if not the owner of this gameobject.
         if (!gameObject.GetPhotonView().IsMine)
             return;
@@ -111,7 +110,6 @@ public class NetworkedHook : MonoBehaviourPun
         // Break out for the first 1s.
         if (Time.time < 1f)
             return;
-        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
         if (playerController.jumping)
         {
@@ -140,7 +138,6 @@ public class NetworkedHook : MonoBehaviourPun
         //Fire hook
         if (Input.GetMouseButtonDown(0) && !hasHookFired && !playerController.ledgeGrabbing && StealBriefCase.ownBriefcase == false)
             FireHook();
-        //photonView.RPC("FireHook", RpcTarget.All);
 
         // Determine hook action.
         if (hasHookFired && StealBriefCase.ownBriefcase == false && !playerController.ledgeGrabbing)
@@ -149,9 +146,6 @@ public class NetworkedHook : MonoBehaviourPun
             hook.transform.localScale = hookStartPosition.transform.lossyScale;
             hook.transform.LookAt(hook.transform.position + hook.transform.position - grappleHook.transform.position);
             anim.SetBool("FiredGrapple", true);
-            //photonView.RPC("DrawRope", RpcTarget.All, ropePositions);
-            //rope.SetPosition(0, grappleHook.transform.position);
-            //rope.SetPosition(1, hook.transform.position);
 
             hook.GetComponent<SphereCollider>().isTrigger = false;
 
@@ -159,7 +153,6 @@ public class NetworkedHook : MonoBehaviourPun
             if (!hookReturning && !hasHooked)
             {
                 Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
-                //rbHook.MovePosition(hookPosition);
                 rbHook.velocity = hookDirection * hookMoveSpeed;
                 hookCurrentDistance = Vector3.Distance(hookStartPosition.transform.position, hookPosition);
             }
@@ -186,38 +179,6 @@ public class NetworkedHook : MonoBehaviourPun
                 }
             }
 
-            //if (Input.GetMouseButtonDown(0) /*&& briefCase.transform.parent.gameObject != hook*/)
-            //{
-            //    if (isSwinging)
-            //    {
-            //        if (gameObject.GetComponent<SpringJoint>() != null)
-            //        {
-            //            isSwinging = false;
-            //            Destroy(gameObject.GetComponent<SpringJoint>());
-            //        }
-            //    }
-            //    isReeling = false;
-            //    hook.transform.position = hookStartPosition.transform.position;
-            //    BreakHook();
-            //    // Cast a ray from screen point
-            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //    // Save the info
-            //    RaycastHit hit;
-            //    // You successfully hit
-            //    if (Physics.Raycast(ray, out hit))
-            //    {
-            //        // Find the direction to move in
-            //        Vector3 dir = hit.point - hook.transform.position;
-            //        hookDirection = dir.normalized;
-            //    }
-            //    else
-            //    {
-            //        hookDirection = ray.direction.normalized;
-            //    }
-            //    Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
-            //    rbHook.MovePosition(hookPosition);
-            //    hasHookFired = true;
-            //}
             if (hasHooked)
             {
                 if (Input.GetMouseButtonUp(0))
@@ -282,7 +243,6 @@ public class NetworkedHook : MonoBehaviourPun
             grappleSoundTime = 0;
             hasHookFired = false;
             hasHooked = false;
-            //hook.transform.parent = grappleHook.transform;
             hook.transform.SetParent(grappleHook.transform, true);
             hook.transform.position = hookStartPosition.transform.position;
             hook.transform.rotation = hookStartPosition.transform.rotation;
@@ -308,7 +268,6 @@ public class NetworkedHook : MonoBehaviourPun
         RaycastHit hit;
         // You successfully hit
 
-        //if (Physics.Raycast(ray, out hit))
         if (Physics.Raycast(ray, out hit, hookMaxDistance, layerMask))
         {
             // Find the direction to move in
@@ -321,7 +280,6 @@ public class NetworkedHook : MonoBehaviourPun
         }
         Vector3 hookPosition = hook.transform.position + hookDirection * Time.deltaTime * hookMoveSpeed;
         rbHook.velocity = hookDirection.normalized * hookMoveSpeed;
-        //rbHook.MovePosition(hookPosition);
         hasHookFired = true;
         isReeling = false;
 
@@ -344,97 +302,21 @@ public class NetworkedHook : MonoBehaviourPun
                 Destroy(gameObject.GetComponent<SpringJoint>());
             }
         }
-        //hookReturning = true;
         if(hasHooked)
             AudioSource.PlayClipAtPoint(clips[2], transform.position, playerController.oneShotVolume);
         hasHooked = false;
-        //hook.layer = 10;
         if (!playerController.ledgeGrabbing && !isPlayerGrounded)
             rbPlayer.useGravity = true;
-        //Vector3 hookPosition = hook.transform.position + (hookStartPosition.transform.position - hook.transform.position).normalized * Time.deltaTime * hookMoveSpeed;
-        //rbHook.velocity = (hookStartPosition.transform.position - hook.transform.position).normalized * hookMoveSpeed;
-
-        //if (Vector3.Distance(hook.transform.position, hookStartPosition.transform.position) < 1f)
-        //{
+        
         hook.transform.position = hookStartPosition.transform.position;
         rbHook.velocity = Vector3.zero;
         hasHookFired = false;
-        //hookReturning = false;
         hook.layer = 8;
         isReeling = false;       
-        //}
     }
 
     void ReelPlayer()
     {
-        //Original method
-
-        //if (isSwinging)
-        //{
-        //    if (gameObject.GetComponent<SpringJoint>() != null)
-        //    {
-        //        isSwinging = false;
-        //        Destroy(gameObject.GetComponent<SpringJoint>());
-        //    }
-        //}
-
-        //float x = Input.GetAxis("Horizontal");
-        //float z = Input.GetAxis("Vertical");
-
-        //Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
-
-        //Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-        //Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-        //rbPlayer.velocity = dir + move;
-        //rbPlayer.useGravity = false;
-        //isSwinging = false;
-        //New Method
-        //float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
-
-        //if (distanceToHook < 1)
-        //{
-        //    hookedObject = null;
-        //    //rbPlayer.useGravity = true;
-        //    ReturnHook();
-        //    return;
-        //}
-
-        //if (leftGround)
-        //{
-        //    float disChange = playerReelInSpeed * Time.deltaTime;
-        //    ropeLength = Vector3.Distance(hookStartPosition.transform.position, hook.transform.position) - disChange;
-
-        //    if(ropeLength < 0)
-        //    {
-        //        ropeLength = 0;
-        //    }
-
-        //    joint.maxDistance = ropeLength; /** 0.8f;*/
-        //    joint.minDistance = 0;
-
-        //    float x = Input.GetAxis("Horizontal");
-        //    float z = Input.GetAxis("Vertical");
-
-        //    Vector3 move = (transform.right * x + transform.forward * z).normalized * swingVelocity;
-
-        //    Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-        //    //Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-        //    rbPlayer.velocity = dir + move;
-
-        //}
-        //else
-        //{
-        //    float x = Input.GetAxis("Horizontal");
-        //    float z = Input.GetAxis("Vertical");
-
-        //    Vector3 move = (transform.right * x + transform.forward * z) * playerMoveSpeed;
-
-        //    Vector3 dir = (hook.transform.position - transform.position).normalized * playerReelInSpeed;
-        //    Vector3 playerPosition = transform.position + dir * Time.deltaTime + move * Time.deltaTime;
-        //    //rbPlayer.velocity = dir + move;
-        //    rbPlayer.MovePosition(playerPosition);
-        //}
-
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -453,17 +335,6 @@ public class NetworkedHook : MonoBehaviourPun
 
     void SwingPlayer()
     {
-        //float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
-
-        //if (distanceToHook < 1)
-        //{
-        //    hookedObject = null;
-        //    //rbPlayer.useGravity = true;
-        //    ReturnHook();
-        //    return;
-        //}
-
-        //rbPlayer.useGravity = true;
         if (!isSwinging)
         {
             isSwinging = true;
@@ -589,7 +460,7 @@ public class NetworkedHook : MonoBehaviourPun
         // Save the info
         RaycastHit hit;
         // You successfully hit
-        if (Physics.Raycast(ray, out hit, hookMaxDistance, layerMask))// && hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Hook") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WraithPlayer"))
+        if (Physics.Raycast(ray, out hit, hookMaxDistance, layerMask))
         {
             centreDot.GetComponent<Image>().color = new Color32(255, 255, 255, 128);
         }

@@ -14,31 +14,9 @@ public class LobbyInfo : MonoBehaviour
 {
     [SerializeField] private Text lobbyName;
     [SerializeField] private Text playerCount;
-    
     [SerializeField] private Button selectLobbyButton;
 
     private LobbyScript lobbyScript;
-
-    public void Start()
-    {
-        //lobbyScript = GameObject.Find("UI").GetComponent<LobbyScript>();
-        //if (lobbyScript == null) return;
-        //
-        //// Give the button an OnClick event.
-        //selectLobbyButton.onClick.AddListener(() =>
-        //{
-        //    Debug.Log("lobby button pressed.");
-        //    // Leave lobby if currently in one.
-        //    if (PhotonNetwork.InRoom)
-        //    {
-        //        PhotonNetwork.LeaveRoom();
-        //    }
-        //
-        //    SetLobbyName();
-        //
-        //    //lobbyScript.OnLobbyPressed(GetLobbyName());
-        //});
-    }
 
     public void Initialise(string name, byte currentPlayers, byte maxPlayers)
     {
@@ -60,20 +38,7 @@ public class LobbyInfo : MonoBehaviour
                 PhotonNetwork.LeaveRoom();
             }
 
-            //SetLobbyName();
-
             lobbyScript.OnLobbyPressed(name);
         });
     }
-
-    //public string GetLobbyName()
-    //{
-    //    return lobbyName.name;
-    //}
-    //
-    //public void SetLobbyName()
-    //{
-    //    string lobbyName = GetLobbyName();
-    //    lobbyScript.SetLobbyName(lobbyName);
-    //}
 }

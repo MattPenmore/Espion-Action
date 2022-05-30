@@ -13,14 +13,11 @@ public class NetworkedLook : MonoBehaviour
 
     bool isStarting = true;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //startRotation = playerBody.rotation;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Break out of update loop if not the owner of this gameobject.

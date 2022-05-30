@@ -72,28 +72,13 @@ public class TutorialScript : MonoBehaviourPunCallbacks
         }
     }   
 
-    private void Update()
-    {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            //foreach (GameObject go in players)
-            //    PhotonNetwork.Destroy(go);
-            //PhotonNetwork.LoadLevel("Lobby");
-            //PhotonNetwork.LoadLevel("WhiteBox");
-            StartGame();
-        }
-    }
-
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         // Create player info prefab.
         GameObject entry = Instantiate(playerInfo, playerList);
         entry.transform.localScale = Vector3.one;
         entry.GetComponent<PlayerInfo>().Initialise(newPlayer.NickName, newPlayer.ActorNumber);
-        // Add player to dictionary.wwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+        // Add player to dictionary.
         playerListEntries.Add(newPlayer.ActorNumber, entry);
         // Update player count.
         playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + " / " + maxPlayers;

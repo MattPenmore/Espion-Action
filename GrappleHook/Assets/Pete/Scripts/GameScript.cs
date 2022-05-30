@@ -24,21 +24,13 @@ public class GameScript : MonoBehaviourPunCallbacks
     [SerializeField] private Transform scoreBoard;
     [SerializeField] private GameObject returnText;
 
-    private Coroutine scoresCo;
     private bool gameOver;
     private GameObject[] playerModels;
-    //private string[] playerNamesOrdered;
-    //private float[] playerTimesOrdered;
-    //private Color[] playerColoursOrdered;
     private Color[] playerColours;
 
     void Start()
     {
         gameOver = false;
-
-        //playerNamesOrdered = new string[PhotonNetwork.PlayerList.Length];
-        //playerTimesOrdered = new float[PhotonNetwork.PlayerList.Length];
-        //playerColoursOrdered = new Color[PhotonNetwork.PlayerList.Length];
 
         playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
         
@@ -49,14 +41,6 @@ public class GameScript : MonoBehaviourPunCallbacks
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            int k = 0;
-            //if (i < playerPrefabs.Length)
-            //    k = i;
-            //else
-            //{
-            //    k = (i  % playerPrefabs.Length);
-            //}
-
             GameObject go = PhotonNetwork.Instantiate(playerPrefabs[i % playerPrefabs.Length].name, Vector3.one, Quaternion.identity);
             go.GetPhotonView().TransferOwnership(i + 1);
             go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(i + 1);
@@ -86,57 +70,12 @@ public class GameScript : MonoBehaviourPunCallbacks
 
         gameOver = true;
         winnerText.text = playerName + " Wins!";
-        //Vector4 pColour = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
         winnerText.color = playerColours[actorID - 1];
         DisablePlayerUI();
         winScreen.enabled = true;
         gameEnded = true;
         Invoke("ReturnToLobby", 5 + PhotonNetwork.PlayerList.Length);
-        //string[] namesTest = { "pete", "matt", "ben", "gaby" };
-        //float[] timesTest = { 60, 49, 25, 22 };
-        //photonView.RPC(nameof(SetScores), RpcTarget.AllBuffered, photonView.OwnerActorNr, photonView.Owner.NickName, 1, playerColours[photonView.OwnerActorNr - 1]);
-        //DisplayScores();
     }
-
-    //[PunRPC]
-    //public void SetScores(int playerID, string playerName, float playerTime, float[] playerColour)
-    //{
-    //    playerNamesOrdered[playerID] = playerName;
-    //    playerTimesOrdered[playerID] = playerTime;
-    //    playerColoursOrdered[playerID] = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
-    //}
-    //
-    //[PunRPC]
-    //public void DisplayScores()// string[] names, float[] times)
-    //{
-    //    if (scoresCo != null) StopCoroutine(scoresCo);
-    //    scoresCo = StartCoroutine(ShowPlayerScores());//names, times));
-    //}
-    //
-    //private IEnumerator ShowPlayerScores()//string[] names, float[] times)
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //
-    //    for (int i = 1; i < PhotonNetwork.PlayerList.Length; i++)
-    //    {
-    //        // Spawn a score prefab for each player other than the winner.
-    //        GameObject go = Instantiate(playerScore, scoreBoard);
-    //        Text[] nameAndTime = go.GetComponentsInChildren<Text>();
-    //        // Set player name and time.
-    //        nameAndTime[0].text = playerNamesOrdered[i];
-    //        nameAndTime[1].text = playerTimesOrdered[i].ToString() + "s";
-    //        // Set text colours.
-    //        nameAndTime[0].color = playerColoursOrdered[i];
-    //        nameAndTime[1].color = playerColoursOrdered[i];
-    //        // Wait 1 second between each spawn.
-    //        yield return new WaitForSeconds(1f);
-    //    }
-    //    // Show the "returning to lobby..." text.
-    //    returnText.SetActive(true);
-    //    // After 5 seconds, return to the lobby.
-    //    yield return new WaitForSeconds(5f);
-    //    ReturnToLobby();
-    //}
 
     private void ReturnToLobby()
     {
