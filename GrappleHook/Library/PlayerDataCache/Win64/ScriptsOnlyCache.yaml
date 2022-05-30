@@ -1376,7 +1376,7 @@ ScriptsOnlyBuild:
     className: TriggerBehaviour
   - hash:
       serializedVersion: 2
-      Hash: 8cd8d2fdf89e0030972202af292b22cf
+      Hash: baab9fdf593f9e361a68f26621169dda
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StealBriefCase

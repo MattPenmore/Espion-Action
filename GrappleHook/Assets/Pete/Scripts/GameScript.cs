@@ -20,16 +20,17 @@ public class GameScript : MonoBehaviourPunCallbacks
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Canvas winScreen;
     [SerializeField] private Text winnerText;
-    //[SerializeField] private GameObject playerScore;
-    //[SerializeField] private Transform scoreBoard;
-    //[SerializeField] private GameObject returnText;
+    [SerializeField] private GameObject playerScore;
+    [SerializeField] private Transform scoreBoard;
+    [SerializeField] private GameObject returnText;
 
-    //private Coroutine scoresCo;
+    private Coroutine scoresCo;
     private bool gameOver;
+    private GameObject[] playerModels;
     //private string[] playerNamesOrdered;
     //private float[] playerTimesOrdered;
     //private Color[] playerColoursOrdered;
-    //private Color[] playerColours;
+    private Color[] playerColours;
 
     void Start()
     {
@@ -39,10 +40,12 @@ public class GameScript : MonoBehaviourPunCallbacks
         //playerTimesOrdered = new float[PhotonNetwork.PlayerList.Length];
         //playerColoursOrdered = new Color[PhotonNetwork.PlayerList.Length];
 
+        playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
+        
         if (!PhotonNetwork.IsMasterClient)
             return;
 
-        //playerColours = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.cyan, Color.magenta, Color.grey, new Color(1f, .25f, 0f, 1f) };
+        playerModels = new GameObject[PhotonNetwork.PlayerList.Length];
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
@@ -58,6 +61,7 @@ public class GameScript : MonoBehaviourPunCallbacks
             go.GetPhotonView().TransferOwnership(i + 1);
             go.GetComponent<PlayerController>().hookObject.GetPhotonView().TransferOwnership(i + 1);
             go.GetPhotonView().RPC("Initialise", RpcTarget.AllBuffered, i, false);
+            playerModels[i] = go;
         }
     }
 
@@ -76,14 +80,14 @@ public class GameScript : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void EndGame(string playerName, float[] playerColour)
+    public void EndGame(string playerName, int actorID)
     {
         if (gameOver) return;
 
         gameOver = true;
         winnerText.text = playerName + " Wins!";
-        Vector4 pColour = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
-        winnerText.color = pColour;
+        //Vector4 pColour = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
+        winnerText.color = playerColours[actorID - 1];
         DisablePlayerUI();
         winScreen.enabled = true;
         gameEnded = true;
@@ -101,18 +105,18 @@ public class GameScript : MonoBehaviourPunCallbacks
     //    playerTimesOrdered[playerID] = playerTime;
     //    playerColoursOrdered[playerID] = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
     //}
-
+    //
     //[PunRPC]
     //public void DisplayScores()// string[] names, float[] times)
     //{
     //    if (scoresCo != null) StopCoroutine(scoresCo);
     //    scoresCo = StartCoroutine(ShowPlayerScores());//names, times));
     //}
-
+    //
     //private IEnumerator ShowPlayerScores()//string[] names, float[] times)
     //{
     //    yield return new WaitForSeconds(1f);
-
+    //
     //    for (int i = 1; i < PhotonNetwork.PlayerList.Length; i++)
     //    {
     //        // Spawn a score prefab for each player other than the winner.

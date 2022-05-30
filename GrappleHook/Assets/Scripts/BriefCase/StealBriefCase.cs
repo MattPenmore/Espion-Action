@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class StealBriefCase : MonoBehaviourPun
 {
 
-    public static float winTime = 6f;
+    public static float winTime = 60f;
     public static bool ownBriefcase;
     public bool inTutorial;
 
@@ -34,12 +34,14 @@ public class StealBriefCase : MonoBehaviourPun
     bool stealingBriefCase;
     public static float ownedTime;
     public static float currentPlayerOwnedTime;
+    public static int currentPlayerActorNo;
+    public static float[] allPlayersTimes;
     float stealTimer;
     bool gameOver;
 
-    private string[] playerNamesOrdered;
-    private float[] playerTimesOrdered;
-    private Color[] playerColoursOrdered;
+    //private string[] playerNamesOrdered;
+    //private float[] playerTimesOrdered;
+    //private Color[] playerColoursOrdered;
     private Coroutine scoresCo;
 
     [SerializeField]
@@ -68,15 +70,16 @@ public class StealBriefCase : MonoBehaviourPun
         ownBriefcase = false;
         briefCase = GameObject.FindGameObjectWithTag("BriefCase");
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        allPlayersTimes = new float[PhotonNetwork.PlayerList.Length];
         if (inTutorial)
             tutorialScript = gameManager.GetComponent<TutorialScript>();
         else
         {
             gameScript = gameManager.GetComponent<GameScript>();
             
-            playerNamesOrdered = new string[PhotonNetwork.PlayerList.Length];
-            playerTimesOrdered = new float[PhotonNetwork.PlayerList.Length];
-            playerColoursOrdered = new Color[PhotonNetwork.PlayerList.Length];
+            //playerNamesOrdered = new string[PhotonNetwork.PlayerList.Length];
+            //playerTimesOrdered = new float[PhotonNetwork.PlayerList.Length];
+            //playerColoursOrdered = new Color[PhotonNetwork.PlayerList.Length];
             
             scoreBoard = GameObject.FindGameObjectWithTag("ScoreBoard").transform;
             returnText = GameObject.FindGameObjectWithTag("ReturnText").GetComponent<Canvas>();
@@ -111,6 +114,7 @@ public class StealBriefCase : MonoBehaviourPun
         if (!ownBriefcase && briefcaseOutline.GetComponent<Renderer>().material.color != playerColours[0] && !inTutorial) //black
         {
             currentPlayerOwnedTime -= Time.deltaTime;
+            allPlayersTimes[currentPlayerActorNo - 1] = winTime - currentPlayerOwnedTime;
             playerTimerText.GetComponent<Text>().text = (currentPlayerOwnedTime).ToString("F0");
         }
 
@@ -128,14 +132,16 @@ public class StealBriefCase : MonoBehaviourPun
                 playerTimerText.GetComponent<Text>().text = (ownedTime).ToString("F0");
             anim.SetBool("HasBriefCase", true);
             ownedTime -= Time.deltaTime;
+            allPlayersTimes[photonView.OwnerActorNr - 1] = winTime - ownedTime;
             if(ownedTime <= 0 && !inTutorial)
             {
                 gameOver = true;
                 Debug.Log("Win");
-                Vector4 pColour = GetComponentInChildren<Renderer>().material.color;
-                float[] playerColour = { pColour.x, pColour.y, pColour.z, pColour.w };
-                photonView.RPC(nameof(SendMyScore), RpcTarget.AllBuffered);
-                gameManager.GetPhotonView().RPC("EndGame", RpcTarget.All, photonView.Owner.NickName, playerColour);
+                //Vector4 pColour = GetComponentInChildren<Renderer>().material.color;
+                //float[] playerColour = { pColour.x, pColour.y, pColour.z, pColour.w };
+                //photonView.RPC(nameof(SendMyScore), RpcTarget.AllBuffered);
+                gameManager.GetPhotonView().RPC("EndGame", RpcTarget.All, photonView.Owner.NickName, photonView.OwnerActorNr);
+                photonView.RPC(nameof(DisplayScores), RpcTarget.AllBuffered);
             }
         }
         else if(briefCase.GetComponent<BriefCase>().stealable == true)
@@ -303,44 +309,46 @@ public class StealBriefCase : MonoBehaviourPun
         photonView.RPC(nameof(BriefcaseStolen), RpcTarget.AllBufferedViaServer, actorNo, currentOwnedTime);
     }
 
-    [PunRPC]
-    public void SendMyScore()
-    {
-        //float[] thisColour = new float{playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r
-        photonView.RPC(nameof(SetScores), RpcTarget.AllBuffered, photonView.OwnerActorNr, photonView.Owner.NickName, ownedTime);
-        DisplayScores();
-    }
+    //[PunRPC]
+    //public void SendMyScore()
+    //{
+    //    //float[] thisColour = new float{playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r
+    //    photonView.RPC(nameof(SetScores), RpcTarget.AllBuffered, photonView.OwnerActorNr, photonView.Owner.NickName, ownedTime);
+    //    DisplayScores();
+    //}
+    //
+    //[PunRPC]
+    //public void SetScores(int playerID, string playerName, float playerTime)
+    //{
+    //    playerNamesOrdered[playerID - 1] = playerName;
+    //    playerTimesOrdered[playerID - 1] = playerTime;
+    //    playerColoursOrdered[playerID - 1] = playerColours[playerID];
+    //    //playerColoursOrdered[playerID] = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
+    //}
+    //
 
     [PunRPC]
-    public void SetScores(int playerID, string playerName, float playerTime)
-    {
-        playerNamesOrdered[playerID - 1] = playerName;
-        playerTimesOrdered[playerID - 1] = playerTime;
-        playerColoursOrdered[playerID - 1] = playerColours[playerID];
-        //playerColoursOrdered[playerID] = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
-    }
-
     public void DisplayScores()// string[] names, float[] times)
     {
         if (scoresCo != null) StopCoroutine(scoresCo);
         scoresCo = StartCoroutine(ShowPlayerScores());//names, times));
     }
-
+    
     private IEnumerator ShowPlayerScores()//string[] names, float[] times)
     {
         yield return new WaitForSeconds(1f);
-
-        for (int i = 1; i < PhotonNetwork.PlayerList.Length; i++)
+    
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             // Spawn a score prefab for each player other than the winner.
             GameObject go = Instantiate(playerScore, scoreBoard);
             Text[] nameAndTime = go.GetComponentsInChildren<Text>();
             // Set player name and time.
-            nameAndTime[0].text = playerNamesOrdered[i];
-            nameAndTime[1].text = playerTimesOrdered[i].ToString() + "s";
+            nameAndTime[0].text = PhotonNetwork.PlayerList[i].NickName;//playerNamesOrdered[i];
+            nameAndTime[1].text = Mathf.Clamp(allPlayersTimes[i], 0, winTime).ToString("F0") + "s";
             // Set text colours.
-            nameAndTime[0].color = playerColoursOrdered[i];
-            nameAndTime[1].color = playerColoursOrdered[i];
+            nameAndTime[0].color = playerColours[i + 1];
+            nameAndTime[1].color = playerColours[i + 1];
             // Wait 1 second between each spawn.
             yield return new WaitForSeconds(1f);
         }
@@ -381,6 +389,8 @@ public class StealBriefCase : MonoBehaviourPun
             if (briefcaseOutline.GetComponent<Renderer>().material.color != Color.black)
             {
                 Debug.Log("SOMEONE ELSE DID");
+                
+                currentPlayerActorNo = actorNo;
 
                 playerTimerText.GetComponent<Text>().color = Color.red;
 
