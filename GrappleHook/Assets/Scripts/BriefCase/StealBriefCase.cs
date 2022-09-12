@@ -139,9 +139,6 @@ public class StealBriefCase : MonoBehaviourPun
             {
                 gameOver = true;
                 Debug.Log("Win");
-                //Vector4 pColour = GetComponentInChildren<Renderer>().material.color;
-                //float[] playerColour = { pColour.x, pColour.y, pColour.z, pColour.w };
-                //photonView.RPC(nameof(SendMyScore), RpcTarget.AllBuffered);
                 gameManager.GetPhotonView().RPC("EndGame", RpcTarget.All, photonView.Owner.NickName, photonView.OwnerActorNr);
                 photonView.RPC(nameof(DisplayScores), RpcTarget.AllBuffered);
             }
@@ -167,32 +164,6 @@ public class StealBriefCase : MonoBehaviourPun
         }
         else
             anim.SetBool("HasBriefCase", false);
-
-        //Vector3 briefCasePosition = new Vector3(briefCaseLocationXZ.transform.position.x, briefCaseLocationY.transform.position.y, briefCaseLocationXZ.transform.position.z);
-        //
-        //if (stealingBriefCase)
-        //{
-        //    briefCase.transform.parent = null;
-        //    stealTimer += Time.deltaTime;
-        //    float briefcaseDistance = (briefCase.transform.position - briefCasePosition).magnitude;
-        //    briefCase.transform.position = Vector3.Lerp(briefCase.transform.position, briefCasePosition, Mathf.Max(20, 20 * briefcaseDistance) * Time.deltaTime);
-        //    briefCase.transform.rotation = Quaternion.Lerp(briefCase.transform.rotation, briefCaseLocationXZ.transform.localRotation, 1);
-        //
-        //    if(Vector3.Distance(briefCase.transform.position, briefCasePosition) < 0.1f || stealTimer >= maxStealTime)
-        //    {
-        //        briefCase.transform.position = briefCasePosition;
-        //        briefCase.transform.rotation = briefCaseLocationXZ.transform.localRotation;
-        //        briefCase.transform.parent = transform;
-        //        stealingBriefCase = false;
-        //        stealTimer = 0f;
-        //    }
-        //}
-        //else if(ownBriefcase && !gameOver)
-        //{
-        //    briefCase.transform.parent = transform;
-        //    briefCase.transform.position = briefCasePosition;
-        //    briefCase.transform.localRotation = briefCaseLocationXZ.transform.localRotation;
-        //}
 
         // Turn off player renderers when in first person.
         if (firstPerson)
@@ -310,24 +281,6 @@ public class StealBriefCase : MonoBehaviourPun
 
         photonView.RPC(nameof(BriefcaseStolen), RpcTarget.AllBufferedViaServer, actorNo, currentOwnedTime);
     }
-
-    //[PunRPC]
-    //public void SendMyScore()
-    //{
-    //    //float[] thisColour = new float{playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r, playerColours[photonView.OwnerActorNr].r
-    //    photonView.RPC(nameof(SetScores), RpcTarget.AllBuffered, photonView.OwnerActorNr, photonView.Owner.NickName, ownedTime);
-    //    DisplayScores();
-    //}
-    //
-    //[PunRPC]
-    //public void SetScores(int playerID, string playerName, float playerTime)
-    //{
-    //    playerNamesOrdered[playerID - 1] = playerName;
-    //    playerTimesOrdered[playerID - 1] = playerTime;
-    //    playerColoursOrdered[playerID - 1] = playerColours[playerID];
-    //    //playerColoursOrdered[playerID] = new Vector4(playerColour[0], playerColour[1], playerColour[2], playerColour[3]);
-    //}
-    //
 
     [PunRPC]
     public void DisplayScores()// string[] names, float[] times)

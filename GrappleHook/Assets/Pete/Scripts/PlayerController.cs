@@ -181,64 +181,58 @@ public class PlayerController : MonoBehaviour
 
         targetPosition = transform.position;
 
-        // Camera control.
-        if (Input.GetKeyDown(KeyCode.F))
+        CameraControl();
+        Upgrades();        
+        CheckIfGrounded();
+        Move();
+        Jump();
+        Boost();
+
+        if(isPlayerGrounded && !jumping && !netHook.isReeling)
         {
-            // Swap between first and third person.
-            if (playerCamObject.transform.localPosition == cameraPositions[0].localPosition) // first person
-            {
-                playerCamObject.transform.localPosition = cameraPositions[1].localPosition;
-                stealBriefCase.firstPerson = false;
-            }
-            else
-            {
-                playerCamObject.transform.localPosition = cameraPositions[0].localPosition;
-                stealBriefCase.firstPerson = true;
-            }
+            transform.position = Vector3.Lerp(transform.position, targetPosition, 50 * Time.deltaTime);
         }
 
+        LedgeGrab();
 
-        if (jumping)
+        if(respawning && !playedRespawnSound)
         {
-            jumpTime -= Time.deltaTime;
-
-            if (jumpTime <= 0)
-            {
-                jumping = false;
-                anim.SetBool("isJumping", false);
-                jumpTime = 0.5f;
-            }
+            AudioSource.PlayClipAtPoint(clips[4], transform.position, oneShotVolume);
+            playedRespawnSound = true;
         }
-        //Upgrades to jumping and speed
-        if (playerUpgrades.hasUpgrade)
-        {
-            if (playerUpgrades.currentUpgrade == "JumpBoost")
-            {
-                jumpUpgradeValue = playerUpgrades.jumpUpgradeValue;
-            }
-            else
-            {
-                jumpUpgradeValue = 1;
-            }
 
-            if (playerUpgrades.currentUpgrade == "SpeedBoost")
+        MapDistanceCheck();
+    }
+
+    void CheckIfGrounded()
+    {
+        RaycastHit hit;
+        float dist = 0.75f;
+        Vector3 dir = Vector3.down;
+
+        if (Physics.BoxCast(transform.position, Vector3.one * 0.3f, dir, out hit, transform.rotation, dist) && !jumping)
+        {
+            Vector3 rayCastPoint = hit.point;
+            targetPosition.y = rayCastPoint.y + 1;
+            if (isPlayerGrounded == false)
             {
-                jumpUpgradeValue = playerUpgrades.speedUpgradeValue;
+                rb.velocity = Vector3.zero;
+                currentNumberOfJumps = 0;
+                AudioSource.PlayClipAtPoint(clips[2], transform.position, oneShotVolume);
             }
-            else
-            {
-                speedUpgradeValue = 1;
-            }
+            isPlayerGrounded = true;
+            rb.useGravity = false;
         }
         else
         {
-            jumpUpgradeValue = 1;
-            speedUpgradeValue = 1;
+            isPlayerGrounded = false;
+            if (!netHook.hasHooked)
+                rb.useGravity = true;
         }
+    }
 
-
-        CheckIfGrounded();
-
+    private void Move()
+    {
         if (isPlayerGrounded && !hook.hasHooked)
         {
             anim.SetBool("IsGrounded", true);
@@ -252,7 +246,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("isRunning", true);
                 stepTimeAudio -= Time.deltaTime;
-                if(stepTimeAudio <= 0)
+                if (stepTimeAudio <= 0)
                 {
                     AudioSource.PlayClipAtPoint(clips[0], transform.position, oneShotVolume);
                     stepTimeAudio = 0.4f;
@@ -266,7 +260,7 @@ public class PlayerController : MonoBehaviour
             else
                 anim.SetBool("RunLeft", false);
 
-            if ( x > 0)
+            if (x > 0)
                 anim.SetBool("RunRight", true);
             else
                 anim.SetBool("RunRight", false);
@@ -305,8 +299,10 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("RunLeft", false);
             anim.SetBool("RunRight", false);
         }
+    }
 
-        //Jump
+    void Jump()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && !ledgeGrabbing)
         {
             if (isPlayerGrounded)
@@ -324,22 +320,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //Boost
-        timeSinceBoost += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.LeftShift) && timeSinceBoost >= boostCooldown && !ledgeGrabbing)
-        { 
-            rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
-            timeSinceBoost = 0;
-            AudioSource.PlayClipAtPoint(clips[3], transform.position, oneShotVolume);
-            
-        }
-
-        if(isPlayerGrounded && !jumping && !netHook.isReeling)
+        if (jumping)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, 50 * Time.deltaTime);
-        }
+            jumpTime -= Time.deltaTime;
 
-        //Ledge Grab
+            if (jumpTime <= 0)
+            {
+                jumping = false;
+                anim.SetBool("isJumping", false);
+                jumpTime = 0.5f;
+            }
+        }
+    }
+
+    void LedgeGrab()
+    {
         if (!isPlayerGrounded && !ledgeGrabbing && !jumping && Time.time - timeOfLedgeGrab > 2)
         {
             LayerMask avoid = LayerMask.GetMask("WraithPlayer", "Hook", "Player");
@@ -348,11 +343,11 @@ public class PlayerController : MonoBehaviour
             RaycastHit hitAbove;
             Vector3 vertPos = transform.position + transform.forward * 1.32f + transform.up * 2;
             Vector3 horizPos = transform.position;
-            horizPos.y += 1; 
-            if (Physics.BoxCast(transform.position, new Vector3(0.3f,1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 2f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, /*0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y)*/2.8f, ~avoid))
+            horizPos.y += 1;
+            if (Physics.BoxCast(transform.position, new Vector3(0.3f, 1f, 0.1f), transform.forward, out hitHoriz, transform.rotation, 2f, ~avoid) && Physics.BoxCast(vertPos, Vector3.one * 0.5f, -Vector3.up, out hitVert, transform.rotation, 2f, ~avoid) && !Physics.BoxCast(transform.position, Vector3.one * 0.2f, Vector3.up, out hitAbove, transform.rotation, /*0.1f + Mathf.Abs(transform.position.y - ledgeGrabTarget.y)*/2.8f, ~avoid))
             {
                 RaycastHit[] vertCheck = Physics.BoxCastAll(vertPos, Vector3.one * 0.5f, -Vector3.up, transform.rotation, 2f, ~avoid);
-                foreach(RaycastHit vert in vertCheck)
+                foreach (RaycastHit vert in vertCheck)
                 {
 
                     ledgeGrabTarget = vert.point;
@@ -368,7 +363,6 @@ public class PlayerController : MonoBehaviour
                         break;
                     }
                 }
-
             }
         }
 
@@ -378,14 +372,14 @@ public class PlayerController : MonoBehaviour
             ledgeGrabbing = false;
         }
 
-        if(ledgeGrabbing)
+        if (ledgeGrabbing)
         {
             if (netHook.hasHookFired)
                 netHook.BreakHook();
 
             ledgeGrabTime += Time.deltaTime;
             anim.SetBool("LedgeGrabbing", true);
-            if(ledgeGrabTarget.y > (transform.position.y + 0.4f))
+            if (ledgeGrabTarget.y > (transform.position.y + 0.4f))
                 rb.velocity = Vector3.up * 6;
             else
                 rb.velocity = (ledgeGrabTarget - transform.position).normalized * 6;
@@ -404,40 +398,64 @@ public class PlayerController : MonoBehaviour
 
             ledgeGrabbing = false;
         }
-
-        if(respawning && !playedRespawnSound)
-        {
-            AudioSource.PlayClipAtPoint(clips[4], transform.position, oneShotVolume);
-            playedRespawnSound = true;
-        }
-
-        MapDistanceCheck();
     }
 
-    void CheckIfGrounded()
+    void Boost()
     {
-        RaycastHit hit;
-        float dist = 0.75f;
-        Vector3 dir = Vector3.down;
-
-        if (Physics.BoxCast(transform.position, Vector3.one * 0.3f, dir, out hit, transform.rotation, dist) && !jumping)
+        timeSinceBoost += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.LeftShift) && timeSinceBoost >= boostCooldown && !ledgeGrabbing)
         {
-            Vector3 rayCastPoint = hit.point;
-            targetPosition.y = rayCastPoint.y + 1;
-            if (isPlayerGrounded == false)
+            rb.AddForce(transform.right * boostForce.x + transform.up * boostForce.y + transform.forward * boostForce.z);
+            timeSinceBoost = 0;
+            AudioSource.PlayClipAtPoint(clips[3], transform.position, oneShotVolume);
+
+        }
+    }
+
+    void Upgrades()
+    {
+        if (playerUpgrades.hasUpgrade)
+        {
+            if (playerUpgrades.currentUpgrade == "JumpBoost")
             {
-                rb.velocity = Vector3.zero;
-                currentNumberOfJumps = 0;
-                AudioSource.PlayClipAtPoint(clips[2], transform.position, oneShotVolume);
+                jumpUpgradeValue = playerUpgrades.jumpUpgradeValue;
             }
-            isPlayerGrounded = true;
-            rb.useGravity = false;
+            else
+            {
+                jumpUpgradeValue = 1;
+            }
+
+            if (playerUpgrades.currentUpgrade == "SpeedBoost")
+            {
+                jumpUpgradeValue = playerUpgrades.speedUpgradeValue;
+            }
+            else
+            {
+                speedUpgradeValue = 1;
+            }
         }
         else
         {
-            isPlayerGrounded = false;
-            if (!netHook.hasHooked)
-                rb.useGravity = true;
+            jumpUpgradeValue = 1;
+            speedUpgradeValue = 1;
+        }
+    }
+
+    void CameraControl()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            // Swap between first and third person.
+            if (playerCamObject.transform.localPosition == cameraPositions[0].localPosition) // first person
+            {
+                playerCamObject.transform.localPosition = cameraPositions[1].localPosition;
+                stealBriefCase.firstPerson = false;
+            }
+            else
+            {
+                playerCamObject.transform.localPosition = cameraPositions[0].localPosition;
+                stealBriefCase.firstPerson = true;
+            }
         }
     }
 

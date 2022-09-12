@@ -21,22 +21,22 @@ public class NetworkedHook : MonoBehaviourPun
     public GameObject hookStartPosition;
 
     [SerializeField]
-    float playerReelInSpeed = 40;
+    float playerReelInSpeed = 30;
 
     [SerializeField]
-    float playerMoveSpeed = 15;
+    float playerMoveSpeed = 25;
 
     [SerializeField]
-    float hookMoveSpeed;
+    float hookMoveSpeed = 50;
 
     [SerializeField]
-    float hookMaxDistance;
+    float hookMaxDistance = 50;
 
     [SerializeField]
     LineRenderer rope;
 
     [SerializeField]
-    float swingVelocity = 40;
+    float swingVelocity = 50;
 
     [SerializeField]
     PlayerController playerController;
@@ -140,6 +140,13 @@ public class NetworkedHook : MonoBehaviourPun
             FireHook();
 
         // Determine hook action.
+        HookCheck();
+
+        previousPosition = transform.position;
+    }
+
+    void HookCheck()
+    {
         if (hasHookFired && StealBriefCase.ownBriefcase == false && !playerController.ledgeGrabbing)
         {
             hook.transform.SetParent(null, true);
@@ -210,7 +217,7 @@ public class NetworkedHook : MonoBehaviourPun
                         Destroy(gameObject.GetComponent<SpringJoint>());
                     }
                 }
-                else if(hasHookFired && Vector3.Distance(hook.transform.position, transform.position) > 2f)
+                else if (hasHookFired && Vector3.Distance(hook.transform.position, transform.position) > 2f)
                 {
                     grappleSoundTime -= Time.deltaTime;
                     if (grappleSoundTime <= 0)
@@ -222,7 +229,7 @@ public class NetworkedHook : MonoBehaviourPun
             }
             else
             {
-                
+
                 if (gameObject.GetComponent<SpringJoint>() != null)
                 {
                     isSwinging = false;
@@ -254,7 +261,6 @@ public class NetworkedHook : MonoBehaviourPun
                 rbPlayer.useGravity = true;
             isReeling = false;
         }
-        previousPosition = transform.position;
     }
 
     //[PunRPC]
